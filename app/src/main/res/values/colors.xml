@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="trans_white60">#96FFFFFF</color>
+    <color name="black">#0c0c0c</color>
+    <color name="mblack">#33363c</color>
+    <color name="mmblack">#43464b</color>
+    <color name="gray">#8190a7</color>
+    <color name="basic_gray">#737373</color>
+    <color name="circle_gray">#a7b8d1</color>
+    <color name="xgray">#999999</color>
+    <color name="sgray">#6A6D6C</color>
+    <color name="mgray">#a7a7a7</color>
+    <color name="mmgray">#dddddd</color>
+    <color name="mmmgray">#f5f5f5</color>
+    <color name="mmmmgray">#f8f8ff</color>
+    <color name="trans">#00000000</color>
+
+    <color name="nav_gray">#b2b2b2</color>
+    <color name="nav_green">#00b99e</color>
+    <color name="mblue">#95c9ee</color>
+    <color name="blue">#76a6ef</color>
+    <color name="xblue">#6a89ed</color>
+    <color name="pink">#ef76e8</color>
+    <color name="red">#ff6041</color>
+
+
+    <color name="bh_normal">#8693f3</color>
+    <color name="bh_mid">#bc8dee</color>
+    <color name="bh_low_high">#ffa897</color>
+    <color name="button_color">#737FDA</color>
+
+    <color name="scan_succ">#19af8f</color>
+    <color name="scaning">#118ae2</color>
+    <color name="scan_fail">#fc4a35</color>
+
+
+    <drawable name="nav_green">#00b99e</drawable>
+    <drawable name="nav_trans">#00000000</drawable>
+
+
+</resources>

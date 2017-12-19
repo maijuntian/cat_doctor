@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RadioGroup
+        android:id="@+id/rg_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/manager_inva_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_basic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60px"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_nav_circle_selector"
+            android:drawableLeft="@drawable/manager_nav_basic_set_selector"
+            android:drawablePadding="18px"
+            android:text="基本设置"
+            android:textColor="@drawable/manager_inva_textcolor_selector"
+            android:textSize="18px" />
+
+
+        <RadioButton
+            android:id="@+id/rb_product_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_nav_circle_selector"
+            android:drawableLeft="@drawable/manager_nav_product_info_selector"
+            android:drawablePadding="18px"
+            android:text="产品信息"
+            android:textColor="@drawable/manager_inva_textcolor_selector"
+            android:textSize="18px" />
+
+
+        <RadioButton
+            android:id="@+id/rb_sys_set"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_nav_circle_selector"
+            android:drawableLeft="@drawable/manager_nav_sys_set_selector"
+            android:drawablePadding="18px"
+            android:text="系统设置"
+            android:textColor="@drawable/manager_inva_textcolor_selector"
+            android:textSize="18px" />
+
+        <RadioButton
+            android:id="@+id/rb_hardware_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_nav_circle_selector"
+            android:drawableLeft="@drawable/manager_nav_check_selector"
+            android:drawablePadding="18px"
+            android:text="硬件检测及校准"
+            android:textColor="@drawable/manager_inva_textcolor_selector"
+            android:textSize="18px" />
+
+        <RadioButton
+            android:id="@+id/rb_online_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_nav_circle_selector"
+            android:drawableLeft="@drawable/manager_nav_updated_selector"
+            android:drawablePadding="18px"
+            android:text="在线升级"
+            android:textColor="@drawable/manager_inva_textcolor_selector"
+            android:textSize="18px" />
+
+        <RadioButton
+            android:id="@+id/rb_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_nav_circle_selector"
+            android:drawableLeft="@drawable/manager_nav_about_selector"
+            android:drawablePadding="18px"
+            android:text="关于猫博士"
+            android:textColor="@drawable/manager_inva_textcolor_selector"
+            android:textSize="18px" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/iv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60px"
+        android:layout_marginTop="33px"
+        android:src="@mipmap/manager_logout" />
+
+    <ImageView
+        android:id="@+id/iv_power_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="33px"
+        android:layout_toLeftOf="@id/iv_logout"
+        android:src="@mipmap/power_off" />
+
+
+    <TextView
+        android:id="@+id/tv_owner"
+        style="@style/text_mgray"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30px"
+        android:text="@string/company_owner"
+        android:textSize="16px" />
+
+
+    <TextView
+        android:id="@+id/tv_phone"
+        style="@style/text_mgray"
+        android:layout_above="@id/tv_owner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20px"
+        android:text="@string/hot_line"
+        android:textSize="16px" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_phone"
+        android:layout_below="@id/rg_nav">
+
+    </FrameLayout>
+
+
+</RelativeLayout>

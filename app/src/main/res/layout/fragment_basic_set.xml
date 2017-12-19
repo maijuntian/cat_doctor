@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60px"
+        android:layout_marginTop="60px"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_wlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/manager_basic_tab_bg_selector"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_basic_tab_bar_selector"
+            android:drawablePadding="20px"
+            android:gravity="center"
+            android:paddingTop="20px"
+            android:text="WLAN"
+            android:textColor="@drawable/question_answer_textcolor_selector"
+            android:textSize="30px" />
+
+        <RadioButton
+            android:id="@+id/rb_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80px"
+            android:background="@drawable/manager_basic_tab_bg_selector"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_basic_tab_bar_selector"
+            android:drawablePadding="20px"
+            android:gravity="center"
+            android:paddingTop="20px"
+            android:text="音量"
+            android:textColor="@drawable/question_answer_textcolor_selector"
+            android:textSize="30px" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/ll_wlan"
+        android:layout_width="700px"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150px"
+        android:layout_marginTop="210px"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/text_black"
+                android:layout_marginLeft="49px"
+                android:text="无线局域网"
+                android:textColor="@color/mmblack"
+                android:textSize="24px" />
+
+            <CheckBox
+                android:id="@+id/cb_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:button="@drawable/cb_wlan_power_selector" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="30px"
+            android:layout_marginTop="30px"
+            android:background="@mipmap/basic_wlan_divider" />
+
+        <ListView
+            android:id="@+id/lv_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@mipmap/basic_wifi_divider" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="310px"
+        android:gravity="center_vertical"
+        android:visibility="visible">
+
+        <SeekBar
+            android:id="@+id/sb_voice"
+            android:layout_width="490px"
+            android:layout_height="wrap_content"
+            android:max="10"
+            android:maxHeight="10px"
+            android:progress="100"
+            android:thumbOffset="0px"
+            android:progressDrawable="@drawable/voice_seekbar"
+            android:thumb="@mipmap/basic_voice_icon" />
+
+        <TextView
+            android:id="@+id/tv_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:textColor="#009de8"
+            android:textSize="35px" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/main_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="34px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/text_mgray"
+            android:layout_marginRight="40px"
+            android:text="2017年8月2日 周三 17:80"
+            android:textSize="20px" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/mmgray" />
+
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:src="@drawable/main_logout_selector" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="800px"
+        android:layout_marginTop="153px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="90px"
+            android:layout_height="90px">
+
+            <ImageView
+                android:id="@+id/iv_head_icon"
+                android:layout_width="90px"
+                android:layout_height="90px"
+                android:background="@mipmap/main_default_head_icon"
+                android:padding="2px" />
+
+            <ImageView
+                android:id="@+id/iv_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/main_vip"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            style="@style/text_gray"
+            android:layout_marginLeft="20px"
+            android:text="Xiaoying Hu"
+            android:textColor="@color/gray"
+            android:textSize="28px"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/main_menu1_selector" />
+
+        <ImageView
+            android:id="@+id/iv_blood_o"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30px"
+            android:src="@drawable/main_menu2_selector" />
+
+        <ImageView
+            android:id="@+id/iv_bp_hp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30px"
+            android:src="@drawable/main_menu3_selector" />
+
+        <ImageView
+            android:id="@+id/iv_face_ton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30px"
+            android:src="@drawable/main_menu4_selector" />
+
+        <ImageView
+            android:id="@+id/iv_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-30px"
+            android:src="@drawable/main_menu5_selector" />
+    </LinearLayout>
+
+</RelativeLayout>

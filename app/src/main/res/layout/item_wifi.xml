@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="30px"
+    android:paddingTop="44px">
+
+
+    <ImageView
+        android:id="@+id/iv_choose_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/basic_choose_wlan" />
+
+    <ImageView
+        android:id="@+id/iv_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10px"
+        android:src="@mipmap/basic_wifi" />
+
+
+    <ImageView
+        android:id="@+id/iv_lock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30px"
+        android:layout_toLeftOf="@id/iv_wifi"
+        android:src="@mipmap/basic_wlan_lock" />
+
+    <TextView
+        android:id="@+id/tv_wifi_name"
+        style="@style/text_mmblack"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20px"
+        android:layout_toLeftOf="@id/iv_lock"
+        android:layout_toRightOf="@id/iv_choose_wifi"
+        android:text="daxiang-wfeh"
+        android:textSize="22px" />
+
+</RelativeLayout>

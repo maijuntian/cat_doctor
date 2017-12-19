@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:paddingTop="100px">
+
+    <TextView
+        style="@style/basic_gray"
+        android:layout_marginTop="70px"
+        android:text="密码" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/text_mgray"
+            android:text="请输入daxiang网络密码"
+            android:textSize="18px" />
+
+        <EditText
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:id="@+id/et_pwd"
+            android:layout_width="450px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:background="@mipmap/basic_pwd_input"
+            android:inputType="textPassword"
+            android:maxLines="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22px"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb_show_pwd"
+                style="@style/text_mblue"
+                android:button="@drawable/basic_wifi_pwd_check_selector"
+                android:paddingLeft="10px"
+                android:text="显示密码"
+                android:textSize="16px" />
+
+            <CheckBox
+                android:id="@+id/cb_auto_connect"
+                style="@style/text_mblue"
+                android:layout_marginLeft="80px"
+                android:button="@drawable/basic_wifi_pwd_check_selector"
+                android:paddingLeft="10px"
+                android:text="自动重新连接"
+                android:textSize="16px" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65px"
+            android:orientation="horizontal"
+            android:paddingBottom="189px">
+
+            <ImageView
+                android:id="@+id/iv_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/basic_wlan_connect" />
+
+
+            <ImageView
+                android:id="@+id/iv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/basic_cancel" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

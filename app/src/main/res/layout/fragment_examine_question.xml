@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/examine_main_menu5_bg">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="80px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="80px">
+
+        <TextView
+            android:id="@+id/tv_question_progress"
+            style="@style/text_mgray"
+            android:text="答题进度:"
+            android:textSize="18px"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200px"
+            android:layout_height="20px"
+            android:layout_marginLeft="8px"
+            android:progressDrawable="@drawable/question_progress"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_progress"
+            style="@style/text_black"
+            android:layout_marginLeft="20px"
+            android:text=""
+            android:textSize="20px"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_question_result_tip"
+            style="@style/text_gray"
+            android:text="中医体质辨识结果"
+            android:textSize="26px"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="1540px"
+        android:layout_height="130px"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_reexamine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="340px"
+            android:src="@mipmap/question_return"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80px"
+            android:visibility="invisible"
+            android:src="@mipmap/examine_start_next" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_question"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="130px"
+        android:layout_marginLeft="80px"
+        android:layout_marginRight="575px"
+        android:layout_marginTop="166px"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/text_mblack"
+            android:layout_marginTop="140px"
+            android:text=""
+            android:textSize="38px" />
+
+        <ImageView
+            android:id="@+id/iv_pre_question"
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="140px"
+            android:src="@drawable/question_pre_selector"
+            android:textSize="24px"
+            android:visibility="invisible" />
+
+
+        <ImageView
+            android:id="@+id/iv_commit"
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="140px"
+            android:src="@mipmap/question_commit_n"
+            android:textSize="24px"
+            android:visibility="invisible" />
+
+        <GridView
+            android:id="@+id/gv_answers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/iv_pre_question"
+            android:layout_below="@id/tv_content"
+            android:layout_marginTop="80px"
+            android:numColumns="3"
+            android:verticalSpacing="20px"
+            android:stretchMode="columnWidth" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="130px"
+        android:layout_marginRight="380px"
+        android:layout_marginTop="136px"
+        android:visibility="gone">
+
+        <com.healthmall.sail.cat_doctor.widget.QuestionResultView
+            android:id="@+id/qrv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/question_result_bg" />
+
+        <TextView
+            android:id="@+id/tv_habits"
+            style="@style/text_blue"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="90px"
+            android:text="您的体质为血瘀质"
+            android:textSize="28px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50px"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="@string/question_result_alarm"
+                android:textSize="16px" />
+
+            <TextView
+                android:id="@+id/tv_reexamine"
+                style="@style/text_blue"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:text="重新辨识 >"
+                android:textSize="16px" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="130px"
+        android:layout_marginLeft="200px"
+        android:layout_marginRight="575px"
+        android:layout_marginTop="314px"
+        android:visibility="">
+
+        <LinearLayout
+            android:layout_width="500px"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="请输入体质辨识时预留的手机号码"
+                android:textSize="24px" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="90px"
+                android:layout_marginTop="30px"
+                android:background="@drawable/question_phone_input_bg"
+                android:enabled="false"
+                android:gravity="center_vertical"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:textSize="68px" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40px"
+                android:src="@mipmap/question_confirm" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60px"
+                android:text="操作说明"
+                android:textSize="22px" />
+
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginTop="20px"
+                android:lineSpacingExtra="5px"
+                android:text="点击右侧数字键盘，输入您体质辨识时预留的11位手机号码，输入完成后请仔细核对无误"
+                android:textSize="16px" />
+
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginTop="16px"
+                android:lineSpacingExtra="5px"
+                android:text="点击确认按钮进去下一步。"
+                android:textSize="16px" />
+
+        </LinearLayout>
+
+        <GridView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:numColumns="3" />
+
+
+    </RelativeLayout>-->
+
+</RelativeLayout>

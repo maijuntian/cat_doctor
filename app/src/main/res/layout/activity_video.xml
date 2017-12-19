@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_root"
+    android:orientation="vertical">
+
+    <com.healthmall.sail.cat_doctor.widget.MyVideoView
+        android:id="@+id/vv_advert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60px"
+        android:layout_marginTop="20px"
+        android:src="@mipmap/await_logo2" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/text_white"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60px"
+        android:layout_marginTop="30px"
+        android:text="2017年8月2日 周三 17:80"
+        android:textSize="20px" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="80px"
+        android:layout_marginRight="80px"
+        android:src="@mipmap/await_qrcode" />
+
+    <ImageView
+        android:id="@+id/iv_tip"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80px"
+        android:src="@mipmap/await_exit_video" />
+
+
+</RelativeLayout>

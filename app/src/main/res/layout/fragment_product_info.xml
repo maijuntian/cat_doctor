@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140px"
+        android:src="@mipmap/product_logo" />
+
+    <RelativeLayout
+        android:id="@+id/rl_name"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120px">
+
+        <TextView
+            style="@style/text_mmblack"
+            android:layout_marginLeft="10px"
+            android:text="品牌名称"
+            android:textSize="24px" />
+
+
+        <TextView
+            style="@style/text_mmblack"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10px"
+            android:text="健康猫"
+            android:textSize="24px" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        style="@style/divider"
+        android:layout_width="500px"
+        android:layout_below="@id/rl_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26px"
+        android:layout_marginTop="30px" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_device_id"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/tv_device_id_tip"
+            style="@style/text_mmblack"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:text="设备号"
+            android:textSize="24px" />
+
+
+        <TextView
+            android:id="@+id/tv_device_id"
+            style="@style/text_mmblack"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10px"
+            android:text="BC348450"
+            android:textSize="24px"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/et_device_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18px"
+            android:layout_toRightOf="@id/tv_device_id_tip"
+            android:background="@mipmap/product_input"
+            android:gravity="center_vertical|right"
+            android:maxLines="1"
+            android:inputType="number"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:text=""
+            android:textSize="24px" />
+
+    </RelativeLayout>
+
+
+    <View
+        style="@style/divider"
+        android:layout_width="500px"
+        android:layout_below="@id/rl_device_id"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12px" />
+
+    <ImageView
+        android:id="@+id/iv_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/rl_device_id"
+        android:layout_marginLeft="40px"
+        android:layout_toRightOf="@id/rl_device_id"
+        android:src="@mipmap/product_commit" />
+
+</RelativeLayout>

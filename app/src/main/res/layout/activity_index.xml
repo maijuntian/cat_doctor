@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/await_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/text_white"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60px"
+        android:layout_marginTop="30px"
+        android:text="2017年8月2日 周三 17:80"
+        android:textSize="20px" />
+
+    <ImageView
+        android:id="@+id/iv_qrcode"
+        android:layout_width="@dimen/px200"
+        android:layout_height="@dimen/px200"
+        android:layout_marginLeft="@dimen/px160"
+        android:layout_marginTop="@dimen/px370"/>
+
+    <ImageView
+        android:id="@+id/iv_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_qrcode"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/iv_qrcode"
+        android:src="@mipmap/await_video" />
+
+    <ImageView
+        android:id="@+id/iv_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="30px"
+        android:src="@mipmap/await_manager" />
+</RelativeLayout>

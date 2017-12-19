@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg">
+
+    <ImageView
+        android:id="@+id/iv_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="30px"
+        android:src="@mipmap/login_logout" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_account"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="710px"
+        android:layout_marginTop="345px"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="20px"
+            android:paddingTop="20px"
+            android:src="@mipmap/login_delete" />
+
+        <EditText
+            android:id="@+id/et_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/iv_delete"
+            android:background="@color/trans"
+            android:drawableLeft="@mipmap/login_accout_icon"
+            android:drawablePadding="20px"
+            android:hint="管理员账号"
+            android:maxLines="1"
+            android:paddingBottom="20px"
+            android:paddingTop="20px"
+            android:textColor="@color/white"
+            android:textColorHint="@color/trans_white60"
+            android:textSize="30px" />
+
+    </RelativeLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_old_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="710px"
+        android:layout_marginTop="345px"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/rl_old_pwd"
+            layout="@layout/view_password" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="710px"
+        android:layout_marginTop="465px">
+
+        <include
+            android:id="@+id/rl_pwd"
+            layout="@layout/view_password" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/iv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="770px"
+        android:src="@mipmap/login_login" />
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/iv_login"
+        android:layout_below="@id/iv_login"
+        android:layout_marginTop="20px"
+        android:text="*用户名或密码错误"
+        android:textColor="@color/red"
+        android:textSize="18px"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tv_update_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/iv_login"
+        android:layout_below="@id/iv_login"
+        android:layout_marginTop="20px"
+        android:paddingRight="20px"
+        android:text="修改密码"
+        android:textColor="@color/nav_gray"
+        android:textSize="20px" />
+
+    <TextView
+        android:id="@+id/tv_count_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_login"
+        android:layout_alignTop="@id/iv_login"
+        android:layout_marginLeft="20px"
+        android:layout_toRightOf="@id/iv_login"
+        android:gravity="center_vertical"
+        android:text="120s"
+        android:textColor="#00b99e"
+        android:textSize="24px"
+        android:visibility="invisible" />
+
+
+    <TextView
+        android:id="@+id/tv_owner"
+        style="@style/text_mgray"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30px"
+        android:text="@string/company_owner"
+        android:textSize="16px" />
+
+
+    <TextView
+        android:id="@+id/tv_phone"
+        style="@style/text_mgray"
+        android:layout_above="@id/tv_owner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20px"
+        android:text="@string/hot_line"
+        android:textSize="16px" />
+</RelativeLayout>

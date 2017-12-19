@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140px"
+        android:src="@mipmap/product_logo" />
+
+    <RelativeLayout
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120px">
+
+        <TextView
+            style="@style/text_mmblack"
+            android:layout_marginLeft="10px"
+            android:text="当前版本"
+            android:textSize="24px" />
+
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/text_mmblack"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10px"
+            android:text="健康猫 v1.0"
+            android:textSize="24px" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/divider"
+        android:layout_width="500px"
+        android:layout_marginBottom="44px"
+        android:layout_marginTop="30px" />
+
+
+    <RelativeLayout
+        android:layout_width="500px"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/text_mmblack"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:text="分辨率"
+            android:textSize="24px" />
+
+
+        <TextView
+            android:id="@+id/tv_device_id"
+            style="@style/text_mmblack"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10px"
+            android:text="1920*1080"
+            android:textSize="24px" />
+
+
+    </RelativeLayout>
+
+
+    <View
+        style="@style/divider"
+        android:layout_width="500px"
+        android:layout_marginBottom="44px"
+        android:layout_marginTop="30px" />
+
+
+    <RelativeLayout
+        android:layout_width="500px"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/text_mmblack"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:text="系统版本"
+            android:textSize="24px" />
+
+
+        <TextView
+            style="@style/text_mmblack"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10px"
+            android:text="Android系统"
+            android:textSize="24px" />
+
+    </RelativeLayout>
+
+    <View
+        style="@style/divider"
+        android:layout_width="500px"
+        android:layout_marginTop="30px" />
+
+</LinearLayout>

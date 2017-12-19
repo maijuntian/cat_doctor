@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/report_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/text_gray"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="30px"
+        android:text="2017年8月2日 周三 17:80"
+        android:textSize="20px" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="190px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_blue"
+            android:text="中医体质辨识"
+            android:textSize="34px"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25px"
+            android:layout_marginTop="30px"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                style="@style/text_gray"
+                android:text="体质与亚健康密切相关，可依据不同体质类型制定相应的调体措施、改善体质偏颇状态、防治亚健康"
+                android:textSize="20px" />
+
+            <TextView
+                android:id="@+id/tv_examine_now"
+                style="@style/text_blue"
+                android:paddingLeft="20px"
+                android:text="@string/check_now"
+                android:textSize="20px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_result"
+            style="@style/text_gray"
+            android:layout_marginBottom="25px"
+            android:layout_marginTop="30px"
+            android:text="您的体质是"
+            android:textSize="24px"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="120px"
+            android:layout_height="2px"
+            android:background="@color/gray" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="330px"
+        android:layout_height="310px"
+        android:layout_marginLeft="160px"
+        android:layout_marginTop="582px">
+
+        <LinearLayout
+            android:id="@+id/ll_body_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="35px"
+            android:paddingRight="35px"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="身高："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_height"
+                    style="@style/text_gray"
+                    android:text="163CM"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="体重："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    style="@style/text_gray"
+                    android:text="44KG"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="生理年龄："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_age"
+                    style="@style/text_gray"
+                    android:text="36"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="BMI："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_bmi"
+                    style="@style/text_gray"
+                    android:text="20"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_examine_tip1"
+            style="@style/text_gray"
+            android:layout_alignEnd="@+id/tv_examine_now_tip1"
+            android:layout_alignParentTop="true"
+            android:lineSpacingExtra="10px"
+            android:text="@string/report_body_alarm"
+            android:textSize="16px" />
+
+
+        <TextView
+            android:id="@+id/tv_examine_now_tip1"
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40px"
+            android:text="@string/examine_now_tip"
+            android:textSize="14px" />
+
+        <ImageView
+            android:id="@+id/iv_examine1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_examine_now_tip1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16px"
+            android:src="@mipmap/examine_now" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="330px"
+        android:layout_height="310px"
+        android:layout_marginLeft="583px"
+        android:layout_marginTop="582px">
+
+        <LinearLayout
+
+            android:id="@+id/ll_bloodo_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="35px"
+            android:paddingRight="35px"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="血氧饱和度："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_bo_saturability"
+                    style="@style/text_gray"
+                    android:text="97%"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="脉搏数："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_pr"
+                    style="@style/text_gray"
+                    android:text="97%"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_examine_tip2"
+            style="@style/text_gray"
+            android:layout_centerHorizontal="true"
+            android:lineSpacingExtra="10px"
+            android:text="@string/report_bo_alarm"
+            android:textSize="16px"
+            android:visibility="visible" />
+
+
+        <TextView
+            android:id="@+id/tv_examine_now_tip2"
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40px"
+            android:text="@string/examine_now_tip"
+            android:textSize="14px"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_examine2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_examine_now_tip2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16px"
+            android:src="@mipmap/examine_now"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="330px"
+        android:layout_height="310px"
+        android:layout_marginLeft="1007px"
+        android:layout_marginTop="582px">
+
+        <LinearLayout
+            android:id="@+id/ll_bp_hr_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="35px"
+            android:paddingRight="35px"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="舒张压："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_bh_dp"
+                    style="@style/text_gray"
+                    android:text="120kmg"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="收缩压："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_bh_sp"
+                    style="@style/text_gray"
+                    android:text="80kmg"
+                    android:textSize="20px" />
+
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="心率："
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_bh_hr"
+                    style="@style/text_gray"
+                    android:text="75次/分"
+                    android:textSize="20px" />
+
+
+            </LinearLayout>
+
+            <View
+                style="@style/divider"
+                android:layout_marginBottom="20px"
+                android:layout_marginTop="20px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_examine_tip3"
+            style="@style/text_gray"
+            android:layout_centerHorizontal="true"
+            android:lineSpacingExtra="10px"
+            android:text="@string/report_bp_hr_alarm"
+            android:textSize="16px" />
+
+
+        <TextView
+            android:id="@+id/tv_examine_now_tip3"
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40px"
+            android:text="@string/examine_now_tip"
+            android:textSize="14px" />
+
+        <ImageView
+            android:id="@+id/iv_examine3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_examine_now_tip3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16px"
+            android:src="@mipmap/examine_now" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="330px"
+        android:layout_height="310px"
+        android:layout_marginLeft="1430px"
+        android:layout_marginTop="582px">
+
+        <LinearLayout
+            android:id="@+id/ll_face_ton_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_face"
+                android:layout_width="160px"
+                android:layout_height="120px" />
+
+
+            <ImageView
+                android:id="@+id/iv_ton"
+                android:layout_width="160px"
+                android:layout_height="120px"
+                android:layout_marginTop="25px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_examine_tip4"
+            style="@style/text_gray"
+            android:layout_centerHorizontal="true"
+            android:lineSpacingExtra="10px"
+            android:text="@string/report_face_ton_alarm"
+            android:textSize="16px" />
+
+
+        <TextView
+            android:id="@+id/tv_examine_now_tip4"
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40px"
+            android:text="@string/examine_now_tip"
+            android:textSize="14px" />
+
+        <ImageView
+            android:id="@+id/iv_examine4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_examine_now_tip4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16px"
+            android:src="@mipmap/examine_now" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30px"
+        android:layout_marginRight="80px"
+        android:src="@mipmap/report_return" />
+
+</RelativeLayout>
