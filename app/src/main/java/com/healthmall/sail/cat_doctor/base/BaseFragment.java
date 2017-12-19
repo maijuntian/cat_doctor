@@ -1,22 +1,14 @@
 package com.healthmall.sail.cat_doctor.base;
 
-import android.os.CountDownTimer;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
-import com.healthmall.sail.cat_doctor.activity.ExamineActivity;
 import com.healthmall.sail.cat_doctor.utils.DialogUtils;
 import com.healthmall.sail.cat_doctor.widget.CountDownView;
 import com.healthmall.sail.cat_doctor.widget.LoadingDialog;
 import com.mai.xmai_fast_lib.mvvm.presenter.FragmentPresenter;
 import com.mai.xmai_fast_lib.mvvm.view.IDelegate;
 
-import java.util.concurrent.TimeUnit;
-
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
-import rx.functions.Action1;
 
 /**
  * Created by mai on 2017/11/15.
@@ -29,7 +21,7 @@ public class BaseFragment<T extends IDelegate> extends FragmentPresenter<T> {
 
 //    Subscription sbError;
 
-    final long ERROR_DELAY = 120000;
+    long ERROR_DELAY = 120000; //异常倒计时时间
 
     protected void showLoadingDialog() {
         if (loadingDialog == null)
@@ -49,12 +41,15 @@ public class BaseFragment<T extends IDelegate> extends FragmentPresenter<T> {
     }
 
 
+    /**
+     * 弹出异常倒计时
+     */
     protected void startErrorDelay() {
 
-        if(countDownView != null)
+        if (countDownView != null)
             countDownView.cancel();
 
-        countDownView = new CountDownView(ERROR_DELAY, 1000, null, new Action0() {
+        countDownView = new CountDownView(getDelayTime(), 1000, null, new Action0() {
             @Override
             public void call() {
                 error();
@@ -83,6 +78,13 @@ public class BaseFragment<T extends IDelegate> extends FragmentPresenter<T> {
         }, new MyThrowable());*/
     }
 
+    protected long getDelayTime() {
+        return ERROR_DELAY;
+    }
+
+    /**
+     * 停止异常倒计时
+     */
     protected void stopErrorDelay() {
         if (countDownView != null) {
             countDownView.cancel();

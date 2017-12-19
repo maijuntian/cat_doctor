@@ -35,8 +35,8 @@ public class MyApplication extends BaseApplication {
         return instance;
     }
 
-    User currUser;
-    UserReport currUserReport;
+    User currUser;  //当前用户
+    UserReport currUserReport; //当前的报告
 
     private SerialPort mSerialPort = null;
 
@@ -118,6 +118,9 @@ public class MyApplication extends BaseApplication {
         });
     }
 
+    /**
+     * 退出登录
+     */
     public void logout() {
         String deviceId = SharedPreferencesHelper.getInstance(getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID);
 
