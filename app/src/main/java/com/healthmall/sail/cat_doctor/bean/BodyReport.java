@@ -53,7 +53,6 @@ public class BodyReport {
     private String bm_bf_fc;//脂肪控制
     private String bm_bf_wthr;//腰臀比
 
-    private String bm_bf_tw;//目标体重
     private String bm_bf_mw;//肌肉重
     private String bm_bf_rfbw;//瘦体重
 
@@ -409,14 +408,6 @@ public class BodyReport {
 
     public void setBm_bf_wthr(String bm_bf_wthr) {
         this.bm_bf_wthr = bm_bf_wthr;
-    }
-
-    public String getBm_bf_tw() {
-        return bm_bf_tw;
-    }
-
-    public void setBm_bf_tw(String bm_bf_tw) {
-        this.bm_bf_tw = bm_bf_tw;
     }
 
     public String getBm_bf_mw() {
