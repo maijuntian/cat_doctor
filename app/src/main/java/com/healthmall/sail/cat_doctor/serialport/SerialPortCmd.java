@@ -167,7 +167,6 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_ef(divideTenFloat(mapTemp.get("EF")));
         bodyReport.setBm_bf_if(divideTenFloat(mapTemp.get("IF")));
         bodyReport.setBm_bf_rfbw(divideTenFloat(mapTemp.get("RFBW")));
-        bodyReport.setBm_bf_tw(divideTenFloat(mapTemp.get("TW")));
         bodyReport.setBm_bf_bonysalts(divideTenFloat(mapTemp.get("BONYSALTS")));
         bodyReport.setBm_bf_protein(divideTenFloat(mapTemp.get("PROTEIN")));
         bodyReport.setBm_bf_sm(divideTenFloat(mapTemp.get("SM")));
