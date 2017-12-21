@@ -147,6 +147,8 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
     }
 
     public Observable<Object> bodyReport(BodyReport bodyReport, Context ctx) {
+        bodyReport.setSex(MyApplication.get().getCurrUser().getMemberSex());
+        bodyReport.setAge(MyApplication.get().getCurrUser().getMemberAge());
         return checkNoDialog(mService.bodyReport(new MParams().getJsonRequestBody(bodyReport)), ctx);
     }
 

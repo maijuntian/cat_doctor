@@ -12,6 +12,8 @@ public class BodyReport {
 
     private int source;
 
+    private int age;
+    private int sex;
     private String deviceId;//设备号
     private String mallId; //n
     private String bm_bdtemp;//体温
@@ -19,7 +21,6 @@ public class BodyReport {
     private String bm_weight;//体重
     private String bm_bf_tm;//总水分
     private String bm_bf_protein;//蛋白质
-    private String bm_bf_is;//无机盐
     private String bm_bf_bf;//体脂肪
     private String bm_bf_sm;//骨骼肌肉量
     private String bm_bf_ef;//细胞外液
@@ -55,6 +56,15 @@ public class BodyReport {
     private String bm_bf_tw;//目标体重
     private String bm_bf_mw;//肌肉重
     private String bm_bf_rfbw;//瘦体重
+
+    private String bm_bf_nc;
+    private String bm_bf_wwc;
+    private String bm_bf_hip;
+    private String bm_bf_bust;
+    private String bm_bf_rac;
+    private String bm_bf_lac;
+    private String bm_bf_rtc;
+    private String bm_bf_ltc;
 
     public BodyReport(String deviceId, String mallId) {
         this.deviceId = deviceId;
@@ -151,14 +161,6 @@ public class BodyReport {
 
     public void setBm_bf_protein(String bm_bf_protein) {
         this.bm_bf_protein = bm_bf_protein;
-    }
-
-    public String getBm_bf_is() {
-        return bm_bf_is;
-    }
-
-    public void setBm_bf_is(String bm_bf_is) {
-        this.bm_bf_is = bm_bf_is;
     }
 
     public String getBm_bf_bf() {
@@ -439,5 +441,85 @@ public class BodyReport {
 
     public void setSource(int source) {
         this.source = source;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getBm_bf_nc() {
+        return bm_bf_nc;
+    }
+
+    public void setBm_bf_nc(String bm_bf_nc) {
+        this.bm_bf_nc = bm_bf_nc;
+    }
+
+    public String getBm_bf_wwc() {
+        return bm_bf_wwc;
+    }
+
+    public void setBm_bf_wwc(String bm_bf_wwc) {
+        this.bm_bf_wwc = bm_bf_wwc;
+    }
+
+    public String getBm_bf_hip() {
+        return bm_bf_hip;
+    }
+
+    public void setBm_bf_hip(String bm_bf_hip) {
+        this.bm_bf_hip = bm_bf_hip;
+    }
+
+    public String getBm_bf_bust() {
+        return bm_bf_bust;
+    }
+
+    public void setBm_bf_bust(String bm_bf_bust) {
+        this.bm_bf_bust = bm_bf_bust;
+    }
+
+    public String getBm_bf_rac() {
+        return bm_bf_rac;
+    }
+
+    public void setBm_bf_rac(String bm_bf_rac) {
+        this.bm_bf_rac = bm_bf_rac;
+    }
+
+    public String getBm_bf_lac() {
+        return bm_bf_lac;
+    }
+
+    public void setBm_bf_lac(String bm_bf_lac) {
+        this.bm_bf_lac = bm_bf_lac;
+    }
+
+    public String getBm_bf_rtc() {
+        return bm_bf_rtc;
+    }
+
+    public void setBm_bf_rtc(String bm_bf_rtc) {
+        this.bm_bf_rtc = bm_bf_rtc;
+    }
+
+    public String getBm_bf_ltc() {
+        return bm_bf_ltc;
+    }
+
+    public void setBm_bf_ltc(String bm_bf_ltc) {
+        this.bm_bf_ltc = bm_bf_ltc;
     }
 }

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/examine_logout_selector" />
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/text_mgray"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30px"
+            android:layout_marginTop="30px"
+            android:text="2017年8月2日 周三 17:80"
+            android:textSize="20px" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/examine_bg">
+
+        <RadioGroup
+            android:id="@+id/rg_menu"
+            android:layout_width="233px"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="140px"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/examine_menu1_unfinish_selector"/>
+
+            <RadioButton
+                android:id="@+id/rb_bloodo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/examine_menu2_unfinish_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_blood_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/examine_menu3_unfinish_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_face_ton"
+                android:layout_width="wrap_content"
+                android:checked="true"
+                android:layout_height="wrap_content"
+                android:button="@drawable/examine_menu4_unfinish_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/examine_menu5_unfinish_selector" />
+
+        </RadioGroup>
+
+
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/examine_logout_selector" />
+
+    <ImageView
+        android:id="@+id/iv_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="27px"
+        android:layout_toLeftOf="@id/iv_logout"
+        android:src="@drawable/examine_voice_selector"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:layout_width="1540px"
+        android:layout_height="130px"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80px"
+            android:src="@mipmap/examine_report"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</LinearLayout>
