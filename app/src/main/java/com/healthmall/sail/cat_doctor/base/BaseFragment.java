@@ -22,14 +22,13 @@ import rx.functions.Action1;
  * Created by mai on 2017/11/15.
  */
 public class BaseFragment<T extends IDelegate> extends FragmentPresenter<T> {
-
     private LoadingDialog loadingDialog;
 
     CountDownView countDownView;
 
 //    Subscription sbError;
 
-    final long ERROR_DELAY = 120000;
+    long ERROR_DELAY = 120000; //异常倒计时时间
 
     protected void showLoadingDialog() {
         if (loadingDialog == null)
@@ -49,12 +48,15 @@ public class BaseFragment<T extends IDelegate> extends FragmentPresenter<T> {
     }
 
 
+    /**
+     * 弹出异常倒计时
+     */
     protected void startErrorDelay() {
 
-        if(countDownView != null)
+        if (countDownView != null)
             countDownView.cancel();
 
-        countDownView = new CountDownView(ERROR_DELAY, 1000, null, new Action0() {
+        countDownView = new CountDownView(getDelayTime(), 1000, null, new Action0() {
             @Override
             public void call() {
                 error();
@@ -78,11 +80,17 @@ public class BaseFragment<T extends IDelegate> extends FragmentPresenter<T> {
         sbError = Observable.timer(ERROR_DELAY, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {
-
             }
         }, new MyThrowable());*/
     }
 
+    protected long getDelayTime() {
+        return ERROR_DELAY;
+    }
+
+    /**
+     * 停止异常倒计时
+     */
     protected void stopErrorDelay() {
         if (countDownView != null) {
             countDownView.cancel();

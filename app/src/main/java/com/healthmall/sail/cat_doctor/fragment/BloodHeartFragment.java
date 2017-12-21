@@ -70,7 +70,11 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
                 SerialPortCmd.bloodOPRS();
             }
         });
+    }
 
+    @Override
+    protected long getDelayTime() {
+        return 180000L; //延迟三分钟
     }
 
     @Override

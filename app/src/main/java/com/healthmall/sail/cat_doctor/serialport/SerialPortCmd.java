@@ -195,7 +195,18 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_mc(divideTenFloat(mapTemp.get("MC")));
         bodyReport.setBm_bf_wc(divideTenFloat(mapTemp.get("WC")));
         bodyReport.setBm_bf_fc(divideTenFloat(mapTemp.get("FC")));
-        bodyReport.setBm_bf_wthr(divideTenFloat(mapTemp.get("WTHR")));
+
+        bodyReport.setBm_bf_nc(divideTenFloat(mapTemp.get("NC")));
+        bodyReport.setBm_bf_wwc(divideTenFloat(mapTemp.get("WWC")));
+        bodyReport.setBm_bf_hip(divideTenFloat(mapTemp.get("HIP")));
+        bodyReport.setBm_bf_bust(divideTenFloat(mapTemp.get("BUST")));
+        bodyReport.setBm_bf_rac(divideTenFloat(mapTemp.get("RAC")));
+        bodyReport.setBm_bf_lac(divideTenFloat(mapTemp.get("LAC")));
+        bodyReport.setBm_bf_rtc(divideTenFloat(mapTemp.get("RTC")));
+        bodyReport.setBm_bf_ltc(divideTenFloat(mapTemp.get("LTC")));
+
+        float wthr = Float.parseFloat(bodyReport.getBm_bf_wwc()) / Float.parseFloat(bodyReport.getBm_bf_hip());
+        bodyReport.setBm_bf_wthr(((Math.round(wthr * 100)) / 10f) + "");
     }
 
     public static void parseBloodOX(String msg, BloodOxygenReport bloodOxygenReport) {
