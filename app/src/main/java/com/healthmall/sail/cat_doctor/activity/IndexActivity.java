@@ -45,11 +45,11 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
 
         SerialPortCmd.scanSucc();
 
-        if (MyApplication.get().getCurrUser().getMemberSex() != null) {
+      /*  if (MyApplication.get().getCurrUser().getMemberSex() != null) {
             startActivity(MainActivity.class, false);
-        } else {
+        } else {*/
             startActivity(InfoActivity.class, false);
-        }
+//        }
     }
 
     @Override

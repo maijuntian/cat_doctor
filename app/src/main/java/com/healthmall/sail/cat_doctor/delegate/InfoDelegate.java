@@ -26,7 +26,10 @@ public class InfoDelegate extends AppDelegate {
         return R.layout.activity_info;
     }
 
-
+    @Override
+    public void initWidget() {
+        super.initWidget();
+    }
 }
 
 
