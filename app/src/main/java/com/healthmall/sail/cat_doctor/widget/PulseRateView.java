@@ -9,18 +9,26 @@ import android.view.View;
 /**
  * Created by mai on 2017/12/21.
  */
-public class PulseRate extends View {
+public class PulseRateView extends View {
+
+    Paint grayPaint, xGrayPaint;
+
+    Paint linePaint;
 
 
-    public PulseRate(Context context) {
+    public PulseRateView(Context context) {
         super(context);
     }
 
-    public PulseRate(Context context, @Nullable AttributeSet attrs) {
+    public PulseRateView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public PulseRate(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PulseRateView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+    }
+
+    private void initView(){
+
     }
 }

@@ -4,6 +4,7 @@ package com.healthmall.sail.cat_doctor.http;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
 import com.healthmall.sail.cat_doctor.bean.BodyReport;
+import com.healthmall.sail.cat_doctor.bean.BodyRespone;
 import com.healthmall.sail.cat_doctor.bean.CDRespone;
 import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
@@ -28,7 +29,7 @@ import rx.Observable;
 public interface CatDoctorService {
 
     @POST("doctorMall/report/body")
-    Observable<CDRespone<Object>> bodyReport(@Body RequestBody json);
+    Observable<CDRespone<BodyRespone>> bodyReport(@Body RequestBody json);
 
 
     @POST("doctorMall/report/bloodOxygen")

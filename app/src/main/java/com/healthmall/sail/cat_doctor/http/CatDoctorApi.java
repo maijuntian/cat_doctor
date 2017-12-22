@@ -9,6 +9,7 @@ import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
 import com.healthmall.sail.cat_doctor.bean.BodyReport;
+import com.healthmall.sail.cat_doctor.bean.BodyRespone;
 import com.healthmall.sail.cat_doctor.bean.CDRespone;
 import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
@@ -146,7 +147,7 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
         return checkNoResult(mService.bindDevice(new MParams().add("deviceId", deviceId).getJsonRequestBody()), ctx);
     }
 
-    public Observable<Object> bodyReport(BodyReport bodyReport, Context ctx) {
+    public Observable<BodyRespone> bodyReport(BodyReport bodyReport, Context ctx) {
         bodyReport.setSex(MyApplication.get().getCurrUser().getMemberSex());
         bodyReport.setAge(MyApplication.get().getCurrUser().getMemberAge());
         return checkNoDialog(mService.bodyReport(new MParams().getJsonRequestBody(bodyReport)), ctx);
