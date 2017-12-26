@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.healthmall.sail.cat_doctor.widget.PulseRateView
+        android:layout_width="813px"
+        android:layout_height="428px" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <com.healthmall.sail.cat_doctor.widget.WaterView
+            android:id="@+id/wv_bo"
+            android:layout_width="290px"
+            android:layout_height="350px"
+            android:layout_marginTop="20px" />
+
+    </RelativeLayout>
+
+    <com.healthmall.sail.cat_doctor.widget.ProgressView
+        android:layout_width="1000px"
+        android:layout_height="20px" />
+
+</LinearLayout>
