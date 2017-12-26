@@ -190,10 +190,10 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_ba(mapTemp.get("BA"));
         bodyReport.setBm_bf_cs(mapTemp.get("CS"));
         bodyReport.setBm_bf_ed(mapTemp.get("ED"));
-        bodyReport.setBm_bf_doo(mapTemp.get("DOO"));
-        bodyReport.setBm_bf_mc(divideTenFloat(mapTemp.get("MC")));
-        bodyReport.setBm_bf_wc(divideTenFloat(mapTemp.get("WC")));
-        bodyReport.setBm_bf_fc(divideTenFloat(mapTemp.get("FC")));
+        bodyReport.setBm_bf_doo(divideTenFloat(mapTemp.get("DOO")));
+        bodyReport.setBm_bf_mc(dividePmTenFloat(mapTemp.get("MC")));
+        bodyReport.setBm_bf_wc(dividePmTenFloat(mapTemp.get("WC")));
+        bodyReport.setBm_bf_fc(dividePmTenFloat(mapTemp.get("FC")));
 
         bodyReport.setBm_bf_nc(divideTenFloat(mapTemp.get("NC")));
         bodyReport.setBm_bf_wwc(divideTenFloat(mapTemp.get("WWC")));
@@ -264,4 +264,12 @@ public class SerialPortCmd {
         return (Integer.parseInt(data) / 10f) + "";
     }
 
+    private static String dividePmTenFloat(String data) {
+        int dataInt = Integer.parseInt(data);
+        if (dataInt > 32768) {
+            dataInt = 32768 - dataInt;
+        }
+        return (dataInt / 10f) + "";
+    }
 }
+
