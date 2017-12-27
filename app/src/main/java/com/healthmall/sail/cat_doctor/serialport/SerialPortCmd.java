@@ -205,7 +205,7 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_ltc(divideTenFloat(mapTemp.get("LTC")));
 
         float wthr = Float.parseFloat(bodyReport.getBm_bf_wwc()) / Float.parseFloat(bodyReport.getBm_bf_hip());
-        bodyReport.setBm_bf_wthr(((Math.round(wthr * 100)) / 10f) + "");
+        bodyReport.setBm_bf_wthr(((Math.round(wthr * 10)) / 10f) + "");
     }
 
     public static void parseBloodOX(String msg, BloodOxygenReport bloodOxygenReport) {
