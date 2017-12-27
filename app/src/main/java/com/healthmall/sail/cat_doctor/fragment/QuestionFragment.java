@@ -35,6 +35,8 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
     QuestionReport currQuestionReport;
 
+    String lastQuestionAnswer; //最后答案；
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -65,7 +67,7 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
     private void commitQuestion(String subjectId, final String questionAnswerId, String answerContent) {
 
-        CatDoctorApi.getInstance().questionAnswer(new MParams()
+       /* CatDoctorApi.getInstance().questionAnswer(new MParams()
                 .add("bottomButtonType", "3")
                 .add("subjectId", subjectId)
                 .add("questionAnswerId", questionAnswerId)
@@ -75,9 +77,9 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
                 currQuestionReport.setQuestionAnswerId(questionAnswerId);
                 viewDelegate.showCommit();
             }
-        }, new MyThrowable());
+        }, new MyThrowable());*/
 
-       /* CatDoctorApi.getInstance().commitQuestion(new MParams()
+        CatDoctorApi.getInstance().commitQuestion(new MParams()
                 .add("bottomButtonType", "3")
                 .add("subjectId", subjectId)
                 .add("questionAnswerId", questionAnswerId)
@@ -86,12 +88,17 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
                     @Override
                     public void call(QuestionReport questionReport) {
 
+                        questionReport.setQuestionAnswerId(questionAnswerId);
+
                         MyApplication.get().getCurrUserReport().setQuestionReport(questionReport);
                         currQuestionReport = MyApplication.get().getCurrUserReport().getQuestionReport();
+
+                        ((ExamineActivity) getActivity()).notifyMenu();
                         viewDelegate.showReuslt(currQuestionReport);
 
+
                     }
-                }, new MyThrowable());*/
+                }, new MyThrowable());
     }
 
     private void getPreQuestion(String questionAnswerId, String subjectId) {
@@ -141,7 +148,7 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
                 MyApplication.get().getCurrUserReport().setQuestionReport(questionReport);
                 currQuestionReport = MyApplication.get().getCurrUserReport().getQuestionReport();
 
-                ((ExamineActivity)getActivity()).notifyMenu();
+                ((ExamineActivity) getActivity()).notifyMenu();
                 viewDelegate.showReuslt(currQuestionReport);
             }
         }, new Action1<Throwable>() {
@@ -161,7 +168,9 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
         if (viewDelegate.currQuestion.getSubjectDTO().getTotalSubjectNum() == viewDelegate.currQuestion.getSubjectDTO().getSubjectIndex()) {
             //最后一题
-            commitQuestion(viewDelegate.currQuestion.getSubjectDTO().getSubjectId(), viewDelegate.currQuestion.getQuestionAnswerId(), optionList.getOption());
+            lastQuestionAnswer = optionList.getOption();
+            viewDelegate.showCommit();
+//            commitQuestion(viewDelegate.currQuestion.getSubjectDTO().getSubjectId(), viewDelegate.currQuestion.getQuestionAnswerId(), optionList.getOption());
         } else {
             nextQuestion(viewDelegate.currQuestion.getSubjectDTO().getSubjectId(), viewDelegate.currQuestion.getQuestionAnswerId(), optionList.getOption());
         }
@@ -178,13 +187,14 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
         currQuestionReport.setQuestionAnswerId("");
         currQuestionReport.setQuestionResultName("");
-        ((ExamineActivity)getActivity()).notifyMenu();
+        ((ExamineActivity) getActivity()).notifyMenu();
         start();
     }
 
     @OnClick(R.id.iv_commit)
     public void iv_commitClick() {
+        commitQuestion(viewDelegate.currQuestion.getSubjectDTO().getSubjectId(), viewDelegate.currQuestion.getQuestionAnswerId(), lastQuestionAnswer);
 
-        getResult(currQuestionReport.getQuestionAnswerId());
+//        getResult(currQuestionReport.getQuestionAnswerId());
     }
 }
