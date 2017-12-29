@@ -15,16 +15,19 @@
  */
 package com.healthmall.sail.cat_doctor.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
 import android.graphics.Shader;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -44,7 +47,7 @@ public class WaveView extends View {
      * |                        |  |
      * +------------------------+__|____
      */
-    private static final float DEFAULT_AMPLITUDE_RATIO = 0.05f;
+    private static final float DEFAULT_AMPLITUDE_RATIO = 0.02f;
     private static final float DEFAULT_WATER_LEVEL_RATIO = 0.5f;
     private static final float DEFAULT_WAVE_LENGTH_RATIO = 1.0f;
     private static final float DEFAULT_WAVE_SHIFT_RATIO = 0.0f;
@@ -80,8 +83,10 @@ public class WaveView extends View {
     private float mWaterLevelRatio = DEFAULT_WATER_LEVEL_RATIO;
     private float mWaveShiftRatio = DEFAULT_WAVE_SHIFT_RATIO;
 
-    private int mBehindWaveColor = DEFAULT_BEHIND_WAVE_COLOR;
-    private int mFrontWaveColor = DEFAULT_FRONT_WAVE_COLOR;
+    private int mBehindWaveColorStart = DEFAULT_BEHIND_WAVE_COLOR;
+    private int mFrontWaveColorStart = DEFAULT_FRONT_WAVE_COLOR;
+    private int mBehindWaveColorEnd = DEFAULT_BEHIND_WAVE_COLOR;
+    private int mFrontWaveColorEnd = DEFAULT_FRONT_WAVE_COLOR;
     private ShapeType mShapeType = DEFAULT_WAVE_SHAPE;
 
     public WaveView(Context context) {
@@ -190,9 +195,11 @@ public class WaveView extends View {
         invalidate();
     }
 
-    public void setWaveColor(int behindWaveColor, int frontWaveColor) {
-        mBehindWaveColor = behindWaveColor;
-        mFrontWaveColor = frontWaveColor;
+    public void setWaveColor(int behindWaveColorStart, int behindWaveColorEnd, int frontWaveColorStart,int frontWaveColorEnd) {
+        mBehindWaveColorStart = behindWaveColorStart;
+        mBehindWaveColorEnd = behindWaveColorEnd;
+        mFrontWaveColorStart = frontWaveColorStart;
+        mFrontWaveColorEnd = frontWaveColorEnd;
 
         if (getWidth() > 0 && getHeight() > 0) {
             // need to recreate shader when color changed
@@ -237,7 +244,9 @@ public class WaveView extends View {
 
         float[] waveY = new float[endX];
 
-        wavePaint.setColor(mBehindWaveColor);
+        Shader behindShader = new LinearGradient(getWidth() / 2, 0, getWidth() / 2, getHeight(), mBehindWaveColorStart, mBehindWaveColorEnd, Shader.TileMode.CLAMP);
+        wavePaint.setShader(behindShader);
+//        wavePaint.setColor(mBehindWaveColor);
         for (int beginX = 0; beginX < endX; beginX++) {
             double wx = beginX * mDefaultAngularFrequency;
             float beginY = (float) (mDefaultWaterLevel + mDefaultAmplitude * Math.sin(wx));
@@ -246,7 +255,9 @@ public class WaveView extends View {
             waveY[beginX] = beginY;
         }
 
-        wavePaint.setColor(mFrontWaveColor);
+        Shader frontShader = new LinearGradient(getWidth() / 2, 0, getWidth() / 2, getHeight(), mFrontWaveColorStart, mFrontWaveColorEnd, Shader.TileMode.CLAMP);
+        wavePaint.setShader(frontShader);
+//        wavePaint.setColor(mFrontWaveColor);
         final int wave2Shift = (int) (mDefaultWaveLength / 4);
         for (int beginX = 0; beginX < endX; beginX++) {
             canvas.drawLine(beginX, waveY[(beginX + wave2Shift) % endX], beginX, endY, wavePaint);
@@ -269,15 +280,16 @@ public class WaveView extends View {
             // sacle shader according to mWaveLengthRatio and mAmplitudeRatio
             // this decides the size(mWaveLengthRatio for width, mAmplitudeRatio for height) of waves
             mShaderMatrix.setScale(
-                mWaveLengthRatio / DEFAULT_WAVE_LENGTH_RATIO,
-                mAmplitudeRatio / DEFAULT_AMPLITUDE_RATIO,
-                0,
-                mDefaultWaterLevel);
-            // translate shader according to mWaveShiftRatio and mWaterLevelRatio
-            // this decides the start position(mWaveShiftRatio for x, mWaterLevelRatio for y) of waves
+                    mWaveLengthRatio / DEFAULT_WAVE_LENGTH_RATIO,
+                    mAmplitudeRatio / DEFAULT_AMPLITUDE_RATIO,
+                    0,
+                    mDefaultWaterLevel);
+//            // translate shader according to mWaveShiftRatio and mWaterLevelRatio
+//            // this decides the start position(mWaveShiftRatio for x, mWaterLevelRatio for y) of waves
+
             mShaderMatrix.postTranslate(
-                mWaveShiftRatio * getWidth(),
-                (DEFAULT_WATER_LEVEL_RATIO - mWaterLevelRatio) * getHeight());
+                    mWaveShiftRatio * getWidth(),
+                    (DEFAULT_WATER_LEVEL_RATIO - mWaterLevelRatio) * getHeight());
 
             // assign matrix to invalidate the shader
             mWaveShader.setLocalMatrix(mShaderMatrix);
@@ -287,22 +299,23 @@ public class WaveView extends View {
                 case CIRCLE:
                     if (borderWidth > 0) {
                         canvas.drawCircle(getWidth() / 2f, getHeight() / 2f,
-                            (getWidth() - borderWidth) / 2f - 1f, mBorderPaint);
+                                (getWidth() - borderWidth) / 2f - 1f, mBorderPaint);
                     }
                     float radius = getWidth() / 2f - borderWidth;
                     canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, radius, mViewPaint);
                     break;
                 case SQUARE:
+                    clipCanvas(canvas);
                     if (borderWidth > 0) {
                         canvas.drawRect(
-                            borderWidth / 2f,
-                            borderWidth / 2f,
-                            getWidth() - borderWidth / 2f - 0.5f,
-                            getHeight() - borderWidth / 2f - 0.5f,
-                            mBorderPaint);
+                                borderWidth / 2f,
+                                borderWidth / 2f,
+                                getWidth() - borderWidth / 2f - 0.5f,
+                                getHeight() - borderWidth / 2f - 0.5f,
+                                mBorderPaint);
                     }
                     canvas.drawRect(borderWidth, borderWidth, getWidth() - borderWidth,
-                        getHeight() - borderWidth, mViewPaint);
+                            getHeight() - borderWidth, mViewPaint);
                     break;
             }
         } else {
@@ -310,12 +323,15 @@ public class WaveView extends View {
         }
     }
 
-
-    private void clipCanvas(Canvas canvas){
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void clipCanvas(Canvas canvas) {
 
         Path path = new Path();
-        path.addArc(0, 0, getWidth(), getWidth(), -180, 180);
-
-//        canvas.clipPath()
+        path.moveTo(0, getWidth() / 2f);
+        path.arcTo(0, 0, getWidth(), getWidth(), -180, 180, false);
+        path.lineTo(getWidth(), getHeight() - getWidth() / 2);
+        path.arcTo(0, getHeight() - getWidth(), getWidth(), getHeight(), 0, 180, false);
+        path.lineTo(0, getWidth() / 2f);
+        canvas.clipPath(path);
     }
 }

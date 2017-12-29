@@ -4,9 +4,64 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.healthmall.sail.cat_doctor.widget.PulseRateView
-        android:layout_width="813px"
-        android:layout_height="428px" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.healthmall.sail.cat_doctor.widget.PulseRateView
+            android:layout_width="813px"
+            android:layout_height="428px" />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px">
+
+            <ImageView
+                android:layout_marginTop="10px"
+                android:layout_marginLeft="20px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bp_hr_bp_bg"/>
+
+            <com.healthmall.sail.cat_doctor.widget.WaveView
+                android:id="@+id/wave"
+                android:layout_width="144px"
+                android:layout_height="460px" />
+
+            <ImageView
+                android:layout_width="144px"
+                android:layout_height="460px"
+                android:src="@mipmap/bp_hr_bp_bottle1" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px">
+
+            <ImageView
+                android:layout_marginTop="10px"
+                android:layout_marginLeft="20px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bp_hr_bp_bg"/>
+
+            <com.healthmall.sail.cat_doctor.widget.WaveView
+                android:id="@+id/wave2"
+                android:layout_width="144px"
+                android:layout_height="460px"/>
+
+            <ImageView
+                android:layout_width="144px"
+                android:layout_height="460px"
+                android:src="@mipmap/bp_hr_bp_bottle1" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
     <RelativeLayout
@@ -25,5 +80,6 @@
     <com.healthmall.sail.cat_doctor.widget.ProgressView
         android:layout_width="1000px"
         android:layout_height="20px" />
+
 
 </LinearLayout>
