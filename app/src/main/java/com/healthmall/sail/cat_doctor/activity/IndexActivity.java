@@ -8,6 +8,7 @@ import com.healthmall.sail.cat_doctor.base.BaseActivity;
 import com.healthmall.sail.cat_doctor.base.MyThrowable;
 import com.healthmall.sail.cat_doctor.delegate.IndexDelegate;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,6 +39,8 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -45,7 +48,7 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
 
         SerialPortCmd.scanSucc();
 
-        if (MyApplication.get().getCurrUser().getMemberSex() != null) {
+        if (MyApplication.get().getCurrUser().isAuthentication() || MyApplication.get().getCurrUser().isUsed()) {
             startActivity(MainActivity.class, false);
         } else {
             startActivity(InfoActivity.class, false);

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,368 +15,393 @@
             android:textSize="36px" />
 
         <TextView
-            style="@style/text_gray"
+            style="@style/text_mgray"
             android:layout_marginTop="7px"
             android:text="Blood Pressure/Heart Rate"
             android:textSize="18px" />
 
         <LinearLayout
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="34px"
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/iv_step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/bp_hr_progress1" />
+                android:layout_marginTop="3px"
+                android:src="@mipmap/progress_1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_step1"
+                    style="@style/text_blue"
+                    android:text="操作指示"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_step2"
+                    style="@style/text_mgray"
+                    android:layout_marginTop="40px"
+                    android:text="测量过程"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_step3"
+                    style="@style/text_mgray"
+                    android:layout_marginTop="40px"
+                    android:text="测量结果"
+                    android:textSize="20px" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_bar_step3"
-        android:layout_width="1540px"
-        android:layout_height="130px"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_vertical"
-        android:visibility="gone">
-
-
-        <ImageView
-            android:id="@+id/iv_reexamine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="340px"
-            android:layout_toRightOf="@id/iv_report"
-            android:src="@mipmap/examine_retest_o" />
-
-        <ImageView
-            android:id="@+id/iv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="80px"
-            android:src="@mipmap/examine_start_next" />
-
-    </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/tv_step1_alarm"
-        style="@style/text_white"
-        android:layout_width="1540px"
-        android:layout_height="130px"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:text="@string/examine_body_tip1"
-        android:textSize="30px" />
-
-    <LinearLayout
-        android:id="@+id/ll_step1"
-        android:layout_width="match_parent"
-        android:layout_height="490px"
-        android:layout_above="@id/tv_step1_alarm"
-        android:layout_marginBottom="178px"
-        android:layout_marginRight="375px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_width="360px"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="80px"
-            android:src="@mipmap/bp_step1" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60px"
-            android:layout_marginRight="60px"
-            android:src="@mipmap/examine_step" />
-
-        <ImageView
-            android:layout_width="360px"
-            android:layout_height="match_parent"
-            android:src="@mipmap/bp_step2" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60px"
-            android:layout_marginRight="60px"
-            android:src="@mipmap/examine_step" />
-
-
-        <ImageView
-            android:layout_width="360px"
-            android:layout_height="match_parent"
-            android:src="@mipmap/bp_step3" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_step23"
+        android:id="@+id/rl_step1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="130px"
-        android:layout_marginRight="375px"
-        android:layout_marginTop="206px"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200px"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bp_hr_tip1" />
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80px"
-                android:background="@mipmap/bp_hr_dbp"
-                android:gravity="bottom"
-                android:orientation="horizontal"
-                android:paddingBottom="20px"
-                android:paddingLeft="40px">
+                android:src="@mipmap/bp_hr_tip2" />
 
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_sp"
-                    style="@style/text_white"
-                    android:text="00"
-                    android:textSize="72px" />
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_marginLeft="8px"
-                    android:text="mmhg"
-                    android:textSize="24px" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40px"
-                android:background="@mipmap/bp_hr_sbp"
-                android:gravity="bottom"
-                android:orientation="horizontal"
-                android:paddingBottom="20px"
-                android:paddingLeft="40px">
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_dp"
-                    style="@style/text_white"
-                    android:text="00"
-                    android:textSize="72px" />
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_marginLeft="8px"
-                    android:text="mmhg"
-                    android:textSize="24px" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40px"
-                android:background="@mipmap/bp_hr_pulse"
-                android:gravity="bottom"
-                android:orientation="horizontal"
-                android:paddingBottom="20px"
-                android:paddingLeft="40px">
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_hr"
-                    style="@style/text_white"
-                    android:text="00"
-                    android:textSize="72px" />
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_marginLeft="8px"
-                    android:text="bpm"
-                    android:textSize="24px" />
-
-            </LinearLayout>
-
-            <!-- <LinearLayout
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="40px"
-                 android:background="@mipmap/bp_hr_perbp"
-                 android:gravity="bottom"
-                 android:orientation="horizontal"
-                 android:paddingBottom="20px"
-                 android:paddingLeft="40px">
-
-                 <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                     style="@style/text_white"
-                     android:text="00"
-                     android:textSize="72px" />
-
-                 <TextView
-                     style="@style/text_white"
-                     android:layout_marginLeft="8px"
-                     android:text="mmhg"
-                     android:textSize="24px" />
-
-             </LinearLayout>-->
+                android:layout_marginLeft="80px"
+                android:src="@mipmap/bp_hr_tip3" />
 
         </LinearLayout>
 
         <TextView
-            style="@style/text_gray"
-            android:layout_marginLeft="80px"
-            android:layout_marginTop="40px"
-            android:text="数据解析      Data Analysis"
-            android:textSize="22px" />
+            android:id="@+id/tv_start"
+            style="@style/button_tip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="150px"
+            android:text="开始测量" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="90px"
+            android:text="@string/examine_body_tip1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_step23"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
 
-        <LinearLayout
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="438px"
+            android:layout_marginTop="73px"
+            android:text="血压"
+            android:textSize="32px" />
+
+        <RelativeLayout
+            android:id="@+id/rl_hp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20px"
-            android:orientation="horizontal">
+            android:layout_marginLeft="439px"
+            android:layout_marginTop="153px">
 
-            <LinearLayout
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="10px"
+                android:src="@mipmap/bp_hr_bp_bg" />
+
+            <com.healthmall.sail.cat_doctor.widget.WaveView
+                android:id="@+id/wave1"
+                android:layout_width="144px"
+                android:layout_height="460px" />
+
+            <ImageView
+                android:layout_width="144px"
+                android:layout_height="460px"
+                android:src="@mipmap/bp_hr_bp_bottle1" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_high_pressure"
+                style="@style/text_white"
+                android:layout_alignLeft="@id/wave1"
+                android:layout_alignRight="@id/wave1"
+                android:layout_marginTop="346px"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:text="0"
+                android:textSize="60px" />
 
-                <RelativeLayout
-                    android:layout_width="344px"
-                    android:layout_height="344px">
+            <TextView
+                style="@style/text_white"
+                android:layout_alignLeft="@id/wave1"
+                android:layout_alignRight="@id/wave1"
+                android:layout_marginTop="400px"
+                android:gravity="center_horizontal"
+                android:text="高压mmhg"
+                android:textSize="20px" />
+        </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="726px"
+            android:layout_marginTop="153px">
 
-                        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                            android:id="@+id/tv_pressure"
-                            style="@style/text_blue"
-                            android:text="107/65"
-                            android:textSize="66px"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tv_pressure_tip"
-                            style="@style/text_blue"
-                            android:layout_marginTop="10px"
-                            android:text="血压偏高"
-                            android:textSize="24px" />
-                    </LinearLayout>
-
-                    <com.healthmall.sail.cat_doctor.widget.ArcProgressView
-                        android:id="@+id/apv_pressure"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:progressWidth="22px" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="30px"
-                        android:paddingBottom="20px"
-                        android:src="@mipmap/bp_hr_bp_tip" />
-
-                </RelativeLayout>
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:layout_marginTop="-40px"
-                    android:text="解读结果"
-                    android:textColor="@color/xgray"
-                    android:textSize="22px" />
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:layout_marginTop="20px"
-                    android:gravity="center_horizontal"
-                    android:lineSpacingExtra="10px"
-                    android:text="@string/blood_o_tip_high"
-                    android:textSize="18px" />
-            </LinearLayout>
-
-            <LinearLayout
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="280px"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="10px"
+                android:src="@mipmap/bp_hr_bp_bg" />
+
+            <com.healthmall.sail.cat_doctor.widget.WaveView
+                android:id="@+id/wave2"
+                android:layout_width="144px"
+                android:layout_height="460px" />
+
+            <ImageView
+                android:layout_width="144px"
+                android:layout_height="460px"
+                android:src="@mipmap/bp_hr_bp_bottle2" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_low_pressure"
+                style="@style/text_white"
+                android:layout_alignLeft="@id/wave2"
+                android:layout_alignRight="@id/wave2"
+                android:layout_marginTop="346px"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:text="0"
+                android:textSize="60px" />
 
-                <RelativeLayout
-                    android:layout_width="344px"
-                    android:layout_height="344px">
+            <TextView
+                style="@style/text_white"
+                android:layout_alignLeft="@id/wave2"
+                android:layout_alignRight="@id/wave2"
+                android:layout_marginTop="400px"
+                android:gravity="center_horizontal"
+                android:text="低压mmhg"
+                android:textSize="20px" />
+        </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="395px"
+            android:layout_marginTop="330px"
+            android:src="@mipmap/bp_hr_virline" />
 
-                        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                            android:id="@+id/tv_hr2"
-                            style="@style/text_blue"
-                            android:text="96"
-                            android:textSize="94px"
-                            android:textStyle="bold" />
+        <View
+            android:layout_width="145px"
+            android:layout_height="106px"
+            android:layout_marginLeft="582px"
+            android:layout_marginTop="330px"
+            android:background="#1a00b99e" />
 
-                        <TextView
-                            android:id="@+id/tv_hr_tip"
-                            style="@style/text_blue"
-                            android:layout_marginTop="10px"
-                            android:text="心率正常"
-                            android:textSize="24px" />
-                    </LinearLayout>
-
-
-                    <com.healthmall.sail.cat_doctor.widget.ArcProgressView
-                        android:id="@+id/apv_hr2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:progressWidth="22px" />
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:paddingBottom="20px"
-                        android:src="@mipmap/bp_hr_tip" />
-
-                </RelativeLayout>
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:layout_marginTop="-44px"
-                    android:text="解读结果"
-                    android:textColor="@color/xgray"
-                    android:textSize="22px" />
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:layout_marginTop="20px"
-                    android:gravity="center_horizontal"
-                    android:lineSpacingExtra="10px"
-                    android:text="@string/blood_o_tip_high"
-                    android:textSize="18px" />
-            </LinearLayout>
-        </LinearLayout>
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="633px"
+            android:layout_marginTop="265px"
+            android:text="偏高"
+            android:textSize="24px" />
 
 
-    </LinearLayout>
+        <TextView
+            style="@style/text_green"
+            android:layout_marginLeft="633px"
+            android:layout_marginTop="372px"
+            android:text="正常"
+            android:textSize="24px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="633px"
+            android:layout_marginTop="469px"
+            android:text="偏低"
+            android:textSize="24px" />
+
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="1067px"
+            android:layout_marginTop="73px"
+            android:text="心率"
+            android:textSize="32px" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1px"
+            android:layout_height="691px"
+            android:layout_marginLeft="959px"
+            android:layout_marginTop="66px"
+            android:background="@color/mgray" />
+
+        <RelativeLayout
+            android:id="@+id/rl_heart_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1056px"
+            android:layout_marginTop="300px">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:src="@mipmap/bp_hr_heart_bg" />
+
+
+            <com.healthmall.sail.cat_doctor.widget.HeartRateView
+                android:id="@+id/hrv_hr"
+                android:layout_width="390px"
+                android:layout_height="136px"
+                android:layout_marginLeft="23px"
+                android:layout_marginTop="50px" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="97px"
+                android:src="@mipmap/bp_hr_heart" />
+
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_heart_rate"
+                style="@style/text_orange"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60px"
+                android:text="0"
+                android:textSize="60px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="124px"
+                android:text="bpm"
+                android:textSize="17px" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_heart_rate_high"
+            style="@style/text_green"
+            android:layout_marginLeft="1017px"
+            android:layout_marginTop="395px"
+            android:text="100"
+            android:textSize="18px" />
+
+        <TextView
+            android:id="@+id/tv_heart_rate_low"
+            style="@style/text_green"
+            android:layout_marginLeft="1516px"
+            android:layout_marginTop="395px"
+            android:text="60"
+            android:textSize="18px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="1562px"
+            android:layout_marginTop="395px"
+            android:text="次/分钟"
+            android:textSize="18px" />
+
+        <RelativeLayout
+            android:id="@+id/rl_result1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rl_result2"
+            android:layout_alignBottom="@+id/rl_result2"
+            android:layout_alignStart="@+id/rl_hp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_result_tip1"
+                style="@style/text_mgray"
+                android:text="解读结果"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/tv_result_blood_pressure"
+                style="@style/text_green"
+                android:layout_centerHorizontal="true"
+                android:text="正常"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_result_blood_pressure_alarm"
+                style="@style/text_mgray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="68px"
+                android:gravity="center_horizontal"
+                android:text="@string/bp_tip_nomal"
+                android:textSize="16px" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_result2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_heart_rate_high"
+            android:layout_alignRight="@id/tv_heart_rate_low"
+            android:layout_marginTop="661px"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_result_tip2"
+                style="@style/text_mgray"
+                android:text="解读结果"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/tv_result_heart_rate"
+                style="@style/text_green"
+                android:layout_centerHorizontal="true"
+                android:text="正常"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_result_heart_rate_alarm"
+                style="@style/text_mgray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="68px"
+                android:gravity="center_horizontal"
+                android:text="@string/hr_tip_nomal"
+                android:textSize="16px" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
 </RelativeLayout>

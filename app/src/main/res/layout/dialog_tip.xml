@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/tip_bg">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="454px"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_mblack"
+            android:layout_marginTop="30px"
+            android:text="猫博士小Tips"
+            android:textSize="32px" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/text_mgray"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="31px"
+            android:text="中医面诊" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/text_mgray"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="10px"
+            android:text="@string/face_tip_alarm"
+            android:textSize="16px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_right_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45px"
+        android:layout_marginTop="75px"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_right_top"
+            style="@style/text_blue"
+            android:background="@drawable/button_blue_trans_corner"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="生成报告"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/tv_right_bottom"
+            style="@style/text_blue"
+            android:layout_marginTop="20px"
+            android:background="@drawable/button_blue_trans_corner"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="重新测量"
+            android:textSize="24px" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_left"
+        style="@style/text_white"
+        android:layout_marginRight="45px"
+        android:layout_marginTop="116px"
+        android:layout_toLeftOf="@id/ll_right_button"
+        android:background="@drawable/blue_button_bg"
+        android:gravity="center"
+        android:paddingBottom="12px"
+        android:paddingLeft="38px"
+        android:paddingRight="38px"
+        android:paddingTop="12px"
+        android:text="开始拍摄舌像"
+        android:textSize="24px" />
+
+</RelativeLayout>

@@ -20,11 +20,11 @@
             android:layout_marginLeft="20px">
 
             <ImageView
-                android:layout_marginTop="10px"
-                android:layout_marginLeft="20px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/bp_hr_bp_bg"/>
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="10px"
+                android:src="@mipmap/bp_hr_bp_bg" />
 
             <com.healthmall.sail.cat_doctor.widget.WaveView
                 android:id="@+id/wave"
@@ -44,16 +44,16 @@
             android:layout_marginLeft="20px">
 
             <ImageView
-                android:layout_marginTop="10px"
-                android:layout_marginLeft="20px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/bp_hr_bp_bg"/>
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="10px"
+                android:src="@mipmap/bp_hr_bp_bg" />
 
             <com.healthmall.sail.cat_doctor.widget.WaveView
                 android:id="@+id/wave2"
                 android:layout_width="144px"
-                android:layout_height="460px"/>
+                android:layout_height="460px" />
 
             <ImageView
                 android:layout_width="144px"
@@ -64,18 +64,25 @@
     </LinearLayout>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:orientation="horizontal">
 
 
         <com.healthmall.sail.cat_doctor.widget.WaterView
             android:id="@+id/wv_bo"
             android:layout_width="290px"
-            android:layout_height="350px"
-            android:layout_marginTop="20px" />
+            android:layout_height="350px" />
 
-    </RelativeLayout>
+        <com.healthmall.sail.cat_doctor.widget.HeartRateView
+
+            android:layout_width="390px"
+            android:layout_height="136px"
+            android:layout_marginLeft="50px" />
+
+    </LinearLayout>
 
     <com.healthmall.sail.cat_doctor.widget.ProgressView
         android:layout_width="1000px"

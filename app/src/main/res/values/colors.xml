@@ -10,7 +10,7 @@
     <color name="basic_gray">#737373</color>
     <color name="circle_gray">#a7b8d1</color>
     <color name="xgray">#999999</color>
-    <color name="sgray">#6A6D6C</color>
+    <color name="sgray">#d6d6d6</color>
     <color name="mgray">#a7a7a7</color>
     <color name="mmgray">#dddddd</color>
     <color name="mmmgray">#f5f5f5</color>
@@ -20,7 +20,7 @@
     <color name="nav_gray">#b2b2b2</color>
     <color name="nav_green">#00b99e</color>
     <color name="mblue">#95c9ee</color>
-    <color name="blue">#76a6ef</color>
+    <color name="blue">#14b4ff</color>
     <color name="xblue">#6a89ed</color>
     <color name="pink">#ef76e8</color>
     <color name="red">#ff6041</color>
@@ -39,5 +39,12 @@
     <drawable name="nav_green">#00b99e</drawable>
     <drawable name="nav_trans">#00000000</drawable>
 
+    <color name="good_green">#00b99e</color>
+    <color name="orange">#ff5000</color>
+    <color name="good_green_trans">#4000b99e</color>
+
+    <color name="step_unfinish">#33363c</color>
+    <color name="step_finish">#00c2ff</color>
+    <color name="step_select">#00c3ff</color>
 
 </resources>

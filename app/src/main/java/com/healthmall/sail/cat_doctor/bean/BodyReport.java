@@ -7,7 +7,6 @@ public class BodyReport {
 
     private boolean isFinishHeight;
     private boolean isFinishWeight;
-    private boolean isFinishTemp;
     private boolean isFinishFat;
 
     private int source;
@@ -71,7 +70,7 @@ public class BodyReport {
     }
 
     public boolean isFinish() {
-        return isFinishHeight && isFinishWeight && isFinishTemp && isFinishFat;
+        return isFinishHeight && isFinishWeight  && isFinishFat;
     }
 
     public boolean isFinishHeight() {
@@ -88,14 +87,6 @@ public class BodyReport {
 
     public void setFinishWeight(boolean finishWeight) {
         isFinishWeight = finishWeight;
-    }
-
-    public boolean isFinishTemp() {
-        return isFinishTemp;
-    }
-
-    public void setFinishTemp(boolean finishTemp) {
-        isFinishTemp = finishTemp;
     }
 
     public boolean isFinishFat() {

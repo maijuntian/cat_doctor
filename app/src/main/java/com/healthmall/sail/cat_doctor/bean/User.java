@@ -15,6 +15,7 @@ public class User {
     private String questionResultName;
     private boolean authentication;
     private boolean talent;
+    private boolean isUsed;
 
     public String getAccessToken() {
         return accessToken;
@@ -94,5 +95,13 @@ public class User {
 
     public void setTalent(boolean talent) {
         this.talent = talent;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
     }
 }

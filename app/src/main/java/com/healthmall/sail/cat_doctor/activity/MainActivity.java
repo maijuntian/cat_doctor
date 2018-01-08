@@ -7,6 +7,7 @@ import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
 import com.healthmall.sail.cat_doctor.delegate.MainDelegate;
 import com.healthmall.sail.cat_doctor.utils.DialogUtils;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 
 
 import butterknife.OnClick;
@@ -20,6 +21,7 @@ public class MainActivity extends BaseActivity<MainDelegate> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @OnClick(R.id.iv_body)

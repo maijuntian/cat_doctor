@@ -3,7 +3,6 @@ package com.healthmall.sail.cat_doctor.delegate;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -19,6 +18,7 @@ import com.healthmall.sail.cat_doctor.fragment.BloodoFragment;
 import com.healthmall.sail.cat_doctor.fragment.BodyFragment;
 import com.healthmall.sail.cat_doctor.fragment.FaceTonFragment;
 import com.healthmall.sail.cat_doctor.fragment.QuestionFragment;
+import com.healthmall.sail.cat_doctor.fragment.TemperatureFragment;
 
 import butterknife.Bind;
 
@@ -26,6 +26,7 @@ import butterknife.Bind;
 public class ExamineDelegate extends BaseDelegate {
 
     BodyFragment bodyFragment;
+    TemperatureFragment temperatureFragment;
     BloodoFragment bloodoFragment;
     BloodHeartFragment bloodHeartFragment;
     FaceTonFragment faceTonFragment;
@@ -37,8 +38,6 @@ public class ExamineDelegate extends BaseDelegate {
     FrameLayout flContent;
     @Bind(R.id.iv_logout)
     ImageView ivLogout;
-    @Bind(R.id.iv_voice)
-    ImageView ivVoice;
     @Bind(R.id.rb_body)
     RadioButton rbBody;
     @Bind(R.id.rb_bloodo)
@@ -51,12 +50,12 @@ public class ExamineDelegate extends BaseDelegate {
     RadioGroup rgMenu;
     @Bind(R.id.rb_blood_heart)
     RadioButton rbBloodHeart;
-    @Bind(R.id.iv_report)
-    ImageView ivReport;
+    @Bind(R.id.rb_temp)
+    RadioButton rbTemp;
 
     @Override
     public int getRootLayoutId() {
-        return R.layout.activity_examine;
+        return R.layout.activity_examine1;
     }
 
 
@@ -76,6 +75,9 @@ public class ExamineDelegate extends BaseDelegate {
                     case R.id.rb_body:
                         showBodyFragment();
                         break;
+                    case R.id.rb_temp:
+                        showTempFragment();
+                        break;
                     case R.id.rb_bloodo:
                         showBloodoFragment();
                         break;
@@ -93,10 +95,14 @@ public class ExamineDelegate extends BaseDelegate {
         });
     }
 
+
     public void checkMenu(int menu) {
         switch (menu) {
             case ExamineActivity.SHOW_BODY_EXAMINE:
                 rbBody.setChecked(true);
+                break;
+            case ExamineActivity.SHOW_TEMPERATURE:
+                rbTemp.setChecked(true);
                 break;
             case ExamineActivity.SHOW_BLOODO_EXAMINE:
                 rbBloodo.setChecked(true);
@@ -127,6 +133,8 @@ public class ExamineDelegate extends BaseDelegate {
         } else {
             transaction.show(bodyFragment);
         }
+        if (temperatureFragment != null)
+            transaction.hide(temperatureFragment);
 
         if (bloodoFragment != null)
             transaction.hide(bloodoFragment);
@@ -145,6 +153,40 @@ public class ExamineDelegate extends BaseDelegate {
         currFragment = bodyFragment;
     }
 
+    private void showTempFragment() {
+        if (currFragment != null && currFragment == temperatureFragment)
+            return;
+
+        FragmentTransaction transaction = ((AppCompatActivity) mContext).getSupportFragmentManager().beginTransaction();
+
+        if (temperatureFragment == null) {
+            temperatureFragment = new TemperatureFragment();
+            transaction.add(R.id.fl_content, bodyFragment);
+        } else {
+            transaction.show(temperatureFragment);
+        }
+
+        if (bodyFragment != null)
+            transaction.hide(bodyFragment);
+
+        if (bloodoFragment != null)
+            transaction.hide(bloodoFragment);
+
+        if (bloodHeartFragment != null)
+            transaction.hide(bloodHeartFragment);
+
+        if (faceTonFragment != null)
+            transaction.hide(faceTonFragment);
+
+        if (questionFragment != null)
+            transaction.hide(questionFragment);
+
+        transaction.commitAllowingStateLoss();
+
+        currFragment = temperatureFragment;
+    }
+
+
     private void showBloodoFragment() {
 
         if (currFragment != null && currFragment == bloodoFragment)
@@ -156,12 +198,16 @@ public class ExamineDelegate extends BaseDelegate {
         if (bodyFragment != null)
             transaction.hide(bodyFragment);
 
+        if (temperatureFragment != null)
+            transaction.hide(temperatureFragment);
+
         if (bloodoFragment == null) {
             bloodoFragment = new BloodoFragment();
             transaction.add(R.id.fl_content, bloodoFragment);
         } else {
             transaction.show(bloodoFragment);
         }
+
 
         if (bloodHeartFragment != null)
             transaction.hide(bloodHeartFragment);
@@ -186,6 +232,9 @@ public class ExamineDelegate extends BaseDelegate {
 
         if (bodyFragment != null)
             transaction.hide(bodyFragment);
+
+        if (temperatureFragment != null)
+            transaction.hide(temperatureFragment);
 
         if (bloodoFragment != null)
             transaction.hide(bloodoFragment);
@@ -219,6 +268,9 @@ public class ExamineDelegate extends BaseDelegate {
         if (bodyFragment != null)
             transaction.hide(bodyFragment);
 
+        if (temperatureFragment != null)
+            transaction.hide(temperatureFragment);
+
         if (bloodoFragment != null)
             transaction.hide(bloodoFragment);
 
@@ -250,6 +302,9 @@ public class ExamineDelegate extends BaseDelegate {
         if (bodyFragment != null)
             transaction.hide(bodyFragment);
 
+        if (temperatureFragment != null)
+            transaction.hide(temperatureFragment);
+
         if (bloodoFragment != null)
             transaction.hide(bloodoFragment);
 
@@ -273,8 +328,12 @@ public class ExamineDelegate extends BaseDelegate {
 
     public void serialPortCallBack(String msg) {
 
+
         if (bodyFragment != null) {
             bodyFragment.serialPortCallBack(msg);
+        }
+        if (temperatureFragment != null) {
+            temperatureFragment.serialPortCallBack(msg);
         }
         if (bloodoFragment != null) {
             bloodoFragment.serialPortCallBack(msg);
@@ -294,6 +353,9 @@ public class ExamineDelegate extends BaseDelegate {
 
         if (bodyFragment != null) {
             bodyFragment.serialPortIng(msg);
+        }
+        if (temperatureFragment != null) {
+            temperatureFragment.serialPortIng(msg);
         }
         if (bloodoFragment != null) {
             bloodoFragment.serialPortIng(msg);
@@ -316,6 +378,12 @@ public class ExamineDelegate extends BaseDelegate {
             rbBody.setButtonDrawable(R.drawable.examine_menu1_finish_selector);
         } else {
             rbBody.setButtonDrawable(R.drawable.examine_menu1_unfinish_selector);
+        }
+
+        if (currUserReport.getTemperatureReport().isFinish()) {
+            rbTemp.setButtonDrawable(R.drawable.examine_menu11_finish_selector);
+        } else {
+            rbTemp.setButtonDrawable(R.drawable.examine_menu11_finish_selector);
         }
 
         if (currUserReport.getBloodOxygenReport().isFinish()) {
@@ -342,26 +410,28 @@ public class ExamineDelegate extends BaseDelegate {
             rbQuestion.setButtonDrawable(R.drawable.examine_menu5_unfinish_selector);
         }
 
-        if (currUserReport.isFinishOne()) {
+      /*  if (currUserReport.isFinishOne()) {
             ivReport.setVisibility(View.VISIBLE);
         } else {
             ivReport.setVisibility(View.INVISIBLE);
-        }
+        }*/
     }
 
     public void nextExamine() {
         UserReport currUserReport = MyApplication.get().getCurrUserReport();
-        int currIndex = 0;
-        if(currFragment == bodyFragment)
-            currIndex = 0;
-        else if(currFragment == bloodoFragment)
-            currIndex = 1;
-        else if(currFragment == bloodHeartFragment)
-            currIndex = 2;
-        else if(currFragment == faceTonFragment)
-            currIndex = 3;
+        int currIndex;
+        if (currFragment == bodyFragment)
+            currIndex = ExamineActivity.SHOW_BODY_EXAMINE;
+        else if (currFragment == temperatureFragment)
+            currIndex = ExamineActivity.SHOW_TEMPERATURE;
+        else if (currFragment == bloodoFragment)
+            currIndex = ExamineActivity.SHOW_BLOODO_EXAMINE;
+        else if (currFragment == bloodHeartFragment)
+            currIndex = ExamineActivity.SHOW_BLOOD_HEART_EXAMINE;
+        else if (currFragment == faceTonFragment)
+            currIndex = ExamineActivity.SHOW_FACE_TON_EXAMINE;
         else
-            currIndex = 4;
+            currIndex = ExamineActivity.SHOW_QUETION_EXAMINE;
 
         int nextIndex = currUserReport.nextIndex(currIndex);
 

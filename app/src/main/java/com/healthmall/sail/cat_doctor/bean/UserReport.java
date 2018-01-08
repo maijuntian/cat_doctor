@@ -9,6 +9,7 @@ import com.mai.xmai_fast_lib.utils.SharedPreferencesHelper;
  */
 public class UserReport {
     BodyReport bodyReport;
+    TemperatureReport temperatureReport;
     BloodOxygenReport bloodOxygenReport;
     BloodPressureReport bloodPressureReport;
     FaceTonReport faceTonReport;
@@ -19,6 +20,7 @@ public class UserReport {
         String deviceId = SharedPreferencesHelper.getInstance(MyApplication.get().getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID);
 
         bodyReport = new BodyReport(deviceId, MyApplication.get().getCurrUser().getMallId());
+        temperatureReport = new TemperatureReport(deviceId, MyApplication.get().getCurrUser().getMallId());
         bloodOxygenReport = new BloodOxygenReport(deviceId, MyApplication.get().getCurrUser().getMallId());
         bloodPressureReport = new BloodPressureReport(deviceId, MyApplication.get().getCurrUser().getMallId());
         faceTonReport = new FaceTonReport();
@@ -65,70 +67,95 @@ public class UserReport {
         this.questionReport = questionReport;
     }
 
+    public TemperatureReport getTemperatureReport() {
+        return temperatureReport;
+    }
+
+    public void setTemperatureReport(TemperatureReport temperatureReport) {
+        this.temperatureReport = temperatureReport;
+    }
+
     public boolean isFinishOne() {
-        return bodyReport.isFinish() || bloodOxygenReport.isFinish() || bloodPressureReport.isFinish() || faceTonReport.isFinish() || questionReport.isFinish();
+        return bodyReport.isFinish() || temperatureReport.isFinish() || bloodOxygenReport.isFinish() || bloodPressureReport.isFinish() || faceTonReport.isFinish() || questionReport.isFinish();
     }
 
     public boolean isFinish() {
-        return bodyReport.isFinish() && bloodOxygenReport.isFinish() && bloodPressureReport.isFinish() && faceTonReport.isFinish() && questionReport.isFinish();
+        return bodyReport.isFinish() && temperatureReport.isFinish() && bloodOxygenReport.isFinish() && bloodPressureReport.isFinish() && faceTonReport.isFinish() && questionReport.isFinish();
     }
 
     public int nextIndex(int currIndex) {
         switch (currIndex) {
             case 0:
-                if (!bloodOxygenReport.isFinish())
+                if (temperatureReport.isFinish())
                     return 1;
-                if (!bloodPressureReport.isFinish())
+                if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!faceTonReport.isFinish())
+                if (!bloodPressureReport.isFinish())
                     return 3;
-                if (!questionReport.isFinish())
+                if (!faceTonReport.isFinish())
                     return 4;
+                if (!questionReport.isFinish())
+                    return 5;
                 break;
             case 1:
-
-                if (!bloodPressureReport.isFinish())
+                if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!faceTonReport.isFinish())
+                if (!bloodPressureReport.isFinish())
                     return 3;
-                if (!questionReport.isFinish())
+                if (!faceTonReport.isFinish())
                     return 4;
+                if (!questionReport.isFinish())
+                    return 5;
                 if (!bodyReport.isFinish())
                     return 0;
                 break;
             case 2:
-
-                if (!faceTonReport.isFinish())
+                if (!bloodPressureReport.isFinish())
                     return 3;
-                if (!questionReport.isFinish())
+                if (!faceTonReport.isFinish())
                     return 4;
+                if (!questionReport.isFinish())
+                    return 5;
                 if (!bodyReport.isFinish())
                     return 0;
-                if (!bloodOxygenReport.isFinish())
+                if (!temperatureReport.isFinish())
                     return 1;
                 break;
             case 3:
-
-                if (!questionReport.isFinish())
+                if (!faceTonReport.isFinish())
                     return 4;
+                if (!questionReport.isFinish())
+                    return 5;
                 if (!bodyReport.isFinish())
                     return 0;
-                if (!bloodOxygenReport.isFinish())
+                if (!temperatureReport.isFinish())
                     return 1;
-                if (!bloodPressureReport.isFinish())
+                if (!bloodOxygenReport.isFinish())
                     return 2;
                 break;
             case 4:
-
+                if (!questionReport.isFinish())
+                    return 5;
                 if (!bodyReport.isFinish())
                     return 0;
-                if (!bloodOxygenReport.isFinish())
+                if (!temperatureReport.isFinish())
                     return 1;
-                if (!bloodPressureReport.isFinish())
+                if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!faceTonReport.isFinish())
+                if (!bloodPressureReport.isFinish())
                     return 3;
                 break;
+            case 5:
+                if (!bodyReport.isFinish())
+                    return 0;
+                if (!temperatureReport.isFinish())
+                    return 1;
+                if (!bloodOxygenReport.isFinish())
+                    return 2;
+                if (!bloodPressureReport.isFinish())
+                    return 3;
+                if (!faceTonReport.isFinish())
+                    return 4;
         }
         return 0;
     }

@@ -1,17 +1,22 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
-import com.healthmall.sail.cat_doctor.widget.ArcProgressView;
+import com.healthmall.sail.cat_doctor.utils.WaveHelper;
+import com.healthmall.sail.cat_doctor.widget.HeartRateView;
 import com.healthmall.sail.cat_doctor.widget.NoPaddingTextView;
+import com.healthmall.sail.cat_doctor.widget.ProgressView;
+import com.healthmall.sail.cat_doctor.widget.TipPopWin;
+import com.healthmall.sail.cat_doctor.widget.WaveView;
 import com.mai.xmai_fast_lib.mvvm.view.AppDelegate;
 
 import butterknife.Bind;
@@ -20,163 +25,232 @@ import butterknife.Bind;
  * Created by mai on 2017/11/15.
  */
 public class BloodHeartDelegate extends AppDelegate {
-    @Bind(R.id.iv_reexamine)
-    ImageView ivReexamine;
-    @Bind(R.id.iv_next)
-    ImageView ivNext;
-    @Bind(R.id.tv_step1_alarm)
-    TextView tvStep1Alarm;
-    @Bind(R.id.ll_step1)
-    LinearLayout llStep1;
-    @Bind(R.id.tv_sp)
-    NoPaddingTextView tvSp;
-    @Bind(R.id.tv_dp)
-    NoPaddingTextView tvDp;
-    @Bind(R.id.tv_hr)
-    NoPaddingTextView tvHr;
-    @Bind(R.id.tv_pressure)
-    NoPaddingTextView tvPressure;
-    @Bind(R.id.tv_pressure_tip)
-    TextView tvPressureTip;
-    @Bind(R.id.apv_pressure)
-    ArcProgressView apvPressure;
-    @Bind(R.id.tv_hr2)
-    NoPaddingTextView tvHr2;
-    @Bind(R.id.tv_hr_tip)
-    TextView tvHrTip;
-    @Bind(R.id.apv_hr2)
-    ArcProgressView apvHr2;
-    @Bind(R.id.ll_step23)
-    LinearLayout llStep23;
+
+    @Bind(R.id.iv_step)
+    ImageView ivStep;
     @Bind(R.id.tv_step1)
     TextView tvStep1;
     @Bind(R.id.tv_step2)
     TextView tvStep2;
     @Bind(R.id.tv_step3)
     TextView tvStep3;
-    @Bind(R.id.rl_bar_step3)
-    RelativeLayout rlBarStep3;
+    @Bind(R.id.tv_start)
+    TextView tvStart;
+    @Bind(R.id.rl_step1)
+    RelativeLayout rlStep1;
+    @Bind(R.id.wave1)
+    WaveView wave1;
+    @Bind(R.id.tv_high_pressure)
+    NoPaddingTextView tvHighPressure;
+    @Bind(R.id.rl_hp)
+    RelativeLayout rlHp;
+    @Bind(R.id.wave2)
+    WaveView wave2;
+    @Bind(R.id.tv_low_pressure)
+    NoPaddingTextView tvLowPressure;
+    @Bind(R.id.divider)
+    View divider;
+    @Bind(R.id.rl_heart_rate)
+    RelativeLayout rlHeartRate;
+    @Bind(R.id.tv_heart_rate_high)
+    TextView tvHeartRateHigh;
+    @Bind(R.id.tv_heart_rate_low)
+    TextView tvHeartRateLow;
+    @Bind(R.id.tv_result_tip1)
+    TextView tvResultTip1;
+    @Bind(R.id.tv_result_blood_pressure)
+    TextView tvResultBloodPressure;
+    @Bind(R.id.tv_result_blood_pressure_alarm)
+    TextView tvResultBloodPressureAlarm;
+    @Bind(R.id.rl_result1)
+    RelativeLayout rlResult1;
+    @Bind(R.id.tv_result_tip2)
+    TextView tvResultTip2;
+    @Bind(R.id.tv_result_heart_rate)
+    TextView tvResultHeartRate;
+    @Bind(R.id.tv_result_heart_rate_alarm)
+    TextView tvResultHeartRateAlarm;
+    @Bind(R.id.rl_result2)
+    RelativeLayout rlResult2;
+    @Bind(R.id.rl_step23)
+    RelativeLayout rlStep23;
+    @Bind(R.id.tv_heart_rate)
+    NoPaddingTextView tvHeartRate;
+
+    TipPopWin step2PopWin, step3PopWin;
+    public ProgressView pvProgress;
+
+    public WaveHelper waveHelper1, waveHelper2;
+    @Bind(R.id.hrv_hr)
+    HeartRateView hrvHr;
 
     @Override
     public int getRootLayoutId() {
-        return R.layout.fragment_examine_blood_heart;
+        return R.layout.fragment_examine_blood_heart1;
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-        apvHr2.setMaxProgress(150);
+
+        wave1.setWaveColor(Color.parseColor("#5Cfec600"), Color.parseColor("#5Cf83900"), Color.parseColor("#38fec600"), Color.parseColor("#38f83900"));
+        wave2.setWaveColor(Color.parseColor("#5C00c6ff"), Color.parseColor("#5C0072ff"), Color.parseColor("#3800c6ff"), Color.parseColor("#380072ff"));
+
+        waveHelper1 = new WaveHelper(wave1);
+        waveHelper2 = new WaveHelper(wave2);
+    }
+
+    public void hidePopWin() {
+
+        if (step2PopWin != null)
+            step2PopWin.dismiss();
+
+        if (step3PopWin != null)
+            step3PopWin.dismiss();
     }
 
     public void showStep1() {
+        rlStep1.setVisibility(View.VISIBLE);
+        rlStep23.setVisibility(View.GONE);
+        ivStep.setImageResource(R.mipmap.progress_1);
+        tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.step_select));
+        tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
+        tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
 
-        llStep1.setVisibility(View.VISIBLE);
-        llStep23.setVisibility(View.GONE);
-        tvStep1Alarm.setVisibility(View.VISIBLE);
-        rlBarStep3.setVisibility(View.GONE);
-
-        tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-        tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.mgray));
-        tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.mgray));
-
-        apvPressure.setProgressIndex(0);
-        apvHr2.setProgressIndex(0);
+        hidePopWin();
     }
 
     public void showStep2() {
+        rlStep1.setVisibility(View.GONE);
+        rlStep23.setVisibility(View.VISIBLE);
+        ivStep.setImageResource(R.mipmap.progress_2);
+        tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.step_finish));
+        tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.step_select));
+        tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
 
-        tvStep1Alarm.setVisibility(View.GONE);
-        llStep1.setVisibility(View.GONE);
-        llStep23.setVisibility(View.VISIBLE);
-        rlBarStep3.setVisibility(View.GONE);
-        tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.mgray));
-        tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-        tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.mgray));
+        rlResult1.setVisibility(View.GONE);
+        rlResult2.setVisibility(View.GONE);
 
-        tvHrTip.setText("测量中...");
-        tvPressureTip.setText("测量中...");
+        waveHelper1.start();
+        waveHelper2.start();
 
-        tvPressure.setText("0/0");
-        tvSp.setText(0 + "");
-        tvDp.setText(0 + "");
-        tvHr.setText(0 + "");
+        hrvHr.setProgressIndex(0);
+        hrvHr.setProgress(0);
+        tvHighPressure.setText("0");
+        tvLowPressure.setText("0");
+        tvHeartRate.setText("0");
 
-        tvHr2.setText(0 + "");
-        apvHr2.setProgress(0);
-        apvPressure.setProgress(0);
-//        initBloodIng(bloodPressureReport);
+        if (step2PopWin == null) {
+            step2PopWin = new TipPopWin(mContext, R.layout.dialog_tip_no_button);
+            pvProgress = step2PopWin.getContentView().findViewById(R.id.pv_progress);
+            pvProgress.setOnFinishListener(new ProgressView.OnFinishListener() {
+                @Override
+                public void onFinish() { //完成了
+                    showStep3Real();
+                }
+            });
+        }
+        step2PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+
+        pvProgress.start();
+
     }
 
     public void showStep3(BloodPressureReport bloodPressureReport) {
-
-        llStep1.setVisibility(View.GONE);
-        tvStep1Alarm.setVisibility(View.GONE);
-        llStep23.setVisibility(View.VISIBLE);
-        rlBarStep3.setVisibility(View.VISIBLE);
-        tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.mgray));
-        tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.mgray));
-        tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-
-        if (!MyApplication.get().getCurrUserReport().isFinish()) {
-            ivNext.setVisibility(View.VISIBLE);
-        } else {
-            ivNext.setVisibility(View.INVISIBLE);
-        }
-
         initBloodPressure(bloodPressureReport);
+        pvProgress.finish();
     }
 
-    public void initBloodIng(BloodPressureReport bloodPressureReport) {
+    public void showStep3Init(BloodPressureReport bloodPressureReport) {
+        initBloodPressure(bloodPressureReport);
+        showStep3Real();
+    }
 
-        tvSp.setText(bloodPressureReport.getBm_sph_sp());
-        tvDp.setText(bloodPressureReport.getBm_sph_dp());
-        tvHr.setText(bloodPressureReport.getBm_sph_hr());
+    public void showStep3Real() {
+        rlStep1.setVisibility(View.GONE);
+        rlStep23.setVisibility(View.VISIBLE);
+        ivStep.setImageResource(R.mipmap.progress_3);
+        tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.step_finish));
+        tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.step_finish));
+        tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.step_select));
 
-        tvHr2.setText(bloodPressureReport.getBm_sph_hr());
-        apvHr2.setProgress(Integer.parseInt(bloodPressureReport.getBm_sph_hr()));
+        rlResult1.setVisibility(View.VISIBLE);
+        rlResult2.setVisibility(View.VISIBLE);
+
+        if (step2PopWin != null)
+            step2PopWin.dismiss();
+
+        if (step3PopWin == null) {
+            step3PopWin = new TipPopWin(mContext, R.layout.dialog_tip_result);
+            step3PopWin.getContentView().findViewById(R.id.tv_next).setOnClickListener(mOnClickListener);
+            step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
+            step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
+        }
+        step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+
+        if (MyApplication.get().getCurrUserReport().isFinish()) { //已全部完成
+            step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.INVISIBLE);
+        } else {
+            step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.VISIBLE);
+        }
+
     }
 
     public void initBloodPressure(BloodPressureReport bloodPressureReport) {
+
+
         int sp = Integer.parseInt(bloodPressureReport.getBm_sph_sp());
         int dp = Integer.parseInt(bloodPressureReport.getBm_sph_dp());
 
         int hr = Integer.parseInt(bloodPressureReport.getBm_sph_hr());
+        tvHighPressure.setText(sp + "");
+        tvLowPressure.setText(dp + "");
+        tvHeartRate.setText(hr + "");
 
-        tvSp.setText(bloodPressureReport.getBm_sph_sp());
-        tvDp.setText(bloodPressureReport.getBm_sph_dp());
-        tvHr.setText(bloodPressureReport.getBm_sph_hr());
+        if (sp >= 140) {
+            waveHelper1.setData(0.61f + (sp - 140) * 0.39f / 60f);
+        } else if (sp >= 90) {
+            waveHelper1.setData(0.39f + (sp - 90) * 0.22f / 50f);
+        } else {
+            waveHelper1.setData(sp * 0.39f / 90f);
+        }
 
-        tvHr2.setText(bloodPressureReport.getBm_sph_hr());
-        apvHr2.setProgress(hr);
-
-        tvPressure.setText(bloodPressureReport.getBm_sph_sp() + "/" + bloodPressureReport.getBm_sph_dp());
+        if (dp >= 90) {
+            waveHelper2.setData(0.61f + (dp - 90) * 0.39f / 60f);
+        } else if (dp >= 60) {
+            waveHelper2.setData(0.39f + (dp - 60) * 0.22f / 30f);
+        } else {
+            waveHelper2.setData(dp * 0.39f / 90f);
+        }
 
 
         if (sp >= 140 || dp >= 90) { //高血压
-
-            apvPressure.setProgress(80);
-            tvPressureTip.setText("血压偏高");
-            tvPressureTip.setTextColor(ContextCompat.getColor(mContext, R.color.bh_low_high));
+            tvResultBloodPressure.setText("偏高");
+            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.orange));
+            tvResultBloodPressureAlarm.setText(R.string.bp_tip_high);
         } else if (sp <= 90 || dp <= 60) { //低血压
-
-            apvPressure.setProgress(20);
-            tvPressureTip.setText("血压偏低");
-            tvPressureTip.setTextColor(ContextCompat.getColor(mContext, R.color.bh_mid));
+            tvResultBloodPressure.setText("偏低");
+            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.blue));
+            tvResultBloodPressureAlarm.setText(R.string.bp_tip_low);
         } else { //血压正常
-            apvPressure.setProgress(50);
-            tvPressureTip.setText("血压正常");
-            tvPressureTip.setTextColor(ContextCompat.getColor(mContext, R.color.bh_normal));
+            tvResultBloodPressure.setText("正常");
+            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
+            tvResultBloodPressureAlarm.setText(R.string.bp_tip_nomal);
         }
 
+        hrvHr.setProgress(hr);
         if (hr > 100) {
-            tvHrTip.setText("心率偏高");
-            tvPressureTip.setTextColor(ContextCompat.getColor(mContext, R.color.bh_low_high));
+            tvResultHeartRate.setText("过快");
+            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.orange));
+            tvResultHeartRateAlarm.setText(R.string.hr_tip_high);
         } else if (hr < 50) {
-            tvHrTip.setText("心率偏低");
-            tvPressureTip.setTextColor(ContextCompat.getColor(mContext, R.color.bh_mid));
+            tvResultHeartRate.setText("过缓");
+            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.blue));
+            tvResultHeartRateAlarm.setText(R.string.hr_tip_low);
         } else {
-            tvHrTip.setText("心率正常");
-            tvPressureTip.setTextColor(ContextCompat.getColor(mContext, R.color.bh_normal));
+            tvResultHeartRate.setText("正常");
+            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
+            tvResultHeartRateAlarm.setText(R.string.hr_tip_high);
         }
 
     }

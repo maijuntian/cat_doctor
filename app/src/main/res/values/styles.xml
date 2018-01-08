@@ -23,6 +23,11 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="tip_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/alert_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/alert_out_anim</item>
+    </style>
+
     <style name="text_white">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -72,6 +77,12 @@
         <item name="android:textColor">@color/mgray</item>
     </style>
 
+    <style name="text_orange">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
     <style name="text_mmgray">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -94,5 +105,20 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
         <item name="android:background">@color/mmgray</item>
+    </style>
+
+    <style name="text_green">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/good_green</item>
+    </style>
+
+    <style name="button_tip">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">32px</item>
+        <item name="android:background">@drawable/blue_button_bg</item>
+        <item name="android:layout_height">64px</item>
+        <item name="android:layout_width">280px</item>
+        <item name="android:gravity">center</item>
     </style>
 </resources>

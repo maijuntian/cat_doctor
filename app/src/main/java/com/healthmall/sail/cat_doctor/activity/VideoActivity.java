@@ -11,6 +11,7 @@ import com.healthmall.sail.cat_doctor.base.BaseActivity;
 import com.healthmall.sail.cat_doctor.delegate.VideoDelegate;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortEngine;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.mai.xmai_fast_lib.utils.MLog;
 import com.mai.xmai_fast_lib.utils.XAppManager;
 

@@ -11,6 +11,7 @@ import com.healthmall.sail.cat_doctor.http.CatDoctorApi;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortEngine;
 import com.healthmall.sail.cat_doctor.utils.Keys;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.healthmall.sail.cat_doctor.websocket.CatWebSocketClient;
 import com.mai.xmai_fast_lib.base.BaseApplication;
 import com.mai.xmai_fast_lib.basehttp.MParams;
@@ -51,8 +52,9 @@ public class MyApplication extends BaseApplication {
         instance = this;
         initWebSocket();
 
-
         SerialPortCmd.reset();
+
+        VoiceMamanger.init(this);
     }
 
 

@@ -1,11 +1,13 @@
 package com.healthmall.sail.cat_doctor.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.activity.ExamineActivity;
+import com.healthmall.sail.cat_doctor.activity.ReportActivity;
 import com.healthmall.sail.cat_doctor.base.BaseFragment;
 import com.healthmall.sail.cat_doctor.base.MyThrowable;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
@@ -28,9 +30,6 @@ import rx.functions.Action1;
 public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
 
 
-    Subscription sbTimer;
-    final long delay = 5000;
-
     BloodPressureReport currBloodPressureReport;
 
     @Override
@@ -40,7 +39,7 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
         currBloodPressureReport = MyApplication.get().getCurrUserReport().getBloodPressureReport();
 
         if (currBloodPressureReport.isFinish()) {
-            viewDelegate.showStep3(currBloodPressureReport);
+            viewDelegate.showStep3Init(currBloodPressureReport);
         } else {
             startExamine();
         }
@@ -51,9 +50,14 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
 
-        if (!hidden && !currBloodPressureReport.isFinish()) {
-            startExamine();
+        if (!hidden) {
+            if(currBloodPressureReport.isFinish()){
+                viewDelegate.showStep3Real();
+            } else {
+                startExamine();
+            }
         } else {
+            viewDelegate.hidePopWin();
             stopAll();
         }
     }
@@ -61,15 +65,6 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
     private void startExamine() {
 
         viewDelegate.showStep1();
-        sbTimer = rx.Observable.timer(delay, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
-            @Override
-            public void call(Long aLong) {
-
-                startErrorDelay();
-                viewDelegate.showStep2();
-                SerialPortCmd.bloodOPRS();
-            }
-        });
     }
 
     @Override
@@ -77,14 +72,18 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
         return 180000L; //延迟三分钟
     }
 
+    @OnClick(R.id.tv_start)
+    public void tv_startClick() {
+        startErrorDelay();
+        viewDelegate.showStep2();
+        SerialPortCmd.bloodOPRS();
+
+    }
+
     @Override
     public void onDestroy() {
 
         stopAll();
-
-        if (sbTimer != null)
-            sbTimer.unsubscribe();
-
 
         super.onDestroy();
     }
@@ -128,15 +127,6 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
         }*/
     }
 
-    @OnClick(R.id.iv_next)
-    public void iv_nextClick() {
-        ((ExamineActivity) getActivity()).showNextExamine();
-    }
-
-    @OnClick(R.id.iv_reexamine)
-    public void iv_reexamineClick() {
-        reExamine();
-    }
 
     @Override
     public void error() {
@@ -151,5 +141,21 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
         currBloodPressureReport = MyApplication.get().getCurrUserReport().getBloodPressureReport();
         ((ExamineActivity) getActivity()).notifyMenu();
         startExamine();
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.tv_reexamine:
+                reExamine();
+                break;
+            case R.id.tv_next:
+                ((ExamineActivity) getActivity()).showNextExamine();
+                break;
+            case R.id.tv_report:
+                startActivity(ReportActivity.class, true);
+                break;
+        }
     }
 }

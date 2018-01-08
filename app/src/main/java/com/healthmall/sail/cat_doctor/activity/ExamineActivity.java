@@ -15,10 +15,11 @@ import rx.functions.Action0;
 public class ExamineActivity extends BaseActivity<ExamineDelegate> {
 
     public static final int SHOW_BODY_EXAMINE = 0;
-    public static final int SHOW_BLOODO_EXAMINE = 1;
-    public static final int SHOW_BLOOD_HEART_EXAMINE = 2;
-    public static final int SHOW_FACE_TON_EXAMINE = 3;
-    public static final int SHOW_QUETION_EXAMINE = 4;
+    public static final int SHOW_TEMPERATURE = 1;
+    public static final int SHOW_BLOODO_EXAMINE = 2;
+    public static final int SHOW_BLOOD_HEART_EXAMINE = 3;
+    public static final int SHOW_FACE_TON_EXAMINE = 4;
+    public static final int SHOW_QUETION_EXAMINE = 5;
 
     public static final String EXAMINE_MENU = "EXAMINE_MENU";
 
@@ -32,7 +33,6 @@ public class ExamineActivity extends BaseActivity<ExamineDelegate> {
         viewDelegate.notifyMenu();
     }
 
-    @OnClick(R.id.iv_report)
     public void iv_reportClick() {
         startActivity(ReportActivity.class, true);
     }

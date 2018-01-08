@@ -16,6 +16,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.healthmall.sail.cat_doctor.R;
+import com.mai.xmai_fast_lib.utils.MLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,10 @@ public class PulseRateView extends View {
 
     Paint linePaint, lineBgPaint;
 
+    Paint greenTextPaint, greenBigTextPaint, greenBgPaint;
+
+    Paint valuePaint;
+
     int startX = 0; //x轴的起始值
 
     int endX = 55; //x轴的结束值
@@ -38,7 +43,9 @@ public class PulseRateView extends View {
 
     int ySize = 10;
 
-    List<Integer> mData;
+    int paddingY = 33;
+
+    List<Integer> mData = new ArrayList<>();
 
     int yBottom;
     int yTop = 40;
@@ -47,6 +54,8 @@ public class PulseRateView extends View {
 
     float perWidth; //横坐标1格的宽度；
     float perHeight; //纵坐标1格的高度；
+
+    boolean isFinish;
 
     public PulseRateView(Context context) {
         super(context);
@@ -63,21 +72,32 @@ public class PulseRateView extends View {
         initView();
     }
 
+    public void clearData() {
+        mData.clear();
+        isFinish = false;
+        postInvalidate();
+    }
 
-    public void setData(List<Integer> mData) {
 
-        if (mData.size() > endX + 1) {
-            startX = mData.size() - endX - 1;
-            this.mData = mData.subList(startX, mData.size() - 1);
+    public void addData(int data) {
+        mData.add(data);
+        if (mData != null) {
+            if (mData.size() > endX + 1) {
+                startX = mData.size() - endX - 1;
+                this.mData = mData.subList(startX, mData.size() - 1);
 
-            endX += startX;
-        } else {
-            this.mData = mData;
-
-            startX = 0;
+                endX += startX;
+            } else {
+                startX = 0;
+            }
         }
+        MLog.log("当前的数值-->" + mData.toString());
 
         postInvalidate();
+    }
+
+    public void setFinish(boolean finish) {
+        isFinish = finish;
     }
 
     private void initView() {
@@ -87,6 +107,34 @@ public class PulseRateView extends View {
         textPaint.setStyle(Paint.Style.STROKE);
         textPaint.setTextSize(18);
         textPaint.setColor(Color.parseColor("#caccce"));
+
+
+        valuePaint = new Paint();
+        valuePaint.setAntiAlias(true);
+        valuePaint.setStyle(Paint.Style.STROKE);
+        valuePaint.setTextSize(60);
+        valuePaint.setColor(Color.parseColor("#0072ff"));
+
+
+        greenTextPaint = new Paint();
+        greenTextPaint.setAntiAlias(true);
+        greenTextPaint.setStyle(Paint.Style.STROKE);
+        greenTextPaint.setTextSize(18);
+        greenTextPaint.setColor(Color.parseColor("#00b99e"));
+
+        greenBigTextPaint = new Paint();
+        greenBigTextPaint.setAntiAlias(true);
+        greenBigTextPaint.setStyle(Paint.Style.STROKE);
+        greenBigTextPaint.setTextSize(24);
+        greenBigTextPaint.setColor(Color.parseColor("#00b99e"));
+
+
+        greenBgPaint = new Paint();
+        greenBgPaint.setStrokeWidth(1);
+        greenBgPaint.setAntiAlias(true);
+        greenBgPaint.setStyle(Paint.Style.FILL);
+        greenBgPaint.setColor(Color.parseColor("#1a00b99e"));
+
 
         chartPaint = new Paint();
         chartPaint.setStrokeWidth(1);
@@ -110,31 +158,25 @@ public class PulseRateView extends View {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mData = new ArrayList<>();
-        for (int i = 0; i < 55; i++) {
-            mData.add(new Random().nextInt(200));
-        }
-        postInvalidate();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-
-        xRight = getWidth() - 45;
-        yBottom = getHeight() - 32;
-
-        perWidth = (xRight - xLeft) / (endX - startX);
-        perHeight = (yBottom - yTop) / 200;
-        Shader shader = new LinearGradient(xLeft, yBottom - yTop / 2, xRight, yBottom - yTop / 2, Color.parseColor("#0072FF"), Color.parseColor("#00C6FF"), Shader.TileMode.CLAMP);
-        linePaint.setShader(shader);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        xRight = getWidth() - 45;
+        yBottom = getHeight() - 32;
+
+        perWidth = (xRight - xLeft) / (endX - startX);
+        perHeight = paddingY * 10f / 200f;
+        Shader shader = new LinearGradient(xLeft, yBottom - yTop / 2, xRight, yBottom - yTop / 2, Color.parseColor("#0072FF"), Color.parseColor("#00C6FF"), Shader.TileMode.CLAMP);
+        linePaint.setShader(shader);
 
         drawChart(canvas);
 
@@ -158,6 +200,9 @@ public class PulseRateView extends View {
 
         float textWidth = textPaint.measureText("05");
 
+        int greenLeft = 0, greenRight = 0, greenTop = 0, greenBottom = 0;
+
+
         for (int i = 0; i <= xSize; i++) {
             int xReal = xLeft + i * paddingX;
 
@@ -171,12 +216,14 @@ public class PulseRateView extends View {
 
                 canvas.drawCircle(xReal, yBottom - 4, 4, chartPaint);
                 if (i == xSize) {
-                    canvas.drawText("s", xReal + textWidth / 2f + 22, getHeight() - 3, textPaint);
+                    greenRight = xReal;
+                    canvas.drawText("(s)", xReal + textWidth / 2f + 12, getHeight() - 3, textPaint);
                 }
             }
 
             canvas.drawLine(xReal, yTop, xReal, yBottom, chartPaint);
         }
+
 
         for (int i = 0; i <= ySize; i++) {
             int realY = yBottom - i * paddingY;
@@ -190,10 +237,22 @@ public class PulseRateView extends View {
                 Rect rect = new Rect();
                 textPaint.getTextBounds(textY, 0, textY.length(), rect);
 
-                canvas.drawText(textY, xLeft - rect.width() - 5, realY + 10, textPaint);
+                if (2 < i && i < 6) {
+                    canvas.drawText(textY, xLeft - rect.width() - 5, realY + 10, greenTextPaint);
+                    if (i == 3) {
+                        greenBottom = realY;
+                    } else if (i == 5) {
+                        greenTop = realY;
+                    }
+                } else {
+                    canvas.drawText(textY, xLeft - rect.width() - 5, realY + 10, textPaint);
+                }
             }
-
         }
+
+        greenLeft = xLeft;
+
+        canvas.drawRect(greenLeft, greenTop, greenRight, greenBottom, greenBgPaint);
     }
 
     private void drawLine(Canvas canvas) {
@@ -202,6 +261,14 @@ public class PulseRateView extends View {
             PointF endPoint1 = transforPoint(i + 1, mData.get(i + 1));
             drawPoint(canvas, startPoint1, endPoint1);
             drawBg(canvas, startPoint1, endPoint1);
+
+            if (isFinish && i == size - 1) {
+                String value = mData.get(i + 1) + "";
+                Rect rect = new Rect();
+                valuePaint.getTextBounds(value, 0, value.length(), rect);
+
+                canvas.drawText(value, endPoint1.x - (rect.width() / 2f), endPoint1.y - rect.height() - 20, valuePaint);
+            }
         }
     }
 

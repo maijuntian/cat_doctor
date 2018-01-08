@@ -143,12 +143,11 @@ public class BodyFragment extends BaseFragment<BodyDelegate> {
         } else if (msg.startsWith(SerialPortCmd.OK_WEIGHT)) { //体重
             SerialPortCmd.parseWeight(msg, currBodyReport);
             currBodyReport.setFinishWeight(true);
-            startTempExamine();
-        } else if (msg.startsWith(SerialPortCmd.OK_BODYTEMP)) { //体温
+            startFatExamine();
+        } /*else if (msg.startsWith(SerialPortCmd.OK_BODYTEMP)) { //体温
             SerialPortCmd.parseTemp(msg, currBodyReport);
             currBodyReport.setFinishTemp(true);
-            startFatExamine();
-        } else if (msg.startsWith(SerialPortCmd.OK_BODYFAT)) { //体脂
+        } */else if (msg.startsWith(SerialPortCmd.OK_BODYFAT)) { //体脂
 
             stopErrorDelay(); //停止错误判定
 

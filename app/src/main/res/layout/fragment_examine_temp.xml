@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="116px"
+        android:layout_marginTop="52px"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_black"
+            android:text="体温"
+            android:textSize="36px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginTop="7px"
+            android:text="Temperature"
+            android:textSize="18px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34px"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3px"
+                android:src="@mipmap/progress_1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/text_blue"
+                    android:text="操作知识"
+                    android:textSize="20px" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:layout_marginTop="40px"
+                    android:text="测量过程"
+                    android:textSize="20px" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:layout_marginTop="40px"
+                    android:text="测量结果"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

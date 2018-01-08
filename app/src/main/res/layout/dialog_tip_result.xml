@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/tip_bottom_hide" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/tv_reexamine"
+            style="@style/text_blue"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="45px"
+            android:layout_marginRight="45px"
+            android:layout_marginTop="45px"
+            android:background="@drawable/button_blue_trans_corner"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="重新测量"
+            android:textSize="24px" />
+
+
+        <TextView
+            android:id="@+id/tv_report"
+            style="@style/text_blue"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20px"
+            android:layout_toLeftOf="@id/tv_reexamine"
+            android:background="@drawable/button_blue_trans_corner"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="生成报告"
+            android:textSize="24px" />
+
+
+        <TextView
+            android:id="@+id/tv_next"
+            style="@style/text_white"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20px"
+            android:layout_toLeftOf="@id/tv_report"
+            android:background="@drawable/blue_button_bg"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="开始测量下一项"
+
+            android:textSize="24px" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,123 +1,353 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@mipmap/examine_main_menu1_bg">
+    android:layout_height="match_parent">
 
     <LinearLayout
-
         android:layout_width="wrap_content"
-        android:layout_height="80px"
-        android:layout_marginLeft="80px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="116px"
+        android:layout_marginTop="52px"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_step1"
             style="@style/text_black"
-            android:text="@string/opra_tip"
-            android:textSize="20px" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15px"
-            android:layout_marginRight="15px"
-            android:src="@mipmap/examine_step2" />
+            android:text="体成分"
+            android:textSize="36px" />
 
         <TextView
-            android:id="@+id/tv_step2"
             style="@style/text_mgray"
-            android:text="@string/measure_process"
-            android:textSize="20px" />
+            android:layout_marginTop="7px"
+            android:text="Height/Weight/Component"
+            android:textSize="18px" />
 
-
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15px"
-            android:layout_marginRight="15px"
-            android:src="@mipmap/examine_step2" />
+            android:layout_marginTop="34px"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_step"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3px"
+                android:src="@mipmap/progress_1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_step1"
+                    style="@style/text_blue"
+                    android:text="身高体重操作指示"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_step2"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginTop="16px"
+                    android:text="测量过程"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_step3"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginTop="16px"
+                    android:text="测量结果"
+                    android:textSize="20px" />
 
 
-        <TextView
-            android:id="@+id/tv_step3"
-            style="@style/text_mgray"
-            android:text="@string/measure_result"
-            android:textSize="20px" />
+                <TextView
+                    android:id="@+id/tv_step4"
+                    style="@style/text_mgray"
+                    android:layout_marginTop="16px"
+                    android:text="体脂操作指示"
+                    android:textSize="20px" />
 
+                <TextView
+                    android:id="@+id/tv_step5"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginTop="16px"
+                    android:text="测量过程"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_step6"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="20px"
+                    android:layout_marginTop="16px"
+                    android:text="测量结果"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/tv_step1_alarm"
-        style="@style/text_white"
-        android:layout_width="1540px"
-        android:layout_height="130px"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/vs_step2"
-        android:gravity="center"
-        android:text="@string/examine_body_tip1"
-        android:textSize="30px" />
-
-
-    <LinearLayout
-        android:id="@+id/ll_step1"
-        android:layout_width="match_parent"
-        android:layout_height="490px"
-        android:layout_above="@id/tv_step1_alarm"
-        android:layout_marginBottom="178px"
-        android:layout_marginRight="375px"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="360px"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="80px"
-            android:src="@mipmap/body_step1" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60px"
-            android:layout_marginRight="60px"
-            android:src="@mipmap/examine_step" />
-
-        <ImageView
-            android:layout_width="360px"
-            android:layout_height="match_parent"
-            android:src="@mipmap/body_step2" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60px"
-            android:layout_marginRight="60px"
-            android:src="@mipmap/examine_step" />
-
-
-        <ImageView
-            android:layout_width="360px"
-            android:layout_height="match_parent"
-            android:src="@mipmap/body_step3" />
-
-    </LinearLayout>
-
-    <ViewStub
-        android:id="@+id/vs_step2"
+    <RelativeLayout
+        android:id="@+id/rl_step1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout="@layout/viewstub_examine_body2" />
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    <ViewStub
-        android:id="@+id/vs_step3"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200px"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bloodo_tip1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="161px"
+                android:src="@mipmap/bloodo_tip2" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_start"
+            style="@style/button_tip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="150px"
+            android:text="开始测量" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="90px"
+            android:text="@string/examine_body_tip1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_step23"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout="@layout/viewstub_examine_body3" />
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/ll_bloodo_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="370px"
+            android:layout_marginTop="170px"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="血氧饱和度"
+                android:textSize="32px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="（%）"
+                android:textSize="18px" />
+
+        </LinearLayout>
+
+
+        <com.healthmall.sail.cat_doctor.widget.WaterView
+            android:id="@+id/wv_blood_o"
+            android:layout_width="290px"
+            android:layout_height="350px"
+            android:layout_marginLeft="398px"
+            android:layout_marginTop="280px" />
+
+        <TextView
+            style="@style/text_green"
+            android:layout_marginLeft="527px"
+            android:layout_marginTop="246px"
+            android:text="100"
+            android:textSize="18px" />
+
+
+        <TextView
+            style="@style/text_sgray"
+            android:layout_marginLeft="366px"
+            android:layout_marginTop="540px"
+            android:text="94"
+            android:textSize="18px" />
+
+
+        <TextView
+            style="@style/text_sgray"
+            android:layout_marginLeft="678px"
+            android:layout_marginTop="373px"
+            android:text="80"
+            android:textSize="18px" />
+
+
+        <TextView
+            style="@style/text_sgray"
+            android:layout_marginLeft="654px"
+            android:layout_marginTop="616px"
+            android:text="89"
+            android:textSize="18px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="516px"
+            android:layout_marginTop="451px"
+            android:orientation="horizontal">
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_blood_o"
+                style="@style/text_orange"
+                android:text="0"
+                android:textSize="60px" />
+
+            <TextView
+                style="@style/text_orange"
+                android:text="%"
+                android:textSize="24px" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="507px"
+            android:layout_marginLeft="758px"
+            android:layout_marginTop="168px"
+            android:background="@color/mgray" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1px"
+            android:layout_height="120px"
+            android:layout_marginLeft="758px"
+            android:layout_marginTop="675px"
+            android:background="@color/mgray"
+            android:visibility="invisible" />
+
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="819px"
+            android:layout_marginTop="168px"
+            android:text="脉搏数"
+            android:textSize="32px" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_pluse_rate"
+            android:layout_width="813px"
+            android:layout_height="428px"
+            android:layout_marginLeft="819px"
+            android:layout_marginTop="240px">
+
+            <com.healthmall.sail.cat_doctor.widget.PulseRateView
+                android:id="@+id/prv_pluse_rate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="727px"
+                android:layout_marginTop="159px"
+                android:text="过速"
+                android:textSize="18px" />
+
+            <TextView
+                style="@style/text_green"
+                android:layout_marginLeft="717px"
+                android:layout_marginTop="241px"
+                android:text="正常"
+                android:textSize="24px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="727px"
+                android:layout_marginTop="331px"
+                android:text="过缓"
+                android:textSize="18px" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+
+            android:id="@+id/rl_result1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/ll_bloodo_tip"
+            android:layout_alignRight="@id/divider"
+            android:layout_marginTop="696px">
+
+            <TextView
+                android:id="@+id/tv_result_tip1"
+                style="@style/text_mgray"
+                android:text="解读结果"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/tv_bloodo_result"
+                style="@style/text_green"
+                android:layout_centerHorizontal="true"
+                android:text="正常"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_bloodo_result_alarm"
+                style="@style/text_mgray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70px"
+                android:gravity="center_horizontal"
+                android:text="@string/bloodo_tip_nomal"
+                android:textSize="16px" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_result2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/rl_pluse_rate"
+            android:layout_alignRight="@id/rl_pluse_rate"
+            android:layout_marginTop="696px">
+
+            <TextView
+                android:id="@+id/tv_result_tip2"
+                style="@style/text_mgray"
+                android:text="解读结果"
+                android:textSize="24px"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_pluse_result"
+                style="@style/text_green"
+                android:layout_centerHorizontal="true"
+                android:text="正常"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_pluse_result_alarm"
+                style="@style/text_mgray"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70px"
+                android:gravity="center_horizontal"
+                android:text="@string/pluse_rate_tip_nomal"
+                android:textSize="16px"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

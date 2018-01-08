@@ -32,7 +32,7 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
 
         currFaceTonReport = MyApplication.get().getCurrUserReport().getFaceTonReport();
 
-        if(currFaceTonReport.isFinish()){
+        if (currFaceTonReport.isFinish()) {
             viewDelegate.showFaceCamera();
         }
 
@@ -43,7 +43,7 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
         super.onHiddenChanged(hidden);
     }
 
-    @OnClick(R.id.iv_go)
+    @OnClick(R.id.tv_take_pic)
     public void iv_goClick() {
 
         viewDelegate.cvCamera.captureImage(new CameraKitEventCallback<CameraKitImage>() {
@@ -100,8 +100,8 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
 
     }
 
-    @OnClick(R.id.iv_next)
-    public void iv_nextClick() {
+//    @OnClick(R.id.iv_next)
+    public void iv_nextClick() { //下一步
         if (currFaceTonReport.isFinishTon()) {
             ((ExamineActivity) getActivity()).showNextExamine();
         } else {
@@ -109,8 +109,8 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
         }
     }
 
-    @OnClick(R.id.iv_remake)
-    public void iv_remakeClick() {
+//    @OnClick(R.id.iv_remake)
+    public void iv_remakeClick() { //重新测量
         if (currFaceTonReport.isFinishTon()) {
             currFaceTonReport.setFinishTon(false);
             viewDelegate.showTonCamera();
@@ -122,4 +122,18 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
         ((ExamineActivity) getActivity()).notifyMenu();
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.tv_left: //下一步
+                iv_nextClick();
+                break;
+            case R.id.tv_right_top:
+                break;
+            case R.id.tv_right_bottom:
+                iv_remakeClick();
+                break;
+        }
+    }
 }

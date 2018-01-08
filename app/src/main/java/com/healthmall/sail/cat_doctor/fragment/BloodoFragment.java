@@ -1,11 +1,14 @@
 package com.healthmall.sail.cat_doctor.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.activity.ExamineActivity;
+import com.healthmall.sail.cat_doctor.activity.ReportActivity;
 import com.healthmall.sail.cat_doctor.base.BaseFragment;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
 import com.healthmall.sail.cat_doctor.bean.BodyReport;
@@ -13,6 +16,7 @@ import com.healthmall.sail.cat_doctor.delegate.BloodoDelegate;
 import com.healthmall.sail.cat_doctor.http.CatDoctorApi;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.OnClick;
@@ -28,11 +32,6 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
 
     BloodOxygenReport currBloodOxygenReport;
 
-
-    Subscription sbTimer;
-
-    final long delay = 5000;
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -40,7 +39,7 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
         currBloodOxygenReport = MyApplication.get().getCurrUserReport().getBloodOxygenReport();
 
         if (currBloodOxygenReport.isFinish()) {
-            viewDelegate.showStep3(currBloodOxygenReport);
+            viewDelegate.showStep3Init(currBloodOxygenReport);
         } else {
             startExamine();
         }
@@ -50,30 +49,48 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
 
-        if (!hidden && !currBloodOxygenReport.isFinish()) {
-            startExamine();
+        if (!hidden) {
+            if (currBloodOxygenReport.isFinish()) {
+                viewDelegate.showStep3Real();
+            } else {
+                startExamine();
+            }
         } else {
+            viewDelegate.hidePopWin();
             stopAll();
         }
     }
 
     private void startExamine() {
 
-        startErrorDelay();
         viewDelegate.showStep1();
 
+    }
+
+    int times;
+
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (times == 20) {
+                serialPortCallBack("OK+BLOODOX+SPO2=" + (76 + times) + "+PR=" + (new Random().nextInt(180)) + "+PI=68+ST=2");
+            } else {
+                serialPortIng("OK+BLOODOX+SPO2=" + (76 + times) + "+PR=" + (new Random().nextInt(180)) + "+PI=68+ST=2");
+                handler.sendEmptyMessageDelayed(0, 1000);
+            }
+            times++;
+        }
+    };
+
+    @OnClick(R.id.tv_start)
+    public void tv_startClick() {
+        startErrorDelay();
+        viewDelegate.showStep2();
         SerialPortCmd.bloodOX();
 
-       /* if (sbTimer != null)
-            sbTimer.unsubscribe();
-
-        sbTimer = rx.Observable.timer(delay, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
-            @Override
-            public void call(Long aLong) {
-
-                SerialPortCmd.bloodOX();
-            }
-        });*/
+        times = 0;
+        handler.sendEmptyMessageDelayed(0, 10000);
     }
 
     @Override
@@ -82,12 +99,9 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
 
         stopAll();
 
-        if (sbTimer != null)
-            sbTimer.unsubscribe();
     }
 
     private void stopAll() {
-
         stopErrorDelay();
         SerialPortCmd.stopBloodOX();
     }
@@ -123,19 +137,8 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
 
         if (msg.startsWith(SerialPortCmd.OK_BLOODOX)) {
             SerialPortCmd.parseBloodOX(msg, currBloodOxygenReport);
-            viewDelegate.showStep2(currBloodOxygenReport);
+            viewDelegate.showStepIng(currBloodOxygenReport);
         }
-    }
-
-    @OnClick(R.id.iv_next)
-    public void iv_nextClick() {
-        ((ExamineActivity) getActivity()).showNextExamine();
-    }
-
-    @OnClick(R.id.iv_reexamine)
-    public void iv_reexamineClick() {
-
-        reExamine();
     }
 
     @Override
@@ -152,5 +155,21 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
         ((ExamineActivity) getActivity()).notifyMenu();
 
         startExamine();
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.tv_reexamine:
+                reExamine();
+                break;
+            case R.id.tv_next:
+                ((ExamineActivity) getActivity()).showNextExamine();
+                break;
+            case R.id.tv_report:
+                startActivity(ReportActivity.class, true);
+                break;
+        }
     }
 }

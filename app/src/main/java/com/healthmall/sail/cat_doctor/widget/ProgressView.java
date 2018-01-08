@@ -12,6 +12,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.healthmall.sail.cat_doctor.R;
+import com.mai.xmai_fast_lib.utils.MLog;
+
+import java.util.logging.Handler;
 
 /**
  * Created by mai on 2017/12/25.
@@ -19,7 +22,16 @@ import com.healthmall.sail.cat_doctor.R;
 public class ProgressView extends View {
 
     Paint bgPaint, progressPaint, textPaint;
-    int progress = 50;
+    int progress = 0;
+
+    private int timeDelay;
+    private boolean isFinish;
+    private boolean isStop;
+    private OnFinishListener onFinishListener;
+
+    public void setOnFinishListener(OnFinishListener onFinishListener) {
+        this.onFinishListener = onFinishListener;
+    }
 
     public ProgressView(Context context) {
         super(context);
@@ -43,7 +55,6 @@ public class ProgressView extends View {
         bgPaint.setAntiAlias(true);
         bgPaint.setStyle(Paint.Style.FILL);
         bgPaint.setColor(ContextCompat.getColor(getContext(), R.color.white));
-        bgPaint.setStrokeCap(Paint.Cap.ROUND);
 
         progressPaint = new Paint();
         progressPaint.setStrokeWidth(19);
@@ -68,15 +79,56 @@ public class ProgressView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawLine(10, getHeight() / 2, getWidth() - 10, getHeight() / 2, bgPaint);
+        MLog.log("当前进度--->" + progress + "%");
+
+        canvas.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2, bgPaint);
 
         float progressX = getWidth() * progress / 100f;
         Shader shader = new LinearGradient(0, getHeight() / 2f, getWidth(), getHeight() / 2f, Color.parseColor("#0072FF"), Color.parseColor("#00C6FF"), Shader.TileMode.CLAMP);
         progressPaint.setShader(shader);
-        canvas.drawLine(10, getHeight() / 2, progressX - 10, getHeight() / 2, progressPaint);
+        canvas.drawLine(0, getHeight() / 2, progressX, getHeight() / 2, progressPaint);
 
         float textX = progressX - textPaint.measureText(progress + "%") - 5;
 
         canvas.drawText(progress + "%", textX, getHeight() - 5, textPaint);
+
+        if (!isStop) {
+            if (progress < 100) {
+                progress++;
+
+                if (isFinish) {
+                    timeDelay = 20;
+                } else {
+                    if (progress < 30) {
+                        timeDelay = 200;
+                    } else {
+                        timeDelay = 200 * (progress - 30);
+                    }
+                }
+                postInvalidateDelayed(timeDelay);
+            } else {
+                if (onFinishListener != null)
+                    onFinishListener.onFinish();
+            }
+        }
+    }
+
+    public void start() {
+        progress = 0;
+        isFinish = false;
+        isStop = false;
+        invalidate();
+    }
+
+    public void finish() {
+        isFinish = true;
+    }
+
+    public void stop() {
+        isStop = true;
+    }
+
+    public interface OnFinishListener {
+        void onFinish();
     }
 }

@@ -8,8 +8,11 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.Shader;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.healthmall.sail.cat_doctor.R;
 
 
 /**
@@ -17,11 +20,12 @@ import android.view.View;
  */
 public class WaterView extends View {
 
-    Paint lineaPaint, progressPaint, realProgressPaint;
+    Paint lineaPaint, progressPaint, realProgressPaint, greenPaint;
 
     PointF progressRectLeft, progressRectTop, progressRectRight;
 
     PointF rectLeft, rectTop, rectRight, rectBottom;
+    PointF rectGreenLeft, rectGreenTop;
 
     int progressLeft = 46, progressTop = 106, progressRight = 244, progressBottom = 304;
 
@@ -58,7 +62,7 @@ public class WaterView extends View {
         progressPaint.setAntiAlias(true);
         progressPaint.setStyle(Paint.Style.STROKE);
         progressPaint.setStrokeCap(Paint.Cap.ROUND);
-        progressPaint.setColor(Color.parseColor("#dddde0"));
+        progressPaint.setColor(Color.parseColor("#e8e8e8"));
 
 
         realProgressPaint = new Paint();
@@ -67,10 +71,19 @@ public class WaterView extends View {
         realProgressPaint.setStyle(Paint.Style.STROKE);
         realProgressPaint.setStrokeCap(Paint.Cap.ROUND);
 
+        greenPaint = new Paint();
+        greenPaint.setStrokeWidth(8);
+        greenPaint.setAntiAlias(true);
+        greenPaint.setStyle(Paint.Style.STROKE);
+        greenPaint.setColor(ContextCompat.getColor(getContext(), R.color.good_green_trans));
+
         rectLeft = new PointF(42.5f, 102.5f);
         rectTop = new PointF(145, 0);
         rectRight = new PointF(247.5f, 102.5f);
         rectBottom = new PointF(145f, 205f);
+
+        rectGreenLeft = new PointF(45.5f, 105.5f);
+        rectGreenTop = new PointF(148, 3);
 
         progressRectLeft = new PointF(75f, 135f);
         progressRectTop = new PointF(145f, 65f);
@@ -129,6 +142,10 @@ public class WaterView extends View {
 
         drawLine(canvas, progressRectLeft, progressRectTop, progressPaint);
         drawLine(canvas, progressRectTop, progressRectRight, progressPaint);
+
+        canvas.drawArc(4, 64, 286, 346, 155, 70, false, greenPaint);
+
+        drawLine(canvas, rectGreenLeft, rectGreenTop, greenPaint);
 
     }
 
