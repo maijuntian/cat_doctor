@@ -31,7 +31,8 @@ import rx.functions.Action1;
  */
 public class CatWebSocketClient extends WebSocketClient {
 
-    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
+    public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
+//    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
 
     static CatWebSocketClient instance;
 
