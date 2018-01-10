@@ -67,18 +67,24 @@ public class SerialPortEngine {
                             sbMsg.delete(0, sbMsg.length());
 
                             if (finalResult.startsWith(SerialPortCmd.OK_HEIGHT)) { //身高
-                                int realHeight = getRealHeight(SerialPortCmd.parseHeight2(finalResult));
+                                String height = SerialPortCmd.parseHeight2(finalResult);
+                                int realHeight = getRealHeight(height);
                                 if (realHeight != -1) {
                                     MyApplication.get().serialPortCallBack(SerialPortCmd.OK_HEIGHT + "=" + realHeight);
                                     heightTemps.clear();
                                     SerialPortCmd.stopHeight();
+                                } else if (Integer.parseInt(height) > 100) {
+                                    MyApplication.get().serialPortIng(finalResult);
                                 }
                             } else if (finalResult.startsWith(SerialPortCmd.OK_WEIGHT)) { //体重
-                                int realWeight = getRealWeight(SerialPortCmd.parseWeight2(finalResult));
+                                String weight = SerialPortCmd.parseHeight2(finalResult);
+                                int realWeight = getRealWeight(weight);
                                 if (realWeight != -1) {
                                     MyApplication.get().serialPortCallBack(SerialPortCmd.OK_WEIGHT + "=" + realWeight);
                                     weightTemps.clear();
                                     SerialPortCmd.stopWeight();
+                                } else if (Integer.parseInt(weight) > 100) {
+                                    MyApplication.get().serialPortIng(finalResult);
                                 }
                             } else if (finalResult.startsWith(SerialPortCmd.OK_BODYTEMP)) { //体温
                                 int realTemp = getRealTemp(SerialPortCmd.parseTemp2(finalResult));

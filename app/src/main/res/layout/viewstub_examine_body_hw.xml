@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_step_hw"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:layout_width="113px"
+        android:layout_height="1787px"
+        android:layout_marginLeft="603px"
+        android:layout_marginTop="-707px"
+        android:scaleType="matrix"
+        android:src="@mipmap/body_weight_ruler" />
+
+    <ImageView
+        android:layout_width="114px"
+        android:layout_height="1353px"
+        android:layout_marginLeft="868px"
+        android:layout_marginTop="-273px"
+        android:scaleType="matrix"
+        android:src="@mipmap/body_height_ruler" />
+
+
+    <ImageView
+        android:layout_width="104px"
+        android:layout_height="894px"
+        android:layout_marginLeft="1150px"
+        android:scaleType="matrix"
+        android:src="@mipmap/body_bim_ruler" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/body_hide_top" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/body_stand_top" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/body_hide_bottom" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/body_stand_bottom" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/body_man1" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/body_right_bg">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            style="@style/text_white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="110px"
+            android:text="60"
+            android:textSize="50px"
+            android:textStyle="bold" />
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            style="@style/text_white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="384px"
+            android:text="130"
+            android:textSize="50px"
+            android:textStyle="bold" />
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            style="@style/text_white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="650px"
+            android:text="35.5"
+            android:textSize="50px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_white"
+            android:layout_marginLeft="120px"
+            android:layout_marginTop="95px"
+            android:text="体重kg"
+            android:textSize="20px" />
+
+        <TextView
+            style="@style/text_white"
+            android:layout_marginLeft="400px"
+            android:layout_marginTop="95px"
+            android:text="身高cm"
+            android:textSize="20px" />
+
+        <TextView
+            style="@style/text_white"
+            android:layout_marginLeft="653px"
+            android:layout_marginTop="95px"
+            android:text="BMI Kg/m2"
+            android:textSize="20px" />
+    </RelativeLayout>
+
+</RelativeLayout>

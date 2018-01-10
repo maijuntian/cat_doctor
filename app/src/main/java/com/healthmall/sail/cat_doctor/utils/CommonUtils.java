@@ -1,6 +1,8 @@
 package com.healthmall.sail.cat_doctor.utils;
 
 import android.os.Environment;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.healthmall.sail.cat_doctor.Constant;
 import com.mai.xmai_fast_lib.utils.MLog;
@@ -15,6 +17,13 @@ import java.util.List;
  * Created by mai on 2017/12/11.
  */
 public class CommonUtils {
+
+    public void moveWeightRule(ImageView iv, float weight) { //相对60kg移动多少像素
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) iv.getLayoutParams();
+        MLog.log("marginTop--->" + params.topMargin);
+        params.topMargin += (weight - 60) * 8.7f;
+    }
+
 
     public static JSONArray toArray(String text) {
         JSONArray jsonArray = new JSONArray();
