@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="116px"
+        android:layout_marginTop="52px"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_black"
+            android:text="体成分"
+            android:textSize="36px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginTop="7px"
+            android:text="Height/Weight/Component"
+            android:textSize="18px" />
+
+        <LinearLayout
+            android:id="@+id/ll_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34px"
+            android:orientation="horizontal">
+
+            <com.healthmall.sail.cat_doctor.widget.ProgressBarVertical
+                android:id="@+id/pb_progress"
+                android:layout_width="8px"
+                android:layout_height="158px"
+                android:layout_marginLeft="8px"
+                android:progressDrawable="@drawable/question_progress"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_step1"
+                    style="@style/text_blue"
+                    android:text="1"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_step2"
+                    style="@style/text_mgray"
+                    android:layout_marginTop="109px"
+                    android:text="200"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="273px"
+        android:layout_marginTop="450px"
+        android:src="@mipmap/examine_index_left_n" />
+
+    <RelativeLayout
+        android:id="@+id/rl_question1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_progress_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="331px"
+            android:layout_marginTop="200px"
+            android:text="001"
+            android:textColor="@color/mmmgray"
+            android:textSize="500px" />
+
+        <ListView
+            android:id="@+id/lv_answers"
+            android:layout_width="346px"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="1200px"
+            android:divider="@color/trans"
+            android:dividerHeight="28px"
+            android:scrollbars="none" />
+
+        <TextView
+            android:id="@+id/tv_question_content"
+            style="@style/text_mblack"
+            android:layout_width="845px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="331px"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textSize="48px" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_question2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_question_content2"
+            style="@style/text_mblack"
+            android:layout_marginLeft="378px"
+            android:layout_marginTop="228px"
+            android:text="请描述下您最近在身体状况："
+            android:textSize="30px" />
+
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="1220px"
+            android:layout_height="333px"
+            android:layout_marginLeft="370px"
+            android:layout_marginTop="271px"
+            android:background="@drawable/input_bg"
+            android:padding="23px">
+
+            <LinearLayout
+                android:id="@+id/ll_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_index"
+                    style="@style/text_blue"
+                    android:text="00"
+                    android:textSize="18px" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="/200字以内"
+                    android:textSize="18px" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_answer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/ll_index"
+                android:background="@color/trans"
+                android:gravity="top"
+                android:maxLength="200"
+                android:textColor="@color/mmblack"
+                android:textSize="20px" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_commit"
+            style="@style/text_white"
+            android:layout_alignRight="@id/rl_content"
+            android:layout_below="@id/rl_content"
+            android:layout_marginTop="18px"
+            android:background="@mipmap/question_commit"
+            android:gravity="center_horizontal"
+            android:paddingTop="12px"
+            android:text="提交"
+            android:textSize="24px" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_result"
+        android:layout_width="607px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="646px"
+        android:layout_marginTop="187px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/question_icon" />
+
+        <TextView
+            android:id="@+id/tv_habits"
+            style="@style/text_blue"
+            android:text="阳虚质"
+            android:textSize="36px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginTop="19px"
+            android:text="您的体质为"
+            android:textSize="18px" />
+
+
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/text_mgray"
+            android:layout_marginTop="19px"
+            android:text="阳虚质：阳在中医里面主要是指人体温暧、体格、运动方面的功能。阳虚即人体脏腑功能活力不足，温煦功能减退，出现的恶寒喜暖证状。"
+            android:textSize="18px" />
+
+    </LinearLayout>
+
+</RelativeLayout>

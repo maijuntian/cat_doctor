@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_step_fat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200px"
+            android:src="@mipmap/body_fat_tip" />
+
+
+        <TextView
+            android:id="@+id/tv_start_fat"
+            style="@style/button_tip"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="150px"
+            android:text="开始测量" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="90px"
+            android:text="@string/examine_body_tip1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_examining"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70px"
+            android:src="@mipmap/fat_woment_examing" />
+
+        <com.healthmall.sail.cat_doctor.widget.ScaningImageView
+            android:id="@+id/iv_scaning"
+            android:layout_width="537px"
+            android:layout_height="2846px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-1300px"
+            android:scaleType="matrix"
+            android:src="@mipmap/fat_scaning" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-23px"
+            android:scaleType="matrix"
+            android:src="@mipmap/fat_paltform" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="273px"
+            android:src="@mipmap/examine_index_left_n" />
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="273px"
+            android:src="@mipmap/examine_index_right_s" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

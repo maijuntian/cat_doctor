@@ -23,6 +23,7 @@ public class QuestionReport {
 
     private String questionResultName;
     private List<ResultDTOs> resultDTOs;
+    private List<String> descriptionList;
 
     private int maxScore;
 
@@ -38,6 +39,10 @@ public class QuestionReport {
         return questionResultName;
     }
 
+    public String getQuestionResultNameReal() {
+        return questionResultName.split(",")[0];
+    }
+
     public void setQuestionResultName(String questionResultName) {
         this.questionResultName = questionResultName;
     }
@@ -50,6 +55,21 @@ public class QuestionReport {
         this.resultDTOs = resultDTOs;
     }
 
+    public List<String> getDescriptionList() {
+        return descriptionList;
+    }
+
+    public String getDescription() {
+        if (descriptionList != null && descriptionList.size() > 0) {
+            return "";
+        }
+        return descriptionList.get(0);
+    }
+
+    public void setDescriptionList(List<String> descriptionList) {
+        this.descriptionList = descriptionList;
+    }
+
     public static class ResultDTOs {
         /**
          * name : 体质A
@@ -58,6 +78,7 @@ public class QuestionReport {
 
         private String name;
         private int score;
+        private String description;
 
         public String getName() {
             return name;
@@ -74,16 +95,24 @@ public class QuestionReport {
         public void setScore(int score) {
             this.score = score;
         }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
     }
 
     public int[] getResultScore() {
 
         int[] score = new int[9];
 
-        if(resultDTOs == null)
+        if (resultDTOs == null)
             return score;
         for (ResultDTOs resultDTO : resultDTOs) {
-            switch (resultDTO.getName()){
+            switch (resultDTO.getName()) {
                 case "平和质":
                     score[0] = resultDTO.getScore();
                     break;

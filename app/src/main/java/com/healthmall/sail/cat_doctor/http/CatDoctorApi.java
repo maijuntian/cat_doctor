@@ -13,6 +13,8 @@ import com.healthmall.sail.cat_doctor.bean.BodyRespone;
 import com.healthmall.sail.cat_doctor.bean.CDRespone;
 import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
+import com.healthmall.sail.cat_doctor.bean.Symptom;
+import com.healthmall.sail.cat_doctor.bean.TemperatureReport;
 import com.healthmall.sail.cat_doctor.utils.BitmapUtils;
 import com.healthmall.sail.cat_doctor.utils.CommonUtils;
 import com.healthmall.sail.cat_doctor.utils.Keys;
@@ -27,6 +29,7 @@ import com.mai.xmai_fast_lib.utils.MLog;
 import com.mai.xmai_fast_lib.utils.SharedPreferencesHelper;
 
 import java.io.File;
+import java.util.List;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -58,7 +61,7 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
 
     @Override
     protected String getBaseUrl() {
-        return "http://dev-apisail.healthmall.cn/api/";
+        return "http://apisail.healthmall.cn/api/"/*"http://dev-apisail.healthmall.cn/api/"*/;
     }
 
 
@@ -153,6 +156,10 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
         return checkNoDialog(mService.bodyReport(new MParams().getJsonRequestBody(bodyReport)), ctx);
     }
 
+    public Observable<BodyRespone> temperatureReport(TemperatureReport temperatureReport, Context ctx) {
+        return checkNoDialog(mService.temperatureReport(new MParams().getJsonRequestBody(temperatureReport)), ctx);
+    }
+
     public Observable<Object> bloodOxygenReport(BloodOxygenReport bloodOxygenReport, Context ctx) {
         return checkNoDialog(mService.bloodOxygenReport(new MParams().getJsonRequestBody(bloodOxygenReport)), ctx);
     }
@@ -188,15 +195,15 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
     public Observable<Question> questionAnswer(MParams params, Context ctx) {
         String deviceId = SharedPreferencesHelper.getInstance(MyApplication.get().getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID);
         params.add("deviceId", deviceId);
-        return checkAll2(mService.questionAnswer(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
+        return checkNoDialog(mService.questionAnswer(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
     }
 
     public Observable<Question> preQuestion(MParams params, Context ctx) {
-        return checkAll2(mService.preQuestion(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
+        return checkNoDialog(mService.preQuestion(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
     }
 
     public Observable<QuestionReport> questionResult(MParams params, Context ctx) {
-        return checkAll2(mService.questionResult(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
+        return checkNoDialog(mService.questionResult(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
     }
 
     public Observable<QuestionReport> commitQuestion(MParams params, final Context ctx) {
@@ -224,5 +231,9 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
     public Observable<Object> quit(MParams params, Context ctx) {
         MLog.log("" + (MyApplication.get().getCurrUser() == null));
         return checkNoDialog(mService.quit(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
+    }
+
+    public Observable<List<Symptom>> getSymptom(Context ctx) {
+        return checkNoDialog(mService.getSymptom(MyApplication.get().getCurrUser().getAccessToken()), ctx);
     }
 }

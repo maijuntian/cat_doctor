@@ -8,11 +8,14 @@ import com.healthmall.sail.cat_doctor.bean.BodyRespone;
 import com.healthmall.sail.cat_doctor.bean.CDRespone;
 import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
+import com.healthmall.sail.cat_doctor.bean.Symptom;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
@@ -31,6 +34,8 @@ public interface CatDoctorService {
     @POST("doctorMall/report/body")
     Observable<CDRespone<BodyRespone>> bodyReport(@Body RequestBody json);
 
+    @POST("doctorMall/report/temperature")
+    Observable<CDRespone<BodyRespone>> temperatureReport(@Body RequestBody json);
 
     @POST("doctorMall/report/bloodOxygen")
     Observable<CDRespone<Object>> bloodOxygenReport(@Body RequestBody json);
@@ -61,6 +66,10 @@ public interface CatDoctorService {
 
     @POST("doctorMall/report/quit")
     Observable<CDRespone<Object>> quit(@Query("accessToken") String accessToken, @Body RequestBody json);
+
+    @POST("doctorMall/report/getSymptom")
+    @FormUrlEncoded
+    Observable<CDRespone<List<Symptom>>> getSymptom(@Field("accessToken") String accessToken);
 
 }
 

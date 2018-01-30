@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_xblack"
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="49px"
+        android:text="血压/心率"
+        android:textSize="60px"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="387px"
+            android:layout_marginTop="348px"
+            android:src="@mipmap/report_shousuoya_ruler" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="387px"
+            android:layout_marginTop="615px"
+            android:src="@mipmap/report_shuzhangya_ruler" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="982px"
+            android:layout_marginTop="615px"
+            android:src="@mipmap/report_heart_rate_ruler" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/report_bp_hr_bg">
+
+            <ImageView
+                android:id="@+id/iv_shuzhangya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="422px"
+                android:layout_marginTop="287px"
+                android:src="@mipmap/report_bp_hr_high" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_shuzhangya"
+                style="@style/text_white"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="1225px"
+                android:layout_marginTop="290px"
+                android:text="107"
+                android:textSize="50px" />
+
+
+            <ImageView
+                android:id="@+id/iv_shousuoya"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="422px"
+                android:layout_marginTop="554px"
+                android:src="@mipmap/report_bp_hr_high" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_shousuoya"
+                style="@style/text_white"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="1225px"
+                android:layout_marginTop="554px"
+                android:text="107"
+                android:textSize="50px" />
+
+            <ImageView
+                android:id="@+id/iv_hr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1021px"
+                android:layout_marginTop="554px"
+                android:src="@mipmap/report_bp_hr_high" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_hr"
+                style="@style/text_white"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="627px"
+                android:layout_marginTop="554px"
+                android:text="107"
+                android:textSize="50px" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_bp_tip"
+                style="@style/text_green"
+                android:layout_marginLeft="594px"
+                android:layout_marginTop="420px"
+                android:text="正常"
+                android:textSize="60px"
+                android:textStyle="bold" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_hr_tip"
+                style="@style/text_green"
+                android:layout_marginLeft="1208px"
+                android:layout_marginTop="420px"
+                android:text="正常"
+                android:textSize="60px"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_bp_alarm"
+            style="@style/text_mgray"
+            android:layout_width="700px"
+            android:layout_marginLeft="300px"
+            android:layout_marginTop="800px"
+            android:gravity="center_horizontal"
+            android:text="@string/bp_tip_nomal"
+            android:textSize="20px" />
+
+        <TextView
+            android:id="@+id/tv_hr_alarm"
+            style="@style/text_mgray"
+            android:layout_width="700px"
+            android:layout_marginLeft="1000px"
+            android:layout_marginTop="800px"
+            android:gravity="center_horizontal"
+            android:text="@string/hr_tip_high"
+            android:textSize="20px" />
+    </RelativeLayout>
+
+
+</LinearLayout>

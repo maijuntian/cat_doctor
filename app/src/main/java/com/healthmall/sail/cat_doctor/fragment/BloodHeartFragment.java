@@ -52,7 +52,7 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
 
         if (!hidden) {
             if(currBloodPressureReport.isFinish()){
-                viewDelegate.showStep3Real();
+                viewDelegate.showStep3Real(false);
             } else {
                 startExamine();
             }
@@ -96,6 +96,29 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
 
     @Override
     public void serialPortCallBack(String msg) {
+
+        switch (msg) { //语音
+            case "AT+ASRKSCL": //开始测量
+                if (viewDelegate.currStep == 1) {
+                    tv_startClick();
+                }
+                return;
+            case "AT+ASRCXCL": //重新测量
+                if (viewDelegate.currStep == 3) {
+                    reExamine();
+                }
+                return;
+            case "AT+ASRCLXYX": //测量下一项
+                if (viewDelegate.currStep == 3) {
+                    ((ExamineActivity) getActivity()).showNextExamine();
+                }
+                return;
+            case "AT+ASRSCBG": //生成报告
+                if (viewDelegate.currStep == 3) {
+                    ((ExamineActivity) getActivity()).showReport();
+                }
+                return;
+        }
 
         if (msg.startsWith(SerialPortCmd.OK_BLOODPRS)) {
 
@@ -154,7 +177,7 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
                 ((ExamineActivity) getActivity()).showNextExamine();
                 break;
             case R.id.tv_report:
-                startActivity(ReportActivity.class, true);
+                ((ExamineActivity)getActivity()).showReport();
                 break;
         }
     }

@@ -2,94 +2,153 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/text_sgray"
-        android:layout_marginTop="100px"
-        android:text="欢迎使用猫博士体测机，请完善您的信息，已确保体测的准确性~"
-        android:textSize="34px"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:background="@color/white">
 
-    <TextView
-        style="@style/text_mmblack"
-        android:layout_marginTop="80px"
-        android:text="性别"
-        android:textSize="48px"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/examine_logout_selector" />
 
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60px"
-        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/text_mgray"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30px"
+            android:text="2017年8月2日 周三 17:80"
+            android:textSize="16px" />
 
-        <RadioButton
-            android:id="@+id/rb_women"
-            style="@style/text_sgray"
-            android:button="@drawable/nav_trans"
-            android:drawablePadding="35px"
-            android:drawableTop="@drawable/info_women_selector"
-            android:text="Women 女"
-            android:textSize="34px"
-            android:textStyle="bold" />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/rb_man"
-            style="@style/text_sgray"
-            android:layout_marginLeft="300px"
-            android:button="@drawable/nav_trans"
-            android:checked="true"
-            android:drawablePadding="35px"
-            android:drawableTop="@drawable/info_men_selector"
-            android:text="Men 男"
-            android:textSize="34px"
-            android:textStyle="bold" />
-
-    </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rg_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="196px"
+            android:orientation="horizontal">
 
 
-    <TextView
-        style="@style/text_mmblack"
-        android:layout_marginTop="80px"
-        android:text="年龄"
-        android:textSize="48px"
-        android:textStyle="bold" />
+            <RadioButton
+                android:id="@+id/rb_man"
+                style="@style/text_sgray"
+                android:button="@drawable/nav_trans"
+                android:checked="true"
+                android:drawableTop="@drawable/info_men_selector"
+                android:textSize="34px"
+                android:textStyle="bold" />
 
-    <View
-        android:layout_width="700px"
-        android:layout_height="1px"
-        android:layout_marginTop="35px"
-        android:background="@color/gray" />
+            <RadioButton
+                android:id="@+id/rb_women"
+                style="@style/text_sgray"
+                android:layout_marginLeft="510px"
+                android:button="@drawable/nav_trans"
+                android:drawableTop="@drawable/info_women_selector"
+                android:textSize="34px"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv_age"
-        style="@style/text_sgray"
-        android:layout_width="700px"
-        android:button="@drawable/nav_trans"
-        android:gravity="center_horizontal"
-        android:paddingBottom="20px"
-        android:paddingTop="20px"
-        android:text="18"
-        android:textSize="34px" />
+        </RadioGroup>
 
-    <View
-        android:layout_width="700px"
-        android:layout_height="1px"
-        android:background="@color/gray" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_save"
-        style="@style/text_white"
-        android:layout_marginTop="35px"
-        android:background="@drawable/button_corner"
-        android:paddingBottom="16px"
-        android:paddingLeft="94px"
-        android:paddingRight="94px"
-        android:paddingTop="16px"
-        android:text="保存"
-        android:textSize="26px" />
+            <ImageView
+                android:layout_width="167px"
+                android:layout_height="167px"
+                android:layout_marginTop="50px"
+                android:background="@mipmap/info_head_bg"
+                android:padding="16px"
+                android:src="@mipmap/info_man" />
 
+            <TextView
+                style="@style/text_blue"
+                android:layout_marginTop="5px"
+                android:text="叨叨叨都"
+                android:textSize="24px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="10px"
+                android:text="@string/info_tip"
+                android:textSize="20px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginTop="75px"
+                android:text="选择您的性别" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11px"
+                android:background="@mipmap/info_sex"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_sex_man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/info_sex_man_sel" />
+
+                <ImageView
+                    android:id="@+id/iv_sex_women"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="174px"
+                    android:src="@mipmap/info_sex_women_n" />
+
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginTop="63px"
+                android:text="出生日期" />
+
+            <RelativeLayout
+                android:id="@+id/rl_birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11px"
+                android:background="@mipmap/info_info_bg"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_birthday"
+                    style="@style/text_white"
+                    android:layout_centerInParent="true"
+                    android:text="2000  |  06  |  15"
+                    android:textSize="39px" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="116px"
+                android:src="@mipmap/info_save" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 </LinearLayout>

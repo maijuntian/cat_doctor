@@ -3,6 +3,7 @@ package com.healthmall.sail.cat_doctor.serialport;
 import com.healthmall.sail.cat_doctor.Constant;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
+import com.healthmall.sail.cat_doctor.bean.BodyReport;
 import com.mai.xmai_fast_lib.utils.MLog;
 
 import java.io.File;
@@ -77,7 +78,7 @@ public class SerialPortEngine {
                                     MyApplication.get().serialPortIng(finalResult);
                                 }
                             } else if (finalResult.startsWith(SerialPortCmd.OK_WEIGHT)) { //体重
-                                String weight = SerialPortCmd.parseHeight2(finalResult);
+                                String weight = SerialPortCmd.parseWeight2(finalResult);
                                 int realWeight = getRealWeight(weight);
                                 if (realWeight != -1) {
                                     MyApplication.get().serialPortCallBack(SerialPortCmd.OK_WEIGHT + "=" + realWeight);
@@ -92,6 +93,14 @@ public class SerialPortEngine {
                                     MyApplication.get().serialPortCallBack(finalResult);
                                     SerialPortCmd.stopTemp();
                                 }
+                            } else if(finalResult.startsWith(SerialPortCmd.OK_BODYFAT)){ //人体成分
+
+                                BodyReport bodyReport = new BodyReport("", "");
+                                SerialPortCmd.parseBodyFat(finalResult, bodyReport);
+                                if(Float.parseFloat(bodyReport.getBm_bf_bf()) > 0f){
+                                    MyApplication.get().serialPortCallBack(finalResult);
+                                }
+
                             } else if (finalResult.startsWith(SerialPortCmd.OK_BLOODOX)) {//血氧
                                 String[] datas = SerialPortCmd.parseBloodOX2(finalResult);
                                 MLog.log("血氧值：" + datas.toString());
@@ -106,7 +115,7 @@ public class SerialPortEngine {
                                 } else if (Integer.parseInt(datas[0]) > 0) {
                                     MyApplication.get().serialPortIng(finalResult);
                                 }
-                            } else {
+                            }  else {
                                 MyApplication.get().serialPortCallBack(finalResult);
                             }
                         }

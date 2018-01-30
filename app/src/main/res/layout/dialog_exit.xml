@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="590px"
+    android:layout_height="390px"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+        style="@style/text_black"
+        android:layout_marginTop="103px"
+        android:text="结束本次体测？"
+        android:textSize="60px"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_marginTop="37px"
+        android:text="结束体测后，可在健康猫APP查看体测详情"
+        android:textSize="18px" />
+
+    <ImageView
+        android:id="@+id/iv_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16px"
+        android:src="@mipmap/report_exit2" />
+
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14px"
+        android:src="@mipmap/report_cancel" />
+
+</LinearLayout>

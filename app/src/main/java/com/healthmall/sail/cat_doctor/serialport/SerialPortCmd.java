@@ -3,6 +3,7 @@ package com.healthmall.sail.cat_doctor.serialport;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
 import com.healthmall.sail.cat_doctor.bean.BodyReport;
+import com.healthmall.sail.cat_doctor.bean.TemperatureReport;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,6 @@ import java.util.Map;
 public class SerialPortCmd {
 
     private static final String AT_PRE = "AT+";
-
 
     public static final String OK_SMONE = "OK+SMONE"; //有人
     public static final String OK_ONONE = "OK+ONONE"; //没人
@@ -126,6 +126,41 @@ public class SerialPortCmd {
         SerialPortEngine.getInstance().sendMsg(AT_PRE + "STPCALIBRATION");
     }
 
+    public static void asr() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "ASR");
+    }
+
+    public static void stopAsr() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "STPASR");
+    }
+
+    public static void face0() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FACE+0");
+    }
+
+    public static void face1() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FACE+1");
+    }
+
+    public static void face2() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FACE+2");
+    }
+
+    public static void face3() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FACE+3");
+    }
+
+    public static void face4() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FACE+4");
+    }
+
+    public static void fillin() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FILLIN");
+    }
+
+    public static void stpFillin() {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "STPFILLIN");
+    }
 
     public static void parseHeight(String msg, BodyReport bodyReport) {
         bodyReport.setBm_height(divideTenFloat(msg.replace(OK_HEIGHT + "=", "")));
@@ -135,8 +170,8 @@ public class SerialPortCmd {
         return msg.replace(OK_HEIGHT + "=", "");
     }
 
-    public static void parseTemp(String msg, BodyReport bodyReport) {
-        bodyReport.setBm_bdtemp(divideTenFloat(msg.replace(OK_BODYTEMP + "=", "")));
+    public static void parseTemp(String msg, TemperatureReport temperatureReport) {
+        temperatureReport.setBm_bdtemp(divideTenFloat(msg.replace(OK_BODYTEMP + "=", "")));
     }
 
     public static void parseWeight(String msg, BodyReport bodyReport) {
@@ -203,6 +238,10 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_lac(divideTenFloat(mapTemp.get("LAC")));
         bodyReport.setBm_bf_rtc(divideTenFloat(mapTemp.get("RTC")));
         bodyReport.setBm_bf_ltc(divideTenFloat(mapTemp.get("LTC")));
+
+        if (bodyReport.getBm_bf_nc().equals("0")) { //规避
+            bodyReport.setBm_bf_wwc(bodyReport.getBm_bf_hip());
+        }
 
         float wthr = Float.parseFloat(bodyReport.getBm_bf_wwc()) / Float.parseFloat(bodyReport.getBm_bf_hip());
         bodyReport.setBm_bf_wthr(((Math.round(wthr * 10)) / 10f) + "");

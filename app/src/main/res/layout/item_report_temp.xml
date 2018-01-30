@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_xblack"
+        android:layout_marginBottom="50px"
+        android:layout_marginTop="49px"
+        android:text="体温"
+        android:textSize="60px"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/report_temp_bg">
+
+        <TextView
+            android:id="@+id/tv_temp"
+            style="@style/text_white"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="1004px"
+            android:layout_marginTop="380px"
+            android:text="37°C"
+            android:textSize="60px"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>

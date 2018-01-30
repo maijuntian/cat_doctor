@@ -1,5 +1,10 @@
 package com.healthmall.sail.cat_doctor.bean;
 
+import com.healthmall.sail.cat_doctor.MyApplication;
+import com.healthmall.sail.cat_doctor.R;
+import com.healthmall.sail.cat_doctor.utils.FloatUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +50,7 @@ public class BodyRespone {
     private String lowerLimbBalance;
     private String upperLimbDeveloped;
     private String lowerLimbDeveloped;
+
     private List<Double> bodyFatRang;
     private List<Double> muscleWeightRang;
     private List<Double> totalMoistureRang;
@@ -53,6 +59,10 @@ public class BodyRespone {
     private List<Double> muscleRateRang;
     private List<Double> bodyMoistureRateRang;
     private List<Double> bmiRang;
+    private List<Range> allBmiRange;
+    private List<Range> allMoistureRateRange;
+    private List<Range> allFatRateRange;
+    private List<Range> allMuscleRateRange;
 
     public String getWaistToHipRatioResult() {
         return waistToHipRatioResult;
@@ -221,4 +231,148 @@ public class BodyRespone {
     public void setBmiRang(List<Double> bmiRang) {
         this.bmiRang = bmiRang;
     }
+
+
+    public int getBodyTypeImg() {
+        User user = MyApplication.get().getCurrUser();
+        switch (waistToHipRatioResult) {
+            case "苹果型":
+                if (user.getMemberSex() == 1)
+                    return R.mipmap.body_info5_apple_man;
+                return R.mipmap.body_info5_apple_woman;
+            case "梨型":
+                if (user.getMemberSex() == 1)
+                    return R.mipmap.body_info5_pear_man;
+                return R.mipmap.body_info5_pear_woman;
+            default:
+                if (user.getMemberSex() == 1)
+                    return R.mipmap.body_info5_nomal_man;
+                return R.mipmap.body_info5_noman_woman;
+        }
+    }
+
+    public int getReportTypeImg() {
+        User user = MyApplication.get().getCurrUser();
+        switch (waistToHipRatioResult) {
+            case "苹果型":
+                if (user.getMemberSex() == 1)
+                    return R.mipmap.report_body_5_apple;
+                return R.mipmap.report_body_5_apple;
+            case "梨型":
+                if (user.getMemberSex() == 1)
+                    return R.mipmap.report_body_5_bear;
+                return R.mipmap.report_body_5_bear;
+            default:
+                if (user.getMemberSex() == 1)
+                    return R.mipmap.report_body_5;
+                return R.mipmap.report_body_5;
+        }
+    }
+
+    public List<Range> getAllBmiRange() {
+        return allBmiRange;
+    }
+
+    public void setAllBmiRange(List<Range> allBmiRange) {
+        this.allBmiRange = allBmiRange;
+    }
+
+    public List<Range> getAllMoistureRateRange() {
+        return allMoistureRateRange;
+    }
+
+    public void setAllMoistureRateRange(List<Range> allMoistureRateRange) {
+        this.allMoistureRateRange = allMoistureRateRange;
+    }
+
+    public List<Range> getAllFatRateRange() {
+        return allFatRateRange;
+    }
+
+    public void setAllFatRateRange(List<Range> allFatRateRange) {
+        this.allFatRateRange = allFatRateRange;
+    }
+
+    public List<Range> getAllMuscleRateRange() {
+        return allMuscleRateRange;
+    }
+
+    public void setAllMuscleRateRange(List<Range> allMuscleRateRange) {
+        this.allMuscleRateRange = allMuscleRateRange;
+    }
+
+    public List<Float> getFatRate() {
+        List<Float> rates = new ArrayList<>();
+        Float rate1 = allFatRateRange.get(1).getRange().get(0) * 100;
+        Float rate2 = allFatRateRange.get(2).getRange().get(0) * 100;
+        rates.add(rate1);
+        rates.add(rate2);
+        return rates;
+    }
+
+    public List<Float> getMuscleRate() {
+        List<Float> rates = new ArrayList<>();
+        Float rate1 = allMuscleRateRange.get(1).getRange().get(0) * 100;
+        Float rate2 = allMuscleRateRange.get(2).getRange().get(0) * 100;
+        rates.add(rate1);
+        rates.add(rate2);
+        return rates;
+    }
+
+    public List<Float> getBmiRate() {
+        List<Float> rates = new ArrayList<>();
+        Float rate1 = allBmiRange.get(1).getRange().get(0);
+        Float rate2 = allBmiRange.get(2).getRange().get(0);
+        Float rate3 = allBmiRange.get(3).getRange().get(0);
+        Float rate4 = allBmiRange.get(4).getRange().get(0);
+        rates.add(rate1);
+        rates.add(rate2);
+        rates.add(rate3);
+        rates.add(rate4);
+        return rates;
+    }
+
+    public List<Float> getWaterRate() {
+        List<Float> rates = new ArrayList<>();
+        Float rate1 = allMoistureRateRange.get(4).getRange().get(0) * 100;
+        Float rate2 = allMoistureRateRange.get(3).getRange().get(0) * 100;
+        Float rate3 = allMoistureRateRange.get(2).getRange().get(0) * 100;
+        Float rate4 = allMoistureRateRange.get(1).getRange().get(0) * 100;
+        rates.add(rate1);
+        rates.add(rate2);
+        rates.add(rate3);
+        rates.add(rate4);
+        return rates;
+    }
+
+    public static class Range {
+        /**
+         * diagnosisName : 偏瘦
+         * rangeGroup : [[0,18.4]]
+         */
+
+        private String diagnosisName;
+        private List<List<Float>> rangeGroup;
+
+        public String getDiagnosisName() {
+            return diagnosisName;
+        }
+
+        public void setDiagnosisName(String diagnosisName) {
+            this.diagnosisName = diagnosisName;
+        }
+
+        public List<List<Float>> getRangeGroup() {
+            return rangeGroup;
+        }
+
+        public void setRangeGroup(List<List<Float>> rangeGroup) {
+            this.rangeGroup = rangeGroup;
+        }
+
+        public List<Float> getRange() {
+            return rangeGroup.get(0);
+        }
+    }
+
 }

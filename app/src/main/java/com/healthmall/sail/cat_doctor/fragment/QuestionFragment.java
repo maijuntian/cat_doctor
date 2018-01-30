@@ -1,13 +1,13 @@
 package com.healthmall.sail.cat_doctor.fragment;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.activity.ExamineActivity;
+import com.healthmall.sail.cat_doctor.activity.ReportActivity;
 import com.healthmall.sail.cat_doctor.base.BaseFragment;
 import com.healthmall.sail.cat_doctor.base.MyThrowable;
 import com.healthmall.sail.cat_doctor.bean.Question;
@@ -17,16 +17,9 @@ import com.healthmall.sail.cat_doctor.http.CatDoctorApi;
 import com.healthmall.sail.cat_doctor.utils.CommonUtils;
 import com.mai.xmai_fast_lib.basehttp.MParams;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import butterknife.OnClick;
 import butterknife.OnItemClick;
-import rx.Observable;
 import rx.functions.Action1;
-import rx.functions.Func1;
 
 /**
  * Created by mai on 2017/11/15.
@@ -48,6 +41,10 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
+
+        if (hidden) {
+            viewDelegate.hidePopWin();
+        }
     }
 
     private void start() {
@@ -56,7 +53,7 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
             if (currQuestionReport.getResultDTOs() == null || currQuestionReport.getResultDTOs().isEmpty()) {
                 getResult(currQuestionReport.getQuestionAnswerId());
             } else {
-                viewDelegate.showReuslt(currQuestionReport);
+                viewDelegate.showReuslt(currQuestionReport, true);
             }
         } else {
             getQuestion();
@@ -73,25 +70,9 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
             @Override
             public void call(Question question) {
                 currQuestionReport.setQuestionAnswerId(questionAnswerId);
-                viewDelegate.showCommit();
+                getResult(questionAnswerId);
             }
         }, new MyThrowable());
-
-       /* CatDoctorApi.getInstance().commitQuestion(new MParams()
-                .add("bottomButtonType", "3")
-                .add("subjectId", subjectId)
-                .add("questionAnswerId", questionAnswerId)
-                .add("answerContent", CommonUtils.toArray(answerContent)), getActivity())
-                .subscribe(new Action1<QuestionReport>() {
-                    @Override
-                    public void call(QuestionReport questionReport) {
-
-                        MyApplication.get().getCurrUserReport().setQuestionReport(questionReport);
-                        currQuestionReport = MyApplication.get().getCurrUserReport().getQuestionReport();
-                        viewDelegate.showReuslt(currQuestionReport);
-
-                    }
-                }, new MyThrowable());*/
     }
 
     private void getPreQuestion(String questionAnswerId, String subjectId) {
@@ -121,11 +102,11 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
     }
 
     private void getQuestion() {
+        viewDelegate.showQuestion();
         CatDoctorApi.getInstance().questionAnswer(new MParams()
-                .add("bottomButtonType", "1"), getActivity()).subscribe(new Action1<Question>() {
+                .add("bottomButtonType", "0"), getActivity()).subscribe(new Action1<Question>() {
             @Override
             public void call(Question question) {
-                viewDelegate.showQuestion();
                 viewDelegate.initQuestion(question);
             }
         }, new MyThrowable());
@@ -141,8 +122,8 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
                 MyApplication.get().getCurrUserReport().setQuestionReport(questionReport);
                 currQuestionReport = MyApplication.get().getCurrUserReport().getQuestionReport();
 
-                ((ExamineActivity)getActivity()).notifyMenu();
-                viewDelegate.showReuslt(currQuestionReport);
+                ((ExamineActivity) getActivity()).notifyMenu();
+                viewDelegate.showReuslt(currQuestionReport, false);
             }
         }, new Action1<Throwable>() {
             @Override
@@ -152,7 +133,7 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
         });
     }
 
-    @OnItemClick(R.id.gv_answers)
+    @OnItemClick(R.id.lv_answers)
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         viewDelegate.setCheckQuestion(position);
@@ -168,23 +149,72 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
     }
 
-    @OnClick(R.id.iv_pre_question)
-    public void iv_pre_questionClick() {
+    @OnClick(R.id.iv_left)
+    public void tvLeftClick() {
         getPreQuestion(viewDelegate.currQuestion.getQuestionAnswerId(), viewDelegate.currQuestion.getSubjectDTO().getSubjectId());
     }
 
-    @OnClick(R.id.tv_reexamine)
-    public void tv_reexamineClick() {
+    public void reExamine() {
 
         currQuestionReport.setQuestionAnswerId("");
         currQuestionReport.setQuestionResultName("");
-        ((ExamineActivity)getActivity()).notifyMenu();
+        ((ExamineActivity) getActivity()).notifyMenu();
         start();
     }
 
-    @OnClick(R.id.iv_commit)
-    public void iv_commitClick() {
+    @OnClick(R.id.tv_commit)
+    public void tv_commitClick() {
 
-        getResult(currQuestionReport.getQuestionAnswerId());
+        if (viewDelegate.etAnswer.length() == 0) {
+            showToast("提交内容不能为空！");
+            return;
+        }
+
+        if (viewDelegate.currQuestion.getSubjectDTO().getTotalSubjectNum() == viewDelegate.currQuestion.getSubjectDTO().getSubjectIndex()) {
+            //最后一题
+            commitQuestion(viewDelegate.currQuestion.getSubjectDTO().getSubjectId(), viewDelegate.currQuestion.getQuestionAnswerId(), viewDelegate.etAnswer.getText().toString());
+        } else {
+            nextQuestion(viewDelegate.currQuestion.getSubjectDTO().getSubjectId(), viewDelegate.currQuestion.getQuestionAnswerId(), viewDelegate.etAnswer.getText().toString());
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+
+        switch (v.getId()) {
+            case R.id.tv_reexamine:
+                reExamine();
+                break;
+            case R.id.tv_next:
+                ((ExamineActivity) getActivity()).showNextExamine();
+                break;
+            case R.id.tv_report:
+                ((ExamineActivity) getActivity()).showReport();
+                break;
+        }
+    }
+
+    @Override
+    public void serialPortCallBack(String msg) {
+        super.serialPortCallBack(msg);
+
+        switch (msg) { //语音
+            case "AT+ASRCXBS": //重新辨识
+                if (viewDelegate.currStep == 2 ) {
+                    reExamine();
+                }
+                return;
+            case "AT+ASRCLXYX": //测量下一项
+                if (viewDelegate.currStep == 2) {
+                    ((ExamineActivity) getActivity()).showNextExamine();
+                }
+                return;
+            case "AT+ASRSCBG": //生成报告
+                if (viewDelegate.currStep == 2) {
+                    ((ExamineActivity) getActivity()).showReport();
+                }
+                return;
+        }
     }
 }

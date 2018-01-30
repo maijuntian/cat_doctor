@@ -15,19 +15,48 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="430px"
-            android:src="@mipmap/body_bim_tip" />
+            android:layout_marginLeft="351px"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35px"
+                android:src="@mipmap/bmi_tip" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24px"
+                android:layout_marginTop="22px"
+                android:text="平均水平"
+                android:textSize="18px" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_examine_fat"
+            style="@style/text_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="45px"
+            android:background="@drawable/blue_button_bg"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="测量体脂"
+            android:textSize="24px" />
 
         <TextView
             android:id="@+id/tv_reexamine"
             style="@style/text_blue"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="45px"
+            android:layout_toLeftOf="@id/tv_examine_fat"
             android:background="@drawable/button_blue_trans_corner"
             android:paddingBottom="12px"
             android:paddingLeft="38px"
@@ -36,20 +65,6 @@
             android:text="重新测量"
             android:textSize="24px" />
 
-
-        <TextView
-            android:id="@+id/tv_next"
-            style="@style/text_white"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="45px"
-            android:layout_toLeftOf="@id/tv_reexamine"
-            android:background="@drawable/blue_button_bg"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="开始测量下一项"
-            android:textSize="24px" />
 
 
     </RelativeLayout>

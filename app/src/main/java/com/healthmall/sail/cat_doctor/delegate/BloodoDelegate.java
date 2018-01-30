@@ -1,5 +1,6 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -11,12 +12,16 @@ import android.widget.TextView;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
+import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.healthmall.sail.cat_doctor.widget.NoPaddingTextView;
 import com.healthmall.sail.cat_doctor.widget.ProgressView;
 import com.healthmall.sail.cat_doctor.widget.PulseRateView;
 import com.healthmall.sail.cat_doctor.widget.TipPopWin;
 import com.healthmall.sail.cat_doctor.widget.WaterView;
 import com.mai.xmai_fast_lib.mvvm.view.AppDelegate;
+
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -40,7 +45,7 @@ public class BloodoDelegate extends AppDelegate {
     @Bind(R.id.divider)
     View divider;
     @Bind(R.id.prv_pluse_rate)
-    PulseRateView prvPluseRate;
+    public PulseRateView prvPluseRate;
     @Bind(R.id.rl_pluse_rate)
     RelativeLayout rlPluseRate;
     @Bind(R.id.tv_result_tip1)
@@ -68,6 +73,7 @@ public class BloodoDelegate extends AppDelegate {
     RelativeLayout rlResult1;
     @Bind(R.id.rl_result2)
     RelativeLayout rlResult2;
+    public int currStep = -1;
 
     @Override
     public int getRootLayoutId() {
@@ -84,7 +90,7 @@ public class BloodoDelegate extends AppDelegate {
 
 
     public void showStep1() {
-
+        currStep = 1;
         rlStep1.setVisibility(View.VISIBLE);
         rlStep23.setVisibility(View.GONE);
         ivStep.setImageResource(R.mipmap.progress_1);
@@ -98,6 +104,7 @@ public class BloodoDelegate extends AppDelegate {
 
     public void showStep2() {
 
+        currStep = 2;
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_2);
@@ -120,12 +127,13 @@ public class BloodoDelegate extends AppDelegate {
             pvProgress.setOnFinishListener(new ProgressView.OnFinishListener() {
                 @Override
                 public void onFinish() { //完成了
-                    showStep3Real();
+                    showStep3Real(false);
                 }
             });
         }
         step2PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
 
+        VoiceMamanger.speak("您正在测量血氧，请保持手指不要抖动");
         pvProgress.start();
 
     }
@@ -142,12 +150,15 @@ public class BloodoDelegate extends AppDelegate {
 
     public void showStep3Init(BloodOxygenReport bloodOxygenReport) {
 
+        prvPluseRate.setmData(bloodOxygenReport.getLastPluseDatas());
+
         initBloodo(bloodOxygenReport);
 
-        showStep3Real();
+        showStep3Real(true);
     }
 
-    public void showStep3Real() {
+    public void showStep3Real(boolean isDelayShow) {
+        currStep = 3;
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_3);
@@ -166,14 +177,31 @@ public class BloodoDelegate extends AppDelegate {
             step3PopWin.getContentView().findViewById(R.id.tv_next).setOnClickListener(mOnClickListener);
             step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
             step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
+            ((TextView) step3PopWin.getContentView().findViewById(R.id.tv_content)).setText(R.string.bloodo_tip);
         }
-        step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+
+        if (isDelayShow) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+                }
+            }, 1000);
+        } else {
+            step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
 
         if (MyApplication.get().getCurrUserReport().isFinish()) { //已全部完成
             step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.INVISIBLE);
         } else {
             step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.VISIBLE);
         }
+
+        SerialPortCmd.face4();
+    }
+
+    public void setLastPluseDatas(List<Integer> mDatas) {
+        prvPluseRate.setmData(mDatas);
     }
 
     public void initBloodoIng(BloodOxygenReport bloodOxygenReport) {

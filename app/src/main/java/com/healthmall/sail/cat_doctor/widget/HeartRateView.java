@@ -74,17 +74,18 @@ public class HeartRateView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
 
         Shader shader = new LinearGradient(getWidth() / 2f, 0, getWidth() / 2f, getHeight(), Color.parseColor("#f83900"), Color.parseColor("#fec600"), Shader.TileMode.CLAMP);
         progressPaint.setShader(shader);
 
         Shader bgShader = new LinearGradient(getWidth() / 2f, 0, getWidth() / 2f, getHeight(), Color.parseColor("#ffffff"), Color.parseColor("#e9e8e8"), Shader.TileMode.CLAMP);
         bgOutPaint.setShader(bgShader);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
 
         canvas.drawArc(0, 0, getWidth(), getHeight(), -90, 360, true, bgOutPaint);
 

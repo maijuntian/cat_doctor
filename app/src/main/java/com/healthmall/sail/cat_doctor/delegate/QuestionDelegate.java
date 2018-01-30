@@ -1,9 +1,12 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
+import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.GridView;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -11,7 +14,10 @@ import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
-import com.healthmall.sail.cat_doctor.widget.QuestionResultView;
+import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.widget.NoPaddingTextView;
+import com.healthmall.sail.cat_doctor.widget.ProgressBarVertical;
+import com.healthmall.sail.cat_doctor.widget.TipPopWin;
 import com.mai.xmai_fast_lib.baseadapter.BaseListViewAdapter;
 import com.mai.xmai_fast_lib.baseadapter.BaseViewHolder;
 import com.mai.xmai_fast_lib.mvvm.view.AppDelegate;
@@ -26,62 +32,70 @@ import butterknife.Bind;
  * Created by mai on 2017/11/15.
  */
 public class QuestionDelegate extends AppDelegate {
-    @Bind(R.id.tv_question_progress)
-    TextView tvQuestionProgress;
-    @Bind(R.id.pb_progress)
-    ProgressBar pbProgress;
-    @Bind(R.id.tv_progress)
-    TextView tvProgress;
-    @Bind(R.id.iv_reexamine)
-    ImageView ivReexamine;
-    @Bind(R.id.tv_content)
-    TextView tvContent;
-    @Bind(R.id.iv_pre_question)
-    ImageView ivPreQuestion;
-    @Bind(R.id.iv_commit)
-    ImageView ivCommit;
-    @Bind(R.id.gv_answers)
-    GridView gvAnswers;
-    @Bind(R.id.rl_question)
-    RelativeLayout rlQuestion;
-    @Bind(R.id.tv_habits)
-    TextView tvHabits;
-    @Bind(R.id.tv_reexamine)
-    TextView tvReexamine;
-    @Bind(R.id.rl_result)
-    RelativeLayout rlResult;
-    @Bind(R.id.rl_root)
-    RelativeLayout rlRoot;
-    @Bind(R.id.iv_next)
-    ImageView ivNext;
     BaseListViewAdapter adapter;
 
     public List<Question.SubjectDTO.OptionList> options = new ArrayList<>();
     public Question currQuestion;
+    @Bind(R.id.pb_progress)
+    ProgressBarVertical pbProgress;
+    @Bind(R.id.tv_step1)
+    TextView tvStep1;
+    @Bind(R.id.tv_step2)
+    TextView tvStep2;
+    @Bind(R.id.ll_progress)
+    LinearLayout llProgress;
+    @Bind(R.id.iv_left)
+    ImageView ivLeft;
+    @Bind(R.id.lv_answers)
+    ListView lvAnswers;
+    @Bind(R.id.rl_question1)
+    RelativeLayout rlQuestion1;
+    @Bind(R.id.tv_index)
+    TextView tvIndex;
+    @Bind(R.id.ll_index)
+    LinearLayout llIndex;
+    @Bind(R.id.et_answer)
+    public EditText etAnswer;
+    @Bind(R.id.rl_content)
+    RelativeLayout rlContent;
+    @Bind(R.id.tv_commit)
+    TextView tvCommit;
+    @Bind(R.id.rl_question2)
+    RelativeLayout rlQuestion2;
+    @Bind(R.id.ll_result)
+    LinearLayout llResult;
+    @Bind(R.id.tv_question_content)
+    TextView tvQuestionContent;
+    @Bind(R.id.tv_question_content2)
+    TextView tvQuestionContent2;
+    @Bind(R.id.tv_habits)
+    TextView tvHabits;
 
-    @Bind(R.id.qrv_result)
-    QuestionResultView qrvResult;
-    @Bind(R.id.tv_question_result_tip)
-    TextView tvQuestionResultTip;
+    TipPopWin step3PopWin;
+    @Bind(R.id.tv_progress_index)
+    NoPaddingTextView tvProgressIndex;
+    @Bind(R.id.tv_description)
+    TextView tvDescription;
+
+    public int currStep = -1;
 
     @Override
     public int getRootLayoutId() {
-        return R.layout.fragment_examine_question;
+        return R.layout.fragment_examine_question1;
+    }
+
+    public void hidePopWin() {
+
+        if (step3PopWin != null)
+            step3PopWin.dismiss();
     }
 
 
     public void showQuestion() {
-        rlRoot.setBackgroundResource(R.mipmap.examine_main_menu5_bg);
-        rlQuestion.setVisibility(View.VISIBLE);
-        rlResult.setVisibility(View.GONE);
-
-        tvQuestionResultTip.setVisibility(View.GONE);
-        tvQuestionProgress.setVisibility(View.VISIBLE);
-        pbProgress.setVisibility(View.VISIBLE);
-        tvProgress.setVisibility(View.VISIBLE);
-        tvProgress.setText("");
-
-        ivNext.setVisibility(View.INVISIBLE);
+        llResult.setVisibility(View.GONE);
+        ivLeft.setVisibility(View.GONE);
+        if (step3PopWin != null)
+            step3PopWin.dismiss();
     }
 
     public void setCheckQuestion(int index) {
@@ -95,69 +109,99 @@ public class QuestionDelegate extends AppDelegate {
     }
 
     public void initQuestion(Question question) {
+
+        currStep = 1;
+
         currQuestion = question;
 
+        llIndex.setVisibility(View.VISIBLE);
         pbProgress.setMax(question.getSubjectDTO().getTotalSubjectNum());
-        pbProgress.setProgress(question.getSubjectDTO().getSubjectIndex());
-        tvProgress.setText(question.getSubjectDTO().getSubjectIndex() + "/" + question.getSubjectDTO().getTotalSubjectNum());
+        pbProgress.setIndex(question.getSubjectDTO().getSubjectIndex());
+        tvProgressIndex.setText(question.getSubjectDTO().getSubjectIndex() + "");
+        tvStep2.setText(question.getSubjectDTO().getTotalSubjectNum() + "");
 
-        tvContent.setText(question.getSubjectDTO().getContent());
-        options.clear();
-        options.addAll(question.getSubjectDTO().getOptionList());
-        if (adapter == null) {
-            adapter = new BaseListViewAdapter<Question.SubjectDTO.OptionList>(options) {
-                @Override
-                protected int bindLayoutId(int position) {
-                    return R.layout.item_answer;
-                }
+        if (question.getSubjectDTO().getType() == 2) { //描述题
+            rlQuestion1.setVisibility(View.GONE);
+            rlQuestion2.setVisibility(View.VISIBLE);
+            tvQuestionContent2.setText(question.getSubjectDTO().getContent());
 
-                @Override
-                protected void initView(Question.SubjectDTO.OptionList data, BaseViewHolder viewHolder) {
-                    MLog.log("data:" + data.getOption() + "  " + data.isSelected());
-                    viewHolder.setText(R.id.rb_answer, data.getContent())
-                            .setChecked(R.id.rb_answer, data.isSelected());
-                }
-            };
-            gvAnswers.setAdapter(adapter);
-        } else {
-            adapter.notifyDataSetChanged();
+        } else { //选择题
+            rlQuestion1.setVisibility(View.VISIBLE);
+            rlQuestion2.setVisibility(View.GONE);
+            tvQuestionContent.setText(question.getSubjectDTO().getContent());
+            options.clear();
+            options.addAll(question.getSubjectDTO().getOptionList());
+            if (adapter == null) {
+                adapter = new BaseListViewAdapter<Question.SubjectDTO.OptionList>(options) {
+                    @Override
+                    protected int bindLayoutId(int position) {
+                        return R.layout.item_answer;
+                    }
+
+                    @Override
+                    protected void initView(Question.SubjectDTO.OptionList data, BaseViewHolder viewHolder) {
+                        MLog.log("data:" + data.getOption() + "  " + data.isSelected());
+                        viewHolder.setText(R.id.rb_answer, data.getContent())
+                                .setChecked(R.id.rb_answer, data.isSelected());
+                    }
+                };
+                lvAnswers.setAdapter(adapter);
+            } else {
+                adapter.notifyDataSetChanged();
+            }
         }
 
+        ivLeft.setVisibility(View.VISIBLE);
         if (question.getSubjectDTO().getSubjectIndex() == 1) { //没有上一题
-            ivPreQuestion.setVisibility(View.INVISIBLE);
+            ivLeft.setImageResource(R.mipmap.examine_index_left_n);
+            ivLeft.setEnabled(false);
         } else {
-            ivPreQuestion.setVisibility(View.VISIBLE);
+            ivLeft.setImageResource(R.mipmap.examine_index_left_s);
+            ivLeft.setEnabled(true);
         }
 
-        if (question.getSubjectDTO().getSubjectIndex() == question.getSubjectDTO().getTotalSubjectNum()) { //显示提交
-//            ivCommit.setVisibility(View.VISIBLE);
-        } else {
-            ivCommit.setVisibility(View.INVISIBLE);
-        }
     }
 
-    public void showCommit(){
-        ivCommit.setVisibility(View.VISIBLE);
-    }
+    public void showReuslt(QuestionReport currQuestionReport, boolean isDelayShow) {
 
-    public void showReuslt(QuestionReport currQuestionReport) {
-        rlRoot.setBackgroundResource(R.mipmap.examine_main_menu55_bg);
-        rlResult.setVisibility(View.VISIBLE);
-        rlQuestion.setVisibility(View.GONE);
+        currStep = 2;
+        rlQuestion1.setVisibility(View.GONE);
+        rlQuestion2.setVisibility(View.GONE);
+        llResult.setVisibility(View.VISIBLE);
+        ivLeft.setVisibility(View.GONE);
 
-        tvQuestionProgress.setVisibility(View.GONE);
-        pbProgress.setVisibility(View.GONE);
-        tvProgress.setVisibility(View.GONE);
-        tvQuestionResultTip.setVisibility(View.VISIBLE);
+        llIndex.setVisibility(View.GONE);
 
-        if (!MyApplication.get().getCurrUserReport().isFinish()) {
-            ivNext.setVisibility(View.VISIBLE);
-        } else {
-            ivNext.setVisibility(View.INVISIBLE);
+        if (step3PopWin == null) {
+            step3PopWin = new TipPopWin(mContext, R.layout.dialog_tip_result);
+            step3PopWin.getContentView().findViewById(R.id.tv_next).setOnClickListener(mOnClickListener);
+            step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
+            step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
+
+            ((TextView)step3PopWin.getContentView().findViewById(R.id.tv_reexamine)).setText("重新辨识");
         }
-        qrvResult.setMaxScoure(currQuestionReport.getMaxScore());
-        qrvResult.setDatas(currQuestionReport.getResultScore());
-        tvHabits.setText("您的体制为" + currQuestionReport.getQuestionResultName());
+
+        if(isDelayShow){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+                }
+            }, 1000);
+        } else {
+            step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
+
+        if (MyApplication.get().getCurrUserReport().isFinish()) { //已全部完成
+            step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.INVISIBLE);
+        } else {
+            step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.VISIBLE);
+        }
+
+        tvHabits.setText(currQuestionReport.getQuestionResultNameReal());
+        tvDescription.setText(currQuestionReport.getDescription());
+
+        SerialPortCmd.face4();
     }
 
 }

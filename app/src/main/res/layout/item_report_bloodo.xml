@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/report_bloodo_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_xblack"
+        android:layout_marginBottom="50px"
+        android:layout_marginTop="49px"
+        android:text="血氧"
+        android:textSize="60px"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="457px"
+            android:layout_marginTop="115px"
+            android:src="@mipmap/report_bloodo_tip_bloodo"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="781px"
+            android:layout_marginTop="160px"
+            android:src="@mipmap/report_bloodo_tip_n" />
+
+        <TextView
+            android:id="@+id/tv_bo"
+            style="@style/text_green"
+            android:layout_marginLeft="902px"
+            android:layout_marginTop="150px"
+            android:text="正常"
+            android:textSize="60px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="1089px"
+            android:layout_marginTop="155px"
+            android:text="结果解读"
+            android:textSize="20px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="1089px"
+            android:layout_marginTop="190px"
+            android:text="根据检测结果分析您的血氧饱和度非常正常，请继续保持~"
+            android:textSize="20px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="330px"
+            android:layout_marginTop="465px"
+            android:src="@mipmap/report_bloodo_pluse_tip"
+            android:visibility="gone" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="759px"
+            android:layout_marginTop="508px"
+            android:src="@mipmap/report_bloodo_tip_n" />
+
+        <TextView
+            android:id="@+id/tv_pluse"
+            style="@style/text_green"
+            android:layout_marginLeft="902px"
+            android:layout_marginTop="500px"
+            android:text="正常"
+            android:textSize="60px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="1089px"
+            android:layout_marginTop="505px"
+            android:text="结果解读"
+            android:textSize="20px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginLeft="1089px"
+            android:layout_marginTop="540px"
+            android:text="根据检测结果分析您的血氧饱和度非常正常，请继续保持~"
+            android:textSize="20px" />
+
+        <com.healthmall.sail.cat_doctor.widget.BloodoHorizontalProgressView
+            android:id="@+id/hp_bo"
+            android:layout_width="1103px"
+            android:layout_height="80px"
+            android:layout_marginLeft="481px"
+            android:layout_marginTop="240px" />
+
+
+        <com.healthmall.sail.cat_doctor.widget.BloodoHorizontalProgressView
+            android:id="@+id/hp_pluse"
+            android:layout_width="1103px"
+            android:layout_height="80px"
+            android:layout_marginLeft="481px"
+            android:layout_marginTop="590px" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

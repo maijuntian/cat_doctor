@@ -1,6 +1,7 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
+import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.healthmall.sail.cat_doctor.utils.WaveHelper;
 import com.healthmall.sail.cat_doctor.widget.HeartRateView;
 import com.healthmall.sail.cat_doctor.widget.NoPaddingTextView;
@@ -83,6 +86,7 @@ public class BloodHeartDelegate extends AppDelegate {
     public WaveHelper waveHelper1, waveHelper2;
     @Bind(R.id.hrv_hr)
     HeartRateView hrvHr;
+    public int currStep = -1;
 
     @Override
     public int getRootLayoutId() {
@@ -110,6 +114,8 @@ public class BloodHeartDelegate extends AppDelegate {
     }
 
     public void showStep1() {
+
+        currStep =1;
         rlStep1.setVisibility(View.VISIBLE);
         rlStep23.setVisibility(View.GONE);
         ivStep.setImageResource(R.mipmap.progress_1);
@@ -121,6 +127,7 @@ public class BloodHeartDelegate extends AppDelegate {
     }
 
     public void showStep2() {
+        currStep =2;
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_2);
@@ -141,18 +148,21 @@ public class BloodHeartDelegate extends AppDelegate {
         tvHeartRate.setText("0");
 
         if (step2PopWin == null) {
-            step2PopWin = new TipPopWin(mContext, R.layout.dialog_tip_no_button);
+            step2PopWin = new TipPopWin(mContext, R.layout.dialog_tip_no_button2);
             pvProgress = step2PopWin.getContentView().findViewById(R.id.pv_progress);
+            ((TextView) step2PopWin.getContentView().findViewById(R.id.tv_content)).setText("您正在测量血压，请保持安静，放松心情...");
+            ((TextView) step2PopWin.getContentView().findViewById(R.id.tv_tip)).setText(R.string.bloodpressure_tip);
             pvProgress.setOnFinishListener(new ProgressView.OnFinishListener() {
                 @Override
                 public void onFinish() { //完成了
-                    showStep3Real();
+                    showStep3Real(false);
                 }
             });
         }
         step2PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
 
         pvProgress.start();
+        VoiceMamanger.speak("您正在测量血压，请保持安静，放松心情");
 
     }
 
@@ -162,11 +172,15 @@ public class BloodHeartDelegate extends AppDelegate {
     }
 
     public void showStep3Init(BloodPressureReport bloodPressureReport) {
+
+        waveHelper1.start();
+        waveHelper2.start();
         initBloodPressure(bloodPressureReport);
-        showStep3Real();
+        showStep3Real(true);
     }
 
-    public void showStep3Real() {
+    public void showStep3Real(boolean isDelayShow) {
+        currStep =3;
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_3);
@@ -181,12 +195,22 @@ public class BloodHeartDelegate extends AppDelegate {
             step2PopWin.dismiss();
 
         if (step3PopWin == null) {
-            step3PopWin = new TipPopWin(mContext, R.layout.dialog_tip_result);
+            step3PopWin = new TipPopWin(mContext, R.layout.dialog_tip_result2);
             step3PopWin.getContentView().findViewById(R.id.tv_next).setOnClickListener(mOnClickListener);
             step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
             step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
         }
-        step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+
+        if (isDelayShow) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+                }
+            }, 1000);
+        } else {
+            step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
 
         if (MyApplication.get().getCurrUserReport().isFinish()) { //已全部完成
             step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.INVISIBLE);
@@ -194,6 +218,7 @@ public class BloodHeartDelegate extends AppDelegate {
             step3PopWin.getContentView().findViewById(R.id.tv_next).setVisibility(View.VISIBLE);
         }
 
+        SerialPortCmd.face4();
     }
 
     public void initBloodPressure(BloodPressureReport bloodPressureReport) {
@@ -241,17 +266,16 @@ public class BloodHeartDelegate extends AppDelegate {
         hrvHr.setProgress(hr);
         if (hr > 100) {
             tvResultHeartRate.setText("过快");
-            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.orange));
+            tvResultHeartRate.setTextColor(ContextCompat.getColor(mContext, R.color.orange));
             tvResultHeartRateAlarm.setText(R.string.hr_tip_high);
         } else if (hr < 50) {
             tvResultHeartRate.setText("过缓");
-            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.blue));
+            tvResultHeartRate.setTextColor(ContextCompat.getColor(mContext, R.color.blue));
             tvResultHeartRateAlarm.setText(R.string.hr_tip_low);
         } else {
             tvResultHeartRate.setText("正常");
-            tvResultBloodPressure.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
+            tvResultHeartRate.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
             tvResultHeartRateAlarm.setText(R.string.hr_tip_high);
         }
-
     }
 }

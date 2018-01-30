@@ -64,6 +64,8 @@ public class VideoActivity extends BaseActivity<VideoDelegate> {
                 throwable.printStackTrace();
             }
         });*/
+
+        SerialPortCmd.face1();
     }
 
     @Override

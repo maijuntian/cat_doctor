@@ -1,11 +1,14 @@
 package com.healthmall.sail.cat_doctor.bean;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by mai on 2017/12/6.
  */
 public class FaceTonReport {
     boolean isFinishFace;
     boolean isFinishTon;
+
 
     public boolean isFinish() {
         return isFinishFace && isFinishTon;

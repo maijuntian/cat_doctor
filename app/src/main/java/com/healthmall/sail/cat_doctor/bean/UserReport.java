@@ -86,7 +86,7 @@ public class UserReport {
     public int nextIndex(int currIndex) {
         switch (currIndex) {
             case 0:
-                if (temperatureReport.isFinish())
+                if (!temperatureReport.isFinish())
                     return 1;
                 if (!bloodOxygenReport.isFinish())
                     return 2;

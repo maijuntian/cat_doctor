@@ -1,17 +1,20 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.activity.ExamineActivity;
 import com.healthmall.sail.cat_doctor.base.BaseDelegate;
+import com.healthmall.sail.cat_doctor.base.BaseFragment;
 import com.healthmall.sail.cat_doctor.bean.UserReport;
 import com.healthmall.sail.cat_doctor.fragment.BloodHeartFragment;
 import com.healthmall.sail.cat_doctor.fragment.BloodoFragment;
@@ -19,6 +22,8 @@ import com.healthmall.sail.cat_doctor.fragment.BodyFragment;
 import com.healthmall.sail.cat_doctor.fragment.FaceTonFragment;
 import com.healthmall.sail.cat_doctor.fragment.QuestionFragment;
 import com.healthmall.sail.cat_doctor.fragment.TemperatureFragment;
+import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.utils.MGlide;
 
 import butterknife.Bind;
 
@@ -32,7 +37,7 @@ public class ExamineDelegate extends BaseDelegate {
     FaceTonFragment faceTonFragment;
     QuestionFragment questionFragment;
 
-    Fragment currFragment;
+    BaseFragment currFragment;
 
     @Bind(R.id.fl_content)
     FrameLayout flContent;
@@ -52,6 +57,14 @@ public class ExamineDelegate extends BaseDelegate {
     RadioButton rbBloodHeart;
     @Bind(R.id.rb_temp)
     RadioButton rbTemp;
+    @Bind(R.id.iv_user_icon)
+    ImageView ivUserIcon;
+    @Bind(R.id.tv_username)
+    TextView tvUsername;
+    @Bind(R.id.cb_voice)
+    public CheckBox cbVoice;
+    @Bind(R.id.iv_vip)
+    ImageView ivVip;
 
     @Override
     public int getRootLayoutId() {
@@ -63,7 +76,33 @@ public class ExamineDelegate extends BaseDelegate {
     public void initWidget() {
         super.initWidget();
 
+        tvUsername.setText(MyApplication.get().getCurrUser().getMemberName());
+        MGlide.loadCircle(mContext, MyApplication.get().getCurrUser().getMemHeadImg(), ivUserIcon);
+
+
         initGroup();
+
+        if (MyApplication.get().getCurrUser().isTalent()) {
+            ivVip.setVisibility(View.VISIBLE);
+        } else {
+            ivVip.setVisibility(View.GONE);
+        }
+    }
+
+    private void initParams(RadioButton[] rbs, int resId) {
+        for (RadioButton rb : rbs) {
+            RadioGroup.LayoutParams params = (RadioGroup.LayoutParams) rb.getLayoutParams();
+            if (rb.getId() == resId) {
+                params.width = 232;
+                params.height = 161;
+                rb.setLayoutParams(params);
+            } else {
+                params.width = 166;
+                params.height = 124;
+                rb.setLayoutParams(params);
+            }
+
+        }
     }
 
     private void initGroup() {
@@ -71,6 +110,9 @@ public class ExamineDelegate extends BaseDelegate {
         rgMenu.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int resId) {
+
+                SerialPortCmd.face1();
+                initParams(new RadioButton[]{rbBody, rbTemp, rbBloodo, rbBloodHeart, rbFaceTon, rbQuestion}, resId);
                 switch (resId) {
                     case R.id.rb_body:
                         showBodyFragment();
@@ -91,6 +133,8 @@ public class ExamineDelegate extends BaseDelegate {
                         showQuestionFragment();
                         break;
                 }
+
+
             }
         });
     }
@@ -161,7 +205,7 @@ public class ExamineDelegate extends BaseDelegate {
 
         if (temperatureFragment == null) {
             temperatureFragment = new TemperatureFragment();
-            transaction.add(R.id.fl_content, bodyFragment);
+            transaction.add(R.id.fl_content, temperatureFragment);
         } else {
             transaction.show(temperatureFragment);
         }
@@ -328,7 +372,8 @@ public class ExamineDelegate extends BaseDelegate {
 
     public void serialPortCallBack(String msg) {
 
-
+        currFragment.serialPortCallBack(msg);
+/*
         if (bodyFragment != null) {
             bodyFragment.serialPortCallBack(msg);
         }
@@ -346,7 +391,7 @@ public class ExamineDelegate extends BaseDelegate {
         }
         if (questionFragment != null) {
             questionFragment.serialPortCallBack(msg);
-        }
+        }*/
     }
 
     public void serialPortIng(String msg) {
@@ -383,7 +428,7 @@ public class ExamineDelegate extends BaseDelegate {
         if (currUserReport.getTemperatureReport().isFinish()) {
             rbTemp.setButtonDrawable(R.drawable.examine_menu11_finish_selector);
         } else {
-            rbTemp.setButtonDrawable(R.drawable.examine_menu11_finish_selector);
+            rbTemp.setButtonDrawable(R.drawable.examine_menu11_unfinish_selector);
         }
 
         if (currUserReport.getBloodOxygenReport().isFinish()) {

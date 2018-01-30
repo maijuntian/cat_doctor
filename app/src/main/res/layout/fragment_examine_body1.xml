@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -108,13 +109,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/bloodo_tip1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="161px"
-                android:src="@mipmap/bloodo_tip2" />
+                android:src="@mipmap/height_tip" />
 
         </LinearLayout>
 
@@ -139,6 +134,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout="@layout/viewstub_examine_body_hw">
+
+    </ViewStub>
+
+    <ViewStub
+        android:id="@+id/vs_fat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/viewstub_examine_body_fat">
 
     </ViewStub>
 

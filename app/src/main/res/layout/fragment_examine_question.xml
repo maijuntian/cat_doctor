@@ -66,8 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="80px"
-            android:visibility="invisible"
-            android:src="@mipmap/examine_start_next" />
+            android:src="@mipmap/examine_start_next"
+            android:visibility="invisible" />
 
 
     </RelativeLayout>
@@ -118,8 +118,8 @@
             android:layout_below="@id/tv_content"
             android:layout_marginTop="80px"
             android:numColumns="3"
-            android:verticalSpacing="20px"
-            android:stretchMode="columnWidth" />
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="20px" />
 
     </RelativeLayout>
 

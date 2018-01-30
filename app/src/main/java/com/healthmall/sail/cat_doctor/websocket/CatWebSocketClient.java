@@ -31,11 +31,14 @@ import rx.functions.Action1;
  */
 public class CatWebSocketClient extends WebSocketClient {
 
-    public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
+//        public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
+    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
 
     static CatWebSocketClient instance;
 
     static Subscription sbReconnect;
+
+    static Subscription sbPing;
 
 
     private CatWebSocketClient(URI serverUri, Draft protocolDraft) {
@@ -80,6 +83,23 @@ public class CatWebSocketClient extends WebSocketClient {
             sbReconnect = null;
         }
 
+        if (sbPing != null)
+            sbPing.unsubscribe();
+
+        sbPing = Observable.interval(10000, TimeUnit.MILLISECONDS).subscribe(new Action1<Long>() {
+            @Override
+            public void call(Long aLong) {
+                //发送心跳包
+                MLog.log("---发送心跳包---");
+                instance.sendPing();
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        });
+
         /**
          * 连接上需要注册
          */
@@ -112,6 +132,10 @@ public class CatWebSocketClient extends WebSocketClient {
     public void onClose(int code, String reason, boolean remote) {
         MLog.log("onClose() returned: " + reason);
         instance = null;
+        if (sbPing != null) {
+            sbPing.unsubscribe();
+            sbPing = null;
+        }
         reConnect();
 
     }
@@ -120,6 +144,10 @@ public class CatWebSocketClient extends WebSocketClient {
     public void onError(Exception ex) {
         MLog.log("onError() returned: " + ex);
         instance = null;
+        if (sbPing != null) {
+            sbPing.unsubscribe();
+            sbPing = null;
+        }
         reConnect();
     }
 

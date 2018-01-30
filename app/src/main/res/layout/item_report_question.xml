@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_xblack"
+        android:layout_marginBottom="50px"
+        android:layout_marginTop="49px"
+        android:text="中医体质辨识"
+        android:textSize="60px"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-30px"
+        android:background="@mipmap/report_question_bg">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350px"
+            android:layout_marginTop="32px"
+            android:src="@mipmap/report_question_icon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="1015px"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="您的体质为"
+                android:textSize="20px" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_result"
+                style="@style/text_black"
+                android:layout_marginTop="30px"
+                android:text="阳虚质"
+                android:textSize="60px"
+                android:textStyle="bold" />
+
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginTop="40px"
+                android:width="400px"
+                android:text="@string/report_question_tip"
+                android:textSize="20px" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

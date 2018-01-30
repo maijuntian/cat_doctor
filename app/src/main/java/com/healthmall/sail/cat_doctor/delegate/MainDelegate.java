@@ -1,6 +1,8 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,12 +18,11 @@ import butterknife.Bind;
  * Created by mai on 2017/11/10.
  */
 public class MainDelegate extends BaseDelegate {
-    @Bind(R.id.iv_head_icon)
-    ImageView ivHeadIcon;
-    @Bind(R.id.tv_nickname)
-    TextView tvNickname;
+
     @Bind(R.id.iv_body)
     ImageView ivBody;
+    @Bind(R.id.iv_temp)
+    ImageView ivTemp;
     @Bind(R.id.iv_blood_o)
     ImageView ivBloodO;
     @Bind(R.id.iv_bp_hp)
@@ -32,6 +33,12 @@ public class MainDelegate extends BaseDelegate {
     ImageView ivQuestion;
     @Bind(R.id.iv_logout)
     ImageView ivLogout;
+    @Bind(R.id.tv_nick_name)
+    TextView tvNickName;
+    @Bind(R.id.cb_voice)
+    public CheckBox cbVoice;
+    @Bind(R.id.iv_head_icon)
+    ImageView ivHeadIcon;
     @Bind(R.id.iv_vip)
     ImageView ivVip;
 
@@ -49,12 +56,20 @@ public class MainDelegate extends BaseDelegate {
 
     public void initUser() {
         User currUser = MyApplication.get().getCurrUser();
-        tvNickname.setText(currUser.getMemberName());
-        MGlide.loadCircle(currUser.getMemHeadImg(), ivHeadIcon);
+        tvNickName.setText(currUser.getMemberName());
+        MGlide.loadCircle(mContext, currUser.getMemHeadImg(), ivHeadIcon);
 
-        if (currUser.isTalent())
+        cbVoice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+
+        if(currUser.isTalent()){
             ivVip.setVisibility(View.VISIBLE);
-        else
+        } else {
             ivVip.setVisibility(View.INVISIBLE);
+        }
     }
 }

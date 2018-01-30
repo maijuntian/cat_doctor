@@ -38,6 +38,7 @@
     <string name="question_result_alarm">体质与亚健康密切相关，可依据不同体质类型制定相应的调体措施，改善体质偏颇状态，防治亚健康</string>
     <string name="check_now"><u>立即检测></u></string>
     <string name="face_tip">请您按照示意图的标准来拍摄您的面诊照片\n这样能够确保分析的准确性呦~</string>
+    <string name="ton_tip">请您按照示意图的标准来拍摄您的舌诊照片\n这样能够确保分析的准确性呦~</string>
     <string name="face_tip_alarm">中医认为，内脏的病变可以反映到体表，相反，通过对外部的诊察，也可以推测内脏的变化。\n面部是最快表现脏腑病症的部位，通过观察面部的颜色，可以快捷大致地诊断脏腑疾病。</string>
     <string name="bloodo_tip_nomal">根据检测结果分析，\n您的血氧饱和度非常正常，请继续保持~~~</string>
     <string name="bloodo_tip_low1">根据检测结果分析，\n一般认SpO2正常应不低于94%，在94%以下为供氧不足。</string>
@@ -47,10 +48,27 @@
     <string name="pluse_rate_tip_high">根据检测结果分析，\n您的脉搏数偏高，体力活动或情绪激动时，脉搏会暂时增快。</string>
     <string name="pluse_rate_tip_low">根据检测结果分析，\n您的脉搏数偏低，如果有生病的情况时，脉搏会很虚弱。</string>
     <string name="bp_tip_nomal">您的血压正常，请继续保持哦\n定期检测血压有助高血压的预防~</string>
-    <string name="bp_tip_high">您的血压有点偏高\n多食绿叶蔬果和脱脂牛奶有助于改善高血压症状~</string>
-    <string name="bp_tip_low">您的血压有点偏低\n常吃牛肉、猪肝、海参、芝麻、莲子、大枣、桂园、大豆类食物有助于改善低血压症状~</string>
+    <string name="bp_tip_high">您的血压有点偏高，多食绿叶蔬果\n和脱脂牛奶有助于改善高血压症状~</string>
+    <string name="bp_tip_low">您的血压有点偏低，常吃牛肉、猪肝、\n海参、芝麻、莲子、大枣、桂园、大豆类食物有助于改善低血压症状~</string>
     <string name="hr_tip_nomal">心率是指正常人安静状态下每分钟心跳的次数，也叫安静心率，\n一般为60~100次/分钟，可因年龄、性别或其他生理因素产生个体差异。</string>
     <string name="hr_tip_high">成人安静时心率超过100次/分钟，称为窦性心动过速，\n很多人都会有窦性心动过缓伴不齐，对于多数人来说是正常的，不必过于担心哦~</string>
     <string name="hr_tip_low">成人安静时心率低于60次/分钟，称为窦性心动过缓，\n很多人都会有窦性心动过缓伴不齐，对于多数人来说是正常的，不必过于担心哦~</string>
     <string name="temp_tip">健康人的体温是相对恒定的，当体温超过正常体温的最高限度时称为发热，就是平常人们所说的发烧。传统观念认为\n正常体温为37℃，但因为测试部位、时间、季节及个体差异等因素的影响。</string>
+    <string name="temp_result_tip">在内外因素的作用下，体温在正常范围内可有轻度变化，例如：下午较早晨体温相对要高，但一般相\n差小于1℃；进餐后、劳动或剧烈运动后，体温也可有轻度升高；突然进入高温环境或情绪激动等因\n素也可使体温略有升高；妇女在排卵期和妊娠期体温稍高于正常。不同的年龄阶段也存在轻微的体温\n差异，如小儿因代谢率高，体温较成年人偏高；老年人由于代谢率低，其体温也比青壮年稍低。</string>
+    <string name="fat_tip"><b>体脂率：</b>是指人体内脂肪重量在人体总体重中所占的比例，又称体脂百分数，它反映人体内脂肪含量的\n多少。肥胖会提高罹患各种疾病的风险。例如，高血压、糖尿病、高血脂等。而打算怀孕的女性也不\n能忽视肥胖引起的妊娠并发症与难产的风险。</string>
+    <string name="bloodpressure_tip"><b>血压：</b>血管内血液对血管壁的侧压力，这个压力就是血压。\n<b>收缩压：</b>心室收缩时，主动脉压急剧升高 ，在收缩期的中期达到最高值，这时的动脉血压值称为收缩\n压，也称为“高压”。\n<b>舒张压：</b>心室舒张时，主动脉压下降，在心舒末期动脉血压的最低值称为舒张压，也称为“低压”。</string>
+    <string name="bloodo_tip"><b>血氧饱和度：</b>为血液中血氧的浓度，它是呼吸循环的重要生理参数。\n<b>脉搏数：</b>指动脉搏动的频率。脉博数的快慢受年龄、性别、运动和情绪等因素的影响。</string>
+    <string name="info_tip">欢迎使用猫博士体测机，\n请完善您的信息，已确保体测的准确性</string>
+
+    <string name="ton_alarm">中医舌诊：中医四诊中望诊的一部分，临床上对于各种疾病，都常结合辨舌来决定诊断和治疗，它标志\n着中医诊病的传统经验和特色，也是中医临床上占重要地位不可缺少的检查常规。</string>
+    <string name="face_alarm">中医面诊：中医认为，内脏的病变可以反映到体表，相反，通过对外部的诊察，也可以推测内脏的变化。\n面部是最快表现脏腑病症的部位，通过观察面部的颜色，可以快捷大致地诊断脏腑疾病。</string>
+    <string name="report_question_tip">体质与亚健康密切相关，可依据不同体质类型\n制定相应的调体措施、改善体质偏颇状态、防\n治亚健康</string>
+    <string name="report_body_un_tip">体成分是指体内各种成分的含量(入肌肉、骨骼、脂肪、水和矿物质等)，\n常用体内各种物质的组成和比例表示， 所以，身体成分是反映人体内部结构比例特征的指标。</string>
+    <string name="report_temp_un_tip">健康人的体温是相对恒定的，传统观念认为正常体温为37℃，\n但因为测试部位、时间、季节及个体差异等因素的影响。</string>
+    <string name="report_bp_hr_un_tip">血压指血管内的血液对于单位面积血管壁的侧压力，即压强。</string>
+    <string name="report_bo_un_tip">血氧指血液中的氧气，氧关系到身体对细菌和病毒的抵抗力。</string>
+    <string name="report_question_un_tip">体质与亚健康密切相关，可根据不同的体质类型制定相应的调整措施，\n改善体质状态，防止亚健康。</string>
+    <string name="face_title">请目视镜头，将完整的面部放于扫描区</string>
+    <string name="ton_title">请目视镜头，将舌头按照示例图放于扫描区</string>
+
 </resources>

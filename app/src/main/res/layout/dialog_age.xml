@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="640px"
-    android:layout_height="520px"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <com.healthmall.sail.cat_doctor.widget.TimePickerView
-        android:id="@+id/tpv_age"
-        android:layout_width="match_parent"
-        android:layout_height="430px" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="430px"
+        android:background="@mipmap/info_bg_birthday"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.healthmall.sail.cat_doctor.widget.TimePickerView
+            android:id="@+id/tpv_year"
+            android:layout_width="130px"
+            android:layout_height="match_parent" />
+
+
+        <com.healthmall.sail.cat_doctor.widget.TimePickerView
+            android:id="@+id/tpv_month"
+            android:layout_width="85px"
+            android:layout_height="match_parent" />
+
+
+        <com.healthmall.sail.cat_doctor.widget.TimePickerView
+            android:id="@+id/tpv_day"
+            android:layout_width="130px"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/button_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30px"
+        android:layout_marginTop="87px"
+        android:background="@mipmap/info_confirm"
         android:gravity="center"
-        android:text="确定"
         android:textColor="@color/white"
         android:textSize="34px" />
 

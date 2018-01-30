@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/examine_logout_selector" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/text_mgray"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30px"
+            android:text="2017年8月2日 周三 17:80"
+            android:textSize="16px" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_exit"
+            style="@style/text_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="45px"
+            android:background="@drawable/blue_button_bg"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="结束体测"
+            android:textSize="24px" />
+
+
+        <TextView
+            android:id="@+id/tv_return"
+            style="@style/text_blue"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40px"
+            android:layout_toLeftOf="@id/tv_exit"
+            android:background="@drawable/button_blue_trans_corner"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="返回首页"
+            android:textSize="24px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="请在"
+                android:textColor="@color/xxgray"
+                android:textSize="36px"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/text_green"
+                android:text="健康猫APP"
+                android:textSize="36px"
+                android:textStyle="bold" />
+
+
+            <TextView
+                style="@style/text_mgray"
+                android:text="中查看详情报告及运动方案"
+                android:textColor="@color/xxgray"
+                android:textSize="36px"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_bottom"
+        android:layout_below="@id/rl_top"
+        android:orientation="vertical">
+        <!--
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">-->
+
+        <ListView
+            android:id="@+id/lv_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--   </ScrollView>-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80px"
+            android:layout_marginTop="52px"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_black"
+                android:layout_marginLeft="37px"
+                android:text="健康报告"
+                android:textSize="36px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="37px"
+                android:layout_marginTop="7px"
+                android:text="Health Report"
+                android:textSize="18px" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="190px"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="37px"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/text_xxgray"
+                        android:text="体测结果"
+                        android:textSize="20px" />
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:layout_marginTop="55px"
+                        android:text="体测详情"
+                        android:textSize="20px" />
+
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/rg_index"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/rb_result"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="43px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="体测结果"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_body"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="43px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="人体成分"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_temp"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="体温"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_bo"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="血氧"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_bp"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="血压"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+
+                    <RadioButton
+                        android:id="@+id/rb_face_ton"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="面诊/舌诊"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+                    <RadioButton
+                        android:id="@+id/rb_question"
+                        android:layout_width="180px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="中医体质辨识"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
+
+                </RadioGroup>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

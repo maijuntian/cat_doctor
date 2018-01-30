@@ -31,6 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +46,7 @@
         <RadioGroup
             android:id="@+id/rg_menu"
             android:layout_width="233px"
-            android:layout_height="wrap_content"
+            android:layout_height="778px"
             android:layout_alignParentRight="true"
             android:layout_marginTop="48px"
             android:gravity="right"
@@ -73,8 +80,7 @@
                 android:id="@+id/rb_face_ton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@drawable/examine_menu4_unfinish_selector"
-                android:checked="true" />
+                android:button="@drawable/examine_menu4_unfinish_selector" />
 
             <RadioButton
                 android:id="@+id/rb_question"
@@ -84,13 +90,73 @@
 
         </RadioGroup>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/examine_user_area_bg"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/fl_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12px"
+                android:layout_marginTop="92px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-        </FrameLayout>
+                <RelativeLayout
+                    android:layout_width="76px"
+                    android:layout_height="76px"
+                    android:layout_centerHorizontal="true">
+
+                    <ImageView
+                        android:id="@+id/iv_user_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@mipmap/examine_user_bg"
+                        android:paddingBottom="12px"
+                        android:paddingLeft="7px"
+                        android:paddingRight="7px"
+                        android:paddingTop="4px"
+                        android:scaleType="centerCrop" />
+
+                    <ImageView
+                        android:id="@+id/iv_vip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@mipmap/main_vip" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    style="@style/text_mgray"
+                    android:ellipsize="end"
+                    android:maxEms="5"
+                    android:maxLines="1"
+                    android:text="用户名称"
+                    android:textSize="14px" />
+
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/cb_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16px"
+                android:layout_marginTop="22px"
+                android:button="@null"
+                android:drawablePadding="-15px"
+                android:drawableTop="@drawable/voice_selector"
+                android:gravity="center_horizontal"
+                android:text="语音操作"
+                android:textColor="@drawable/text_blue_gray_selector"
+                android:textSize="14px" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

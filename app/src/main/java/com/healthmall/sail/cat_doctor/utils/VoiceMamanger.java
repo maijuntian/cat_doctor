@@ -181,6 +181,7 @@ public class VoiceMamanger {
     }
 
     public void speakIn(String text) {
+        mSpeechSynthesizer.stop();
         mSpeechSynthesizer.speak(text);
     }
 

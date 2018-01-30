@@ -168,11 +168,12 @@
                 android:layout_alignRight="@id/wave1"
                 android:layout_marginTop="400px"
                 android:gravity="center_horizontal"
-                android:text="高压mmhg"
+                android:text="收缩压mmhg"
                 android:textSize="20px" />
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_lp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="726px"
@@ -211,7 +212,7 @@
                 android:layout_alignRight="@id/wave2"
                 android:layout_marginTop="400px"
                 android:gravity="center_horizontal"
-                android:text="低压mmhg"
+                android:text="舒张压mmhg"
                 android:textSize="20px" />
         </RelativeLayout>
 
@@ -339,9 +340,9 @@
             android:id="@+id/rl_result1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/rl_result2"
-            android:layout_alignBottom="@+id/rl_result2"
-            android:layout_alignStart="@+id/rl_hp"
+            android:layout_alignLeft="@id/rl_hp"
+            android:layout_alignRight="@+id/rl_lp"
+            android:layout_marginTop="661px"
             android:visibility="gone">
 
             <TextView

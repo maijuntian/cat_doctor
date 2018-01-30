@@ -12,17 +12,31 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180px"
         android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/tv_next"
+            style="@style/text_white"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="45px"
+            android:background="@drawable/blue_button_bg"
+            android:paddingBottom="12px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="12px"
+            android:text="测量下一项"
+            android:textSize="24px" />
 
 
         <TextView
             android:id="@+id/tv_reexamine"
             style="@style/text_blue"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="45px"
-            android:layout_marginRight="45px"
-            android:layout_marginTop="45px"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="65px"
+            android:layout_toLeftOf="@id/tv_next"
             android:background="@drawable/button_blue_trans_corner"
             android:paddingBottom="12px"
             android:paddingLeft="38px"
@@ -46,22 +60,13 @@
             android:text="生成报告"
             android:textSize="24px" />
 
-
         <TextView
-            android:id="@+id/tv_next"
-            style="@style/text_white"
+            android:id="@+id/tv_content"
+            style="@style/text_mgray"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20px"
-            android:layout_toLeftOf="@id/tv_report"
-            android:background="@drawable/blue_button_bg"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="开始测量下一项"
-
-            android:textSize="24px" />
-
+            android:layout_marginLeft="350px"
+            android:text="@string/temp_result_tip"
+            android:textSize="18px" />
 
     </RelativeLayout>
 

@@ -50,6 +50,7 @@ public class MyApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
         initWebSocket();
 
         SerialPortCmd.reset();
@@ -141,5 +142,6 @@ public class MyApplication extends BaseApplication {
         currUser = null;
         currUserReport = null;
 
+        SerialPortCmd.stopAsr();
     }
 }

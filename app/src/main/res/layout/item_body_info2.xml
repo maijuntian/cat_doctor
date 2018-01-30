@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-20px"
+        android:src="@mipmap/bofy_info2_woman" />
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_marginLeft="520px"
+        android:layout_marginTop="166px"
+        android:text="体脂率"
+        android:textSize="24px" />
+
+
+    <TextView
+        style="@style/text_sgray"
+        android:layout_marginLeft="551px"
+        android:layout_marginTop="284px"
+        android:text="偏胖"
+        android:textSize="20px" />
+
+    <TextView
+        style="@style/text_green"
+        android:layout_marginLeft="551px"
+        android:layout_marginTop="490px"
+        android:text="正常"
+        android:textSize="20px" />
+
+    <TextView
+        style="@style/text_sgray"
+        android:layout_marginLeft="551px"
+        android:layout_marginTop="697px"
+        android:text="偏瘦"
+        android:textSize="20px" />
+
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_marginLeft="1322px"
+        android:layout_marginTop="166px"
+        android:text="肌肉率"
+        android:textSize="24px" />
+
+
+    <TextView
+        style="@style/text_sgray"
+        android:layout_marginLeft="1324px"
+        android:layout_marginTop="284px"
+        android:text="偏高"
+        android:textSize="20px" />
+
+    <TextView
+        style="@style/text_green"
+        android:layout_marginLeft="1324px"
+        android:layout_marginTop="490px"
+        android:text="正常"
+        android:textSize="20px" />
+
+    <TextView
+        style="@style/text_sgray"
+        android:layout_marginLeft="1324px"
+        android:layout_marginTop="697px"
+        android:text="偏低"
+        android:textSize="20px" />
+
+    <com.healthmall.sail.cat_doctor.widget.RightBarProgress
+        android:id="@+id/rbp_fat"
+        android:layout_width="51px"
+        android:layout_height="620px"
+        android:layout_marginLeft="598px"
+        android:layout_marginTop="190px" />
+
+    <com.healthmall.sail.cat_doctor.widget.LeftBarProgress
+        android:id="@+id/lbp_mucal"
+        android:layout_width="51px"
+        android:layout_height="620px"
+        android:layout_marginLeft="1262px"
+        android:layout_marginTop="190px" />
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_marginLeft="468px"
+        android:layout_marginTop="73px"
+        android:text="身体成分分析"
+        android:textSize="32px" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="199px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_bf"
+            style="@style/text_black"
+            android:text="82"
+            android:textSize="36px" />
+
+
+        <TextView
+            style="@style/text_black"
+            android:text="体脂重(kg)"
+            android:textSize="15px" />
+
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_mw"
+            style="@style/text_black"
+            android:layout_marginTop="14px"
+            android:text="82"
+            android:textSize="36px" />
+
+
+        <TextView
+            style="@style/text_black"
+            android:text="肌肉重(kg)"
+            android:textSize="15px" />
+
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_protein"
+            style="@style/text_black"
+            android:layout_marginTop="20px"
+            android:text="82"
+            android:textSize="36px" />
+
+
+        <TextView
+            style="@style/text_black"
+            android:text="蛋白质(kg)"
+            android:textSize="15px" />
+
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_tm"
+            style="@style/text_black"
+            android:layout_marginTop="20px"
+            android:text="82"
+            android:textSize="36px" />
+
+        <TextView
+            style="@style/text_black"
+            android:text="身体水分(kg)"
+            android:textSize="15px" />
+
+    </LinearLayout>
+
+</RelativeLayout>

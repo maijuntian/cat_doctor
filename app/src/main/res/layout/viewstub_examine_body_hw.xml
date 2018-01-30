@@ -2,11 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_step_hw"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
-
+    android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/iv_weight"
         android:layout_width="113px"
         android:layout_height="1787px"
         android:layout_marginLeft="603px"
@@ -15,6 +14,7 @@
         android:src="@mipmap/body_weight_ruler" />
 
     <ImageView
+        android:id="@+id/iv_height"
         android:layout_width="114px"
         android:layout_height="1353px"
         android:layout_marginLeft="868px"
@@ -22,8 +22,8 @@
         android:scaleType="matrix"
         android:src="@mipmap/body_height_ruler" />
 
-
     <ImageView
+        android:id="@+id/iv_bim"
         android:layout_width="104px"
         android:layout_height="894px"
         android:layout_marginLeft="1150px"
@@ -58,8 +58,10 @@
         android:src="@mipmap/body_stand_bottom" />
 
     <ImageView
+        android:id="@+id/iv_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/body_man1" />
 
@@ -70,6 +72,7 @@
         android:background="@mipmap/body_right_bg">
 
         <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_weight"
             style="@style/text_white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="110px"
@@ -78,6 +81,7 @@
             android:textStyle="bold" />
 
         <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_height"
             style="@style/text_white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="384px"
@@ -86,6 +90,7 @@
             android:textStyle="bold" />
 
         <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_bmi"
             style="@style/text_white"
             android:layout_centerVertical="true"
             android:layout_marginLeft="650px"

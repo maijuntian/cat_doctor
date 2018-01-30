@@ -16,18 +16,16 @@
 
     <ImageView
         android:id="@+id/iv_qrcode"
-        android:layout_width="@dimen/px200"
-        android:layout_height="@dimen/px200"
-        android:layout_marginLeft="@dimen/px160"
-        android:layout_marginTop="@dimen/px370"/>
+        android:layout_width="280px"
+        android:layout_height="280px"
+        android:layout_centerInParent="true" />
 
     <ImageView
         android:id="@+id/iv_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/iv_qrcode"
-        android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/iv_qrcode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="880px"
         android:src="@mipmap/await_video" />
 
     <ImageView

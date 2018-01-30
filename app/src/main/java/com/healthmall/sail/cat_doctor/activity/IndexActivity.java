@@ -1,6 +1,7 @@
 package com.healthmall.sail.cat_doctor.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
@@ -48,7 +49,7 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
 
         SerialPortCmd.scanSucc();
 
-        if (MyApplication.get().getCurrUser().isAuthentication() || MyApplication.get().getCurrUser().isUsed()) {
+        if (MyApplication.get().getCurrUser().isAuthentication() || !TextUtils.isEmpty(MyApplication.get().getCurrUser().getBirthday())) {
             startActivity(MainActivity.class, false);
         } else {
             startActivity(InfoActivity.class, false);
@@ -59,6 +60,7 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
     protected void onResume() {
         super.onResume();
 
+        SerialPortCmd.face0();
         sbTimer = Observable.timer(delay, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Long>() {
             @Override
             public void call(Long aLong) {

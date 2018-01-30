@@ -51,7 +51,7 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
 
         if (!hidden) {
             if (currBloodOxygenReport.isFinish()) {
-                viewDelegate.showStep3Real();
+                viewDelegate.showStep3Real(false);
             } else {
                 startExamine();
             }
@@ -67,7 +67,12 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
 
     }
 
-    int times;
+    @Override
+    protected long getDelayTime() {
+        return 60000;
+    }
+
+    /* int times;
 
     Handler handler = new Handler() {
         @Override
@@ -81,7 +86,7 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
             }
             times++;
         }
-    };
+    };*/
 
     @OnClick(R.id.tv_start)
     public void tv_startClick() {
@@ -89,8 +94,8 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
         viewDelegate.showStep2();
         SerialPortCmd.bloodOX();
 
-        times = 0;
-        handler.sendEmptyMessageDelayed(0, 10000);
+       /* times = 0;
+        handler.sendEmptyMessageDelayed(0, 10000);*/
     }
 
     @Override
@@ -110,10 +115,34 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
     @Override
     public void serialPortCallBack(String msg) {
 
+        switch (msg) { //语音
+            case "AT+ASRKSCL": //开始测量
+                if (viewDelegate.currStep == 1) {
+                    tv_startClick();
+                }
+                return;
+            case "AT+ASRCXCL": //重新测量
+                if (viewDelegate.currStep == 3) {
+                    reExamine();
+                }
+                return;
+            case "AT+ASRCLXYX": //测量下一项
+                if (viewDelegate.currStep == 3) {
+                    ((ExamineActivity) getActivity()).showNextExamine();
+                }
+                return;
+            case "AT+ASRSCBG": //生成报告
+                if (viewDelegate.currStep == 3) {
+                    ((ExamineActivity) getActivity()).showReport();
+                }
+                return;
+        }
+
         if (msg.startsWith(SerialPortCmd.OK_BLOODOX)) {
             stopErrorDelay();
             SerialPortCmd.parseBloodOX(msg, currBloodOxygenReport);
             currBloodOxygenReport.setFinish(true);
+            currBloodOxygenReport.setLastPluseDatas(viewDelegate.prvPluseRate.getmData());
             viewDelegate.showStep3(currBloodOxygenReport);
             ((ExamineActivity) getActivity()).notifyMenu();
 
@@ -168,7 +197,7 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
                 ((ExamineActivity) getActivity()).showNextExamine();
                 break;
             case R.id.tv_report:
-                startActivity(ReportActivity.class, true);
+                ((ExamineActivity) getActivity()).showReport();
                 break;
         }
     }

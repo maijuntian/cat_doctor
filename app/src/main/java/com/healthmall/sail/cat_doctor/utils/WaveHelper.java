@@ -47,6 +47,7 @@ public class WaveHelper {
     }
 
     public void down() {
+        handler.removeMessages(0);
         handler.sendEmptyMessageDelayed(0, 1000);
     }
 

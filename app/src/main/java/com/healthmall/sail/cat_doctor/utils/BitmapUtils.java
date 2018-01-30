@@ -146,7 +146,7 @@ public class BitmapUtils {
      */
     public static void compressJpgBitmap(final Bitmap bm, String filePath) {
         try {
-            bm.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(
+            bm.compress(Bitmap.CompressFormat.JPEG, 50, new FileOutputStream(
                     new File(filePath)));
         } catch (FileNotFoundException e) {
             e.printStackTrace();

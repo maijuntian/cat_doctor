@@ -1,5 +1,13 @@
 package com.healthmall.sail.cat_doctor.bean;
 
+import android.text.TextUtils;
+
+import com.healthmall.sail.cat_doctor.MyApplication;
+import com.healthmall.sail.cat_doctor.R;
+import com.mai.xmai_fast_lib.utils.MLog;
+
+import java.util.Calendar;
+
 /**
  * Created by mai on 2017/11/27.
  */
@@ -8,11 +16,11 @@ public class User {
     private String mallId;
     private String memberName;
     private Integer memberSex;
-    private Integer memberAge;
     private String memHeadImg;
     private String accessToken;
     private String questionAnswerId;
     private String questionResultName;
+    private String birthday;
     private boolean authentication;
     private boolean talent;
     private boolean isUsed;
@@ -66,12 +74,14 @@ public class User {
     }
 
     public Integer getMemberAge() {
-        return memberAge;
+        if (TextUtils.isEmpty(birthday))
+            return 10;
+        int year = Integer.parseInt(birthday.split("-")[0]);
+        int age = Calendar.getInstance().get(Calendar.YEAR) - year;
+        MLog.log("年龄-->" + age);
+        return age;
     }
 
-    public void setMemberAge(Integer memberAge) {
-        this.memberAge = memberAge;
-    }
 
     public boolean isAuthentication() {
         return authentication;
@@ -103,5 +113,13 @@ public class User {
 
     public void setUsed(boolean used) {
         isUsed = used;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

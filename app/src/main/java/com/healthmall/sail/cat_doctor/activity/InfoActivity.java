@@ -12,24 +12,27 @@ import com.mai.xmai_fast_lib.basehttp.MParams;
 
 import butterknife.OnClick;
 import rx.functions.Action1;
+import rx.functions.Action3;
 
 
 public class InfoActivity extends BaseSoftActivity<InfoDelegate> {
 
+    String year = "2000", month = "06", day = "15";
 
-    @OnClick(R.id.tv_save)
+
+    @OnClick(R.id.iv_save)
     public void tv_saveClick() {
 
         final int sex = viewDelegate.rbMan.isChecked() ? 1 : 0;
-        final int age = Integer.parseInt(viewDelegate.getViewText(R.id.tv_age));
 
         CatDoctorApi.getInstance().saveUserInfo(new MParams()
                 .add("sex", sex)
-                .add("age", age), this)
+                .add("interfaceVer", 1)
+                .add("birthday", year + "-" + month + "-" + day), this)
                 .subscribe(new Action1<Object>() {
                     @Override
                     public void call(Object o) {
-                        MyApplication.get().getCurrUser().setMemberAge(age);
+                        MyApplication.get().getCurrUser().setBirthday(year + "-" + month + "-" + day);
                         MyApplication.get().getCurrUser().setMemberSex(sex);
 
                         startActivity(MainActivity.class, true);
@@ -37,12 +40,15 @@ public class InfoActivity extends BaseSoftActivity<InfoDelegate> {
                 }, new MyThrowable());
     }
 
-    @OnClick(R.id.tv_age)
-    public void tv_ageClick() {
-        DialogUtils.showAgeDialog(this, new Action1<Integer>() {
+    @OnClick(R.id.rl_birthday)
+    public void rl_birthdayClick() {
+        DialogUtils.showAgeDialog(this, year, month, day, new Action3<String, String, String>() {
             @Override
-            public void call(Integer age) {
-                viewDelegate.setTextViewText(R.id.tv_age, age + "");
+            public void call(String year, String month, String day) {
+                InfoActivity.this.year = year;
+                InfoActivity.this.month = month;
+                InfoActivity.this.day = day;
+                viewDelegate.tvBirthday.setText(year + "  |  " + month + "  |  " + day);
             }
         });
     }

@@ -3,7 +3,8 @@
 
     <color name="white">#FFFFFF</color>
     <color name="trans_white60">#96FFFFFF</color>
-    <color name="black">#0c0c0c</color>
+    <color name="xblack">#3a3a3a</color>
+    <color name="black">#333333</color>
     <color name="mblack">#33363c</color>
     <color name="mmblack">#43464b</color>
     <color name="gray">#8190a7</color>
@@ -11,6 +12,7 @@
     <color name="circle_gray">#a7b8d1</color>
     <color name="xgray">#999999</color>
     <color name="sgray">#d6d6d6</color>
+    <color name="xxgray">#bdbdbd</color>
     <color name="mgray">#a7a7a7</color>
     <color name="mmgray">#dddddd</color>
     <color name="mmmgray">#f5f5f5</color>
@@ -47,4 +49,23 @@
     <color name="step_finish">#00c2ff</color>
     <color name="step_select">#00c3ff</color>
 
+    <color name="temp_nomal">#08a99b</color>
+    <color name="temp_high1">#d5b324</color>
+    <color name="temp_high2">#ff8900</color>
+    <color name="temp_high3">#df0000</color>
+
+    <color name="temp_nomal_bg">#e6f8f5</color>
+    <color name="temp_high1_bg">#eff0d9</color>
+    <color name="temp_high2_bg">#ffe9cc</color>
+    <color name="temp_high3_bg">#f9cccc</color>
+
+    <color name="temp_nomal_txt">#b8e7e1</color>
+    <color name="temp_high1_txt">#e8dc9d</color>
+    <color name="temp_high2_txt">#f5cfa5</color>
+    <color name="temp_high3_txt">#f7a49e</color>
+
+
+    <color name="nomal">#00b99e</color>
+    <color name="low">#007bff</color>
+    <color name="high">#ff4102</color>
 </resources>

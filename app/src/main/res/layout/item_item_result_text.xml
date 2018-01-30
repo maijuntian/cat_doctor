@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_type"
+    style="@style/text_black"
+    android:gravity="center_horizontal"
+    android:textSize="36px"
+    android:drawableLeft="@mipmap/result_tip_icon"
+    android:drawablePadding="5px"
+    android:text="脾肾阳虚"/>

@@ -72,12 +72,19 @@ public class PulseRateView extends View {
         initView();
     }
 
+    public List<Integer> getmData() {
+        return mData;
+    }
+
     public void clearData() {
         mData.clear();
         isFinish = false;
         postInvalidate();
     }
 
+    public void setmData(List<Integer> mData) {
+        this.mData = mData;
+    }
 
     public void addData(int data) {
         mData.add(data);
@@ -104,27 +111,27 @@ public class PulseRateView extends View {
 
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
-        textPaint.setStyle(Paint.Style.STROKE);
+        textPaint.setStyle(Paint.Style.FILL);
         textPaint.setTextSize(18);
         textPaint.setColor(Color.parseColor("#caccce"));
 
 
         valuePaint = new Paint();
         valuePaint.setAntiAlias(true);
-        valuePaint.setStyle(Paint.Style.STROKE);
+        valuePaint.setStyle(Paint.Style.FILL);
         valuePaint.setTextSize(60);
         valuePaint.setColor(Color.parseColor("#0072ff"));
 
 
         greenTextPaint = new Paint();
         greenTextPaint.setAntiAlias(true);
-        greenTextPaint.setStyle(Paint.Style.STROKE);
+        greenTextPaint.setStyle(Paint.Style.FILL);
         greenTextPaint.setTextSize(18);
         greenTextPaint.setColor(Color.parseColor("#00b99e"));
 
         greenBigTextPaint = new Paint();
         greenBigTextPaint.setAntiAlias(true);
-        greenBigTextPaint.setStyle(Paint.Style.STROKE);
+        greenBigTextPaint.setStyle(Paint.Style.FILL);
         greenBigTextPaint.setTextSize(24);
         greenBigTextPaint.setColor(Color.parseColor("#00b99e"));
 

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-55px"
+        android:src="@mipmap/body_info5_noman_woman" />
+
+    <LinearLayout
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_marginLeft="482px"
+        android:layout_marginTop="444px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_wthr"
+            style="@style/text_black"
+            android:drawableLeft="@drawable/left_index_black"
+            android:drawablePadding="10px"
+            android:text="45.89"
+            android:textSize="36px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="21px"
+            android:text="腰臀比"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="910px"
+        android:layout_marginTop="382px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_body_type"
+            style="@style/text_black"
+            android:drawablePadding="10px"
+            android:text="正常型"
+            android:textSize="32px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="21px"
+            android:text="身材"
+            android:textSize="20px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1235px"
+        android:layout_marginTop="224px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_sdm"
+            style="@style/text_black"
+            android:drawableLeft="@drawable/left_index_green"
+            android:drawablePadding="10px"
+            android:text="45"
+            android:textSize="36px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="21px"
+            android:text="标准肌肉(kg)"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1374px"
+        android:layout_marginTop="444px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_sw"
+            style="@style/text_black"
+            android:drawableLeft="@drawable/left_index_green"
+            android:drawablePadding="10px"
+            android:text="45"
+            android:textSize="36px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="21px"
+            android:text="标准体重(kg)"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1235px"
+        android:layout_marginTop="659px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_fc"
+            style="@style/text_black"
+            android:drawableLeft="@drawable/left_index_green"
+            android:drawablePadding="10px"
+            android:text="45"
+            android:textSize="36px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="21px"
+            android:text="脂肪控制(kg)"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_marginLeft="468px"
+        android:layout_marginTop="73px"
+        android:text="体型判断/体重控制"
+        android:textSize="32px" />
+
+
+</RelativeLayout>

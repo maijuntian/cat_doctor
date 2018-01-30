@@ -1,5 +1,9 @@
 package com.healthmall.sail.cat_doctor.bean;
 
+import com.healthmall.sail.cat_doctor.R;
+import com.healthmall.sail.cat_doctor.utils.FloatUtils;
+import com.mai.xmai_fast_lib.utils.MLog;
+
 /**
  * Created by mai on 2017/11/20.
  */
@@ -64,13 +68,15 @@ public class BodyReport {
     private String bm_bf_rtc;
     private String bm_bf_ltc;
 
+    private BodyRespone bodyRespone;
+
     public BodyReport(String deviceId, String mallId) {
         this.deviceId = deviceId;
         this.mallId = mallId;
     }
 
     public boolean isFinish() {
-        return isFinishHeight && isFinishWeight  && isFinishFat;
+        return isFinishHeight && isFinishWeight && isFinishFat;
     }
 
     public boolean isFinishHeight() {
@@ -504,4 +510,46 @@ public class BodyReport {
     public void setBm_bf_ltc(String bm_bf_ltc) {
         this.bm_bf_ltc = bm_bf_ltc;
     }
+
+    public BodyRespone getBodyRespone() {
+        return bodyRespone;
+    }
+
+    public void setBodyRespone(BodyRespone bodyRespone) {
+        this.bodyRespone = bodyRespone;
+    }
+
+    public float getMuscleRate() {
+        float rate = FloatUtils.round((Float.parseFloat(bm_bf_sm)) / Float.parseFloat(bm_weight) * 100);
+
+
+        MLog.log("MuscleRate:" + rate);
+        return rate;
+    }
+
+    public int getScoreImage() {
+        int score = Integer.parseInt(bm_bf_cs);
+        if (score > 95) {
+            return R.mipmap.body_info1_score10;
+        } else if (score > 90) {
+            return R.mipmap.body_info1_score9;
+        } else if (score > 85) {
+            return R.mipmap.body_info1_score8;
+        } else if (score > 80) {
+            return R.mipmap.body_info1_score7;
+        } else if (score > 75) {
+            return R.mipmap.body_info1_score6;
+        } else if (score > 70) {
+            return R.mipmap.body_info1_score5;
+        } else if (score > 65) {
+            return R.mipmap.body_info1_score4;
+        } else if (score > 60) {
+            return R.mipmap.body_info1_score3;
+        } else if (score > 55) {
+            return R.mipmap.body_info1_score2;
+        } else {
+            return R.mipmap.body_info1_score1;
+        }
+    }
+
 }

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-25px"
+        android:src="@mipmap/body_info3_woman" />
+
+    <ImageView
+        android:id="@+id/iv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="255px"
+        android:src="@mipmap/body_info3_circle" />
+
+
+    <LinearLayout
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_marginLeft="709px"
+        android:layout_marginTop="250px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_hand_left"
+            style="@style/text_white"
+            android:text="45.89"
+            android:textSize="29px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_white"
+            android:text="左臂"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_marginLeft="1090px"
+        android:layout_marginTop="250px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_hand_right"
+            style="@style/text_white"
+            android:text="45.89"
+            android:textSize="29px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_white"
+            android:text="右臂"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="426px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_body"
+            style="@style/text_white"
+            android:text="45.89"
+            android:textSize="29px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_white"
+            android:text="躯干"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_marginLeft="709px"
+        android:layout_marginTop="590px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_leg_left"
+            style="@style/text_white"
+            android:text="45.89"
+            android:textSize="29px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_white"
+            android:text="左腿"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="120px"
+        android:layout_height="120px"
+        android:layout_marginLeft="1090px"
+        android:layout_marginTop="590px"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+            android:id="@+id/tv_leg_right"
+            style="@style/text_white"
+            android:text="45.89"
+            android:textSize="29px"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/text_white"
+            android:text="右腿"
+            android:textSize="19px" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="514px"
+        android:layout_marginTop="441px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text_mmblack"
+            android:text="上肢均衡"
+            android:textSize="20px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="15px"
+            android:src="@drawable/left_index_green" />
+
+        <TextView
+            android:id="@+id/tv_up_balance"
+            style="@style/text_black"
+            android:text="不均衡"
+            android:textSize="33px"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="514px"
+        android:layout_marginTop="490px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/text_mmblack"
+            android:text="下肢均衡"
+            android:textSize="20px" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="15px"
+            android:src="@drawable/left_index_green" />
+
+        <TextView
+            android:id="@+id/tv_down_balance"
+            style="@style/text_black"
+            android:text="均衡"
+            android:textSize="33px"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="513px"
+        android:layout_marginTop="441px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_up_advance"
+            style="@style/text_black"
+            android:text="不均衡"
+            android:textSize="33px"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="5px"
+            android:src="@drawable/left_index_green" />
+
+        <TextView
+            style="@style/text_mmblack"
+            android:text="上肢发达"
+            android:textSize="20px" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="513px"
+        android:layout_marginTop="490px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@id/tv_down_advance"
+            style="@style/text_black"
+            android:text="均衡"
+            android:textSize="33px"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15px"
+            android:layout_marginRight="5px"
+            android:src="@drawable/left_index_green" />
+
+        <TextView
+            style="@style/text_mmblack"
+            android:text="下肢发达"
+            android:textSize="20px" />
+
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_marginLeft="468px"
+        android:layout_marginTop="73px"
+        android:text="节段肌肉量/肌肉评估"
+        android:textSize="32px" />
+
+
+</RelativeLayout>

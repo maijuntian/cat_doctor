@@ -2,7 +2,10 @@ package com.healthmall.sail.cat_doctor.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -17,10 +20,6 @@ import com.mai.xmai_fast_lib.utils.MLog;
 public class FaceTonSaveProgressView extends View {
 
     Paint progressPaint;
-
-    float progressWidth, progressHeight, dividerWidth;
-
-    final int maxItem = 33;
 
     float progress = 0;
 
@@ -49,37 +48,23 @@ public class FaceTonSaveProgressView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        setMeasuredDimension((int) ((maxItem * progressWidth) + (maxItem - 1) * dividerWidth), (int) progressHeight);
     }
 
     public void initView() {
-        progressWidth = getResources().getDimension(R.dimen.px12);
-        progressHeight = getResources().getDimension(R.dimen.px30);
-        dividerWidth = getResources().getDimension(R.dimen.px2);
-
 
         progressPaint = new Paint();
         progressPaint.setStyle(Paint.Style.STROKE);
+        progressPaint.setStrokeWidth(18);
         progressPaint.setAntiAlias(true);
-        progressPaint.setStrokeWidth(progressWidth);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int progressItem = (int) (maxItem * progress / 100f);
+        Shader shader = new LinearGradient(getWidth() / 2f, 0, getWidth() / 2f, getHeight(), Color.parseColor("#0072ff"), Color.parseColor("#00ddff"), Shader.TileMode.CLAMP);
+        progressPaint.setShader(shader);
 
-        for (int i = 0; i < maxItem; i++) {
-            if (i <= progressItem) {
-                progressPaint.setColor(ContextCompat.getColor(getContext(), R.color.xblue));
-            } else {
-                progressPaint.setColor(ContextCompat.getColor(getContext(), R.color.mmgray));
-            }
-
-            float x = progressWidth * (i + 0.5f) + dividerWidth * i;
-
-            canvas.drawLine(x, 0, x, getHeight(), progressPaint);
-        }
+        canvas.drawArc(9, 9, getWidth()-9, getHeight()-9, -90f, progress * 360f / 100f, false, progressPaint);
     }
 }
