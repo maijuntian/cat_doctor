@@ -43,7 +43,7 @@ public class MyApplication extends BaseApplication {
 
     @Override
     public String getBuglyAppid() {
-        return null;
+        return "bd1093a3b2";
     }
 
     @Override

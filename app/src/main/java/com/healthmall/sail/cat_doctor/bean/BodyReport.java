@@ -521,8 +521,6 @@ public class BodyReport {
 
     public float getMuscleRate() {
         float rate = FloatUtils.round((Float.parseFloat(bm_bf_sm)) / Float.parseFloat(bm_weight) * 100);
-
-
         MLog.log("MuscleRate:" + rate);
         return rate;
     }
@@ -551,5 +549,4 @@ public class BodyReport {
             return R.mipmap.body_info1_score1;
         }
     }
-
 }

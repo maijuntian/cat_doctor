@@ -38,15 +38,15 @@ public class VideoActivity extends BaseActivity<VideoDelegate> {
         super.onCreate(savedInstanceState);
 
         //本地的视频 需要在手机SD卡根目录添加一个 fl1234.mp4 视频
-        String videoUrl = Environment.getExternalStorageDirectory().getPath() + "/index.mp4";
+        final String videoUrl = Environment.getExternalStorageDirectory().getPath() + "/index.mp4";
 
         vvAdvert.setVideoURI(Uri.parse(videoUrl));
         vvAdvert.start();
         vvAdvert.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                mp.start();
-                mp.setLooping(true);
+                vvAdvert.setVideoURI(Uri.parse(videoUrl));
+                vvAdvert.start();
             }
         });
 

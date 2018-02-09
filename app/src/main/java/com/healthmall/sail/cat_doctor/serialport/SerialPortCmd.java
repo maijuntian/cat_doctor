@@ -239,7 +239,7 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_rtc(divideTenFloat(mapTemp.get("RTC")));
         bodyReport.setBm_bf_ltc(divideTenFloat(mapTemp.get("LTC")));
 
-        if (bodyReport.getBm_bf_nc().equals("0")) { //规避
+        if (Float.parseFloat(bodyReport.getBm_bf_nc()) == 0f) { //规避
             bodyReport.setBm_bf_wwc(bodyReport.getBm_bf_hip());
         }
 

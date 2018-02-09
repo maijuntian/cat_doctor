@@ -40,14 +40,12 @@ public interface CatDoctorService {
     @POST("doctorMall/report/bloodOxygen")
     Observable<CDRespone<Object>> bloodOxygenReport(@Body RequestBody json);
 
-
     @POST("doctorMall/report/bloodPressure")
     Observable<CDRespone<Object>> bloodPressureReport(@Body RequestBody json);
 
     @Multipart
     @POST("doctorMall/report/testUpload")
     Observable<CDRespone<Object>> faceTonUpload(@PartMap Map<String, RequestBody> params);
-
 
     @POST("sail/deviceManager/bind")
     Observable<CDRespone> bindDevice(@Body RequestBody json);

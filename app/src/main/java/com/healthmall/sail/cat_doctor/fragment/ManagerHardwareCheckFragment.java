@@ -24,6 +24,12 @@ public class ManagerHardwareCheckFragment extends BaseFragment<ManagerHardwareCh
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SerialPortCmd.stopHadTest();
+        SerialPortCmd.stopCalibration();
+    }
 
     @Override
     public void serialPortCallBack(String msg) {
@@ -33,13 +39,11 @@ public class ManagerHardwareCheckFragment extends BaseFragment<ManagerHardwareCh
             viewDelegate.showBloodOResult(true);
             viewDelegate.showBodyResult(true);
             viewDelegate.showBPHRResult(true);
-            SerialPortCmd.stopHadTest();
 
         } else if (msg.startsWith(SerialPortCmd.OK_HADTEST)) {
             viewDelegate.showBloodOResult(true);
             viewDelegate.showBodyResult(true);
             viewDelegate.showBPHRResult(true);
-            SerialPortCmd.stopCalibration();
         }
     }
 }

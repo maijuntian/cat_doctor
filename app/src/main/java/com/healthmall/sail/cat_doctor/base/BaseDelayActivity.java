@@ -8,9 +8,9 @@ import android.view.MotionEvent;
  */
 public class BaseDelayActivity <T extends BaseDelegate> extends BaseActivity<T>{
 
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return super.dispatchTouchEvent(ev);
     }
+
 }
