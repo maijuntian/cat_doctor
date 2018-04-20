@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import com.healthmall.sail.cat_doctor.Constant;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseDelegate;
+import com.healthmall.sail.cat_doctor.utils.Configs;
 import com.healthmall.sail.cat_doctor.utils.Keys;
 import com.healthmall.sail.cat_doctor.utils.QrCodeUtils;
 import com.mai.xmai_fast_lib.utils.SharedPreferencesHelper;
@@ -21,12 +22,22 @@ public class IndexDelegate extends BaseDelegate {
     ImageView ivVideo;
     @Bind(R.id.iv_manager)
     ImageView ivManager;
+    @Bind(R.id.iv_logo)
+    ImageView ivLogo;
 
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_index;
     }
 
+    @Override
+    public void initWidget() {
+        super.initWidget();
+
+        if(Configs.isTaiYangShen){
+            ivLogo.setImageResource(R.mipmap.index_taiyangshen_logo);
+        }
+    }
 
     public void initQrCode() {
         String deviceId = SharedPreferencesHelper.getInstance(mContext.getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID);

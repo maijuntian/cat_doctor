@@ -95,6 +95,9 @@ public class TemperatureView extends View {
             return;
         }
 
+        /**
+         * 动画效果
+         */
         progressIndex += progressPlus;
 
         if (progressIndex > progress)
@@ -111,11 +114,22 @@ public class TemperatureView extends View {
         }
     }
 
+    /**
+     * 绘制蒙版
+     * @param canvas
+     * @param marginLeftPx
+     */
     private void drawMengBan(Canvas canvas, float marginLeftPx) {
         MLog.log("绘制模板--->" + marginLeftPx);
         canvas.drawRect(marginLeftPx, getHeight() - 79, getWidth(), getHeight(), whiteBgPaint);
     }
 
+    /**
+     * 绘制指示针
+     * @param canvas
+     * @param temp
+     * @param marginLeftPx
+     */
     private void drawTextIndex(Canvas canvas, float temp, float marginLeftPx) {
         String text = temp + "°c";
 

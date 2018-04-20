@@ -13,6 +13,7 @@ import com.healthmall.sail.cat_doctor.bean.Symptom;
 import com.healthmall.sail.cat_doctor.delegate.Report1Delegate;
 import com.healthmall.sail.cat_doctor.http.CatDoctorApi;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.utils.Configs;
 import com.healthmall.sail.cat_doctor.utils.DialogUtils;
 import com.mai.xmai_fast_lib.basehttp.MParams;
 
@@ -33,7 +34,6 @@ public class Report1Activity extends BaseActivity<Report1Delegate> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         if (MyApplication.get().getCurrUserReport().isFinish()) {
             SerialPortCmd.face2();
         } else {
@@ -41,7 +41,6 @@ public class Report1Activity extends BaseActivity<Report1Delegate> {
         }
 
         getResult();
-
     }
 
     private void getResult() {
@@ -118,28 +117,51 @@ public class Report1Activity extends BaseActivity<Report1Delegate> {
 
     @OnClick({R.id.rb_result, R.id.rb_body, R.id.rb_temp, R.id.rb_bo, R.id.rb_bp, R.id.rb_face_ton, R.id.rb_question})
     public void rbClick(View v) {
-        switch (v.getId()) {
-            case R.id.rb_result:
-                viewDelegate.lvReport.setSelection(0);
-                break;
-            case R.id.rb_body:
-                viewDelegate.lvReport.setSelection(1);
-                break;
-            case R.id.rb_temp:
-                viewDelegate.lvReport.setSelection(2);
-                break;
-            case R.id.rb_bo:
-                viewDelegate.lvReport.setSelection(3);
-                break;
-            case R.id.rb_bp:
-                viewDelegate.lvReport.setSelection(4);
-                break;
-            case R.id.rb_face_ton:
-                viewDelegate.lvReport.setSelection(5);
-                break;
-            case R.id.rb_question:
-                viewDelegate.lvReport.setSelection(6);
-                break;
+        if (!Configs.useTemp) {
+            switch (v.getId()) {
+                case R.id.rb_result:
+                    viewDelegate.lvReport.setSelection(0);
+                    break;
+                case R.id.rb_body:
+                    viewDelegate.lvReport.setSelection(1);
+                    break;
+                case R.id.rb_bo:
+                    viewDelegate.lvReport.setSelection(2);
+                    break;
+                case R.id.rb_bp:
+                    viewDelegate.lvReport.setSelection(3);
+                    break;
+                case R.id.rb_face_ton:
+                    viewDelegate.lvReport.setSelection(4);
+                    break;
+                case R.id.rb_question:
+                    viewDelegate.lvReport.setSelection(5);
+                    break;
+            }
+        } else {
+            switch (v.getId()) {
+                case R.id.rb_result:
+                    viewDelegate.lvReport.setSelection(0);
+                    break;
+                case R.id.rb_body:
+                    viewDelegate.lvReport.setSelection(1);
+                    break;
+                case R.id.rb_temp:
+                    viewDelegate.lvReport.setSelection(2);
+                    break;
+                case R.id.rb_bo:
+                    viewDelegate.lvReport.setSelection(3);
+                    break;
+                case R.id.rb_bp:
+                    viewDelegate.lvReport.setSelection(4);
+                    break;
+                case R.id.rb_face_ton:
+                    viewDelegate.lvReport.setSelection(5);
+                    break;
+                case R.id.rb_question:
+                    viewDelegate.lvReport.setSelection(6);
+                    break;
+            }
         }
     }
 

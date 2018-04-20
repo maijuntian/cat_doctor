@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/nav_tip1"
+    android:id="@+id/rl_root"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_ok"
+        style="@style/text_white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="107px"
+        android:background="@drawable/button_ok_selector"
+        android:gravity="center"
+        android:textSize="20px"
+        android:visibility="gone" />
+
+</RelativeLayout>

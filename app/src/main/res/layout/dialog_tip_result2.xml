@@ -20,14 +20,9 @@
             android:id="@+id/tv_next"
             style="@style/text_white"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="45px"
-            android:background="@drawable/blue_button_bg"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="测量下一项"
+            android:layout_marginTop="30px"
+            android:background="@drawable/button_next_selector"
             android:textSize="24px" />
 
 
@@ -37,12 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20px"
             android:layout_toLeftOf="@id/tv_next"
-            android:background="@drawable/button_blue_trans_corner"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="重新测量"
+            android:background="@drawable/button_reexamine_selector"
             android:textSize="24px" />
 
 
@@ -52,12 +42,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="20px"
             android:layout_toLeftOf="@id/tv_reexamine"
-            android:background="@drawable/button_blue_trans_corner"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="生成报告"
+            android:background="@drawable/button_report_selector"
             android:textSize="24px" />
 
     </RelativeLayout>

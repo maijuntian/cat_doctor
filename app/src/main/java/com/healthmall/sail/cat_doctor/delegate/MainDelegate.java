@@ -1,5 +1,6 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -10,6 +11,7 @@ import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseDelegate;
 import com.healthmall.sail.cat_doctor.bean.User;
+import com.healthmall.sail.cat_doctor.utils.Configs;
 import com.healthmall.sail.cat_doctor.utils.MGlide;
 
 import butterknife.Bind;
@@ -41,6 +43,8 @@ public class MainDelegate extends BaseDelegate {
     ImageView ivHeadIcon;
     @Bind(R.id.iv_vip)
     ImageView ivVip;
+    @Bind(R.id.iv_divider)
+    ImageView ivDivider;
 
     @Override
     public int getRootLayoutId() {
@@ -52,21 +56,25 @@ public class MainDelegate extends BaseDelegate {
         super.initWidget();
 
         initUser();
+
+        cbVoice.setChecked(MyApplication.get().getCurrUser().isVoice());
+
+        if (!Configs.useTemp) {
+            ivDivider.setVisibility(View.GONE);
+            ivTemp.setVisibility(View.GONE);
+        }
     }
 
     public void initUser() {
         User currUser = MyApplication.get().getCurrUser();
+        if (currUser == null)
+            ((Activity) mContext).finish();
+
         tvNickName.setText(currUser.getMemberName());
         MGlide.loadCircle(mContext, currUser.getMemHeadImg(), ivHeadIcon);
 
-        cbVoice.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-            }
-        });
-
-        if(currUser.isTalent()){
+        if (currUser.isTalent()) {
             ivVip.setVisibility(View.VISIBLE);
         } else {
             ivVip.setVisibility(View.INVISIBLE);

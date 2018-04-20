@@ -43,7 +43,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.VideoActivity"
+            android:name=".activity.IndexActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +58,7 @@
             android:name=".activity.MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".activity.IndexActivity"
+            android:name=".activity.VideoActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.ExamineActivity"

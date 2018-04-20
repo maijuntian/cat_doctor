@@ -28,6 +28,8 @@ public class MGlide {
 
     public static void loadCircle(Context ctx, String url, ImageView imageView) {
         initImageView(imageView);
+        Glide.with(ctx).load(url).transform(new CenterCrop(MyApplication.get().getApplicationContext()), new GlideCircleTransform(MyApplication.get().getApplicationContext())).into(imageView);
+
     }
 
     public static void loadCircle(Context ctx, Bitmap bitmap, ImageView imageView) {

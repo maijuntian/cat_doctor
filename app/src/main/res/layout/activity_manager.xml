@@ -75,7 +75,7 @@
             android:drawableBottom="@drawable/manager_nav_circle_selector"
             android:drawableLeft="@drawable/manager_nav_updated_selector"
             android:drawablePadding="18px"
-            android:text="在线升级"
+            android:text="版本信息"
             android:textColor="@drawable/manager_inva_textcolor_selector"
             android:textSize="18px" />
 
@@ -90,7 +90,16 @@
             android:drawablePadding="18px"
             android:text="关于猫博士"
             android:textColor="@drawable/manager_inva_textcolor_selector"
-            android:textSize="18px" />
+            android:textSize="18px"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/iv_new_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30px"
+            android:visibility="gone"
+            android:src="@mipmap/version_red_cycle" />
 
     </RadioGroup>
 
@@ -110,7 +119,7 @@
         android:layout_marginRight="40px"
         android:layout_marginTop="33px"
         android:layout_toLeftOf="@id/iv_logout"
-        android:src="@mipmap/power_off" />
+        android:src="@mipmap/restart" />
 
 
     <TextView

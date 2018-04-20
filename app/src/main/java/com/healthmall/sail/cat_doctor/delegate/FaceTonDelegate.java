@@ -2,8 +2,10 @@ package com.healthmall.sail.cat_doctor.delegate;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +13,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
+import com.healthmall.sail.cat_doctor.bean.BodyReport;
+import com.healthmall.sail.cat_doctor.bean.UserReport;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.utils.MGlide;
 import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
@@ -88,14 +93,27 @@ public class FaceTonDelegate extends AppDelegate {
     ImageView ivStep;
     public int currStep = -1;
 
+    Handler showPopHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            showPopWin();
+            ((TextView) popWin.getContentView().findViewById(R.id.tv_content)).setText(R.string.ton_alarm);
+//            ((TextView) popWin.getContentView().findViewById(R.id.tv_next)).setText("测量下一项");
+            popWin.getContentView().findViewById(R.id.tv_report).setVisibility(View.VISIBLE);
+        }
+    };
+
     @Override
     public int getRootLayoutId() {
         return R.layout.fragment_examine_face_ton1;
     }
 
     public void hidePopWin() {
-        if (popWin != null)
+        if (popWin != null) {
+            showPopHandler.removeMessages(0);
             popWin.dismiss();
+        }
     }
 
     public void showPopWin() {
@@ -104,7 +122,7 @@ public class FaceTonDelegate extends AppDelegate {
             popWin.getContentView().findViewById(R.id.tv_next).setOnClickListener(mOnClickListener);
             popWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
             popWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
-            ((TextView) popWin.getContentView().findViewById(R.id.tv_reexamine)).setText("重新拍摄");
+            ((TextView) popWin.getContentView().findViewById(R.id.tv_reexamine)).setBackgroundResource(R.drawable.button_retake_pic_selector);
         }
         popWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
     }
@@ -135,6 +153,12 @@ public class FaceTonDelegate extends AppDelegate {
     }
 
     public void showFaceCamera() {
+
+        BodyReport bodyReport = MyApplication.get().getCurrUserReport().getBodyReport();
+        if(!TextUtils.isEmpty(bodyReport.getBm_height()) && bodyReport.getBm_height().length() >= 3){
+            SerialPortCmd.fsjh(bodyReport.getBm_height().substring(0, 3));
+        }
+
         currStep = 1;
         ivStep.setImageResource(R.mipmap.face_ton_progress1);
         tvStep1.setTextColor(ContextCompat.getColor(mContext, R.color.step_select));
@@ -226,7 +250,7 @@ public class FaceTonDelegate extends AppDelegate {
 
         showPopWin();
         ((TextView) popWin.getContentView().findViewById(R.id.tv_content)).setText(R.string.face_alarm);
-        ((TextView) popWin.getContentView().findViewById(R.id.tv_next)).setText("拍摄舌像");
+//        ((TextView) popWin.getContentView().findViewById(R.id.tv_next)).setText("拍摄舌像");
         popWin.getContentView().findViewById(R.id.tv_report).setVisibility(View.INVISIBLE);
         SerialPortCmd.stpFillin();
     }
@@ -315,7 +339,8 @@ public class FaceTonDelegate extends AppDelegate {
         vpResult.setCurrentItem(1);
 
         if (isDelayShow) {
-            new Handler().postDelayed(new Runnable() {
+            showPopHandler.sendEmptyMessageDelayed(0, 500);
+           /* new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     showPopWin();
@@ -324,11 +349,11 @@ public class FaceTonDelegate extends AppDelegate {
                     popWin.getContentView().findViewById(R.id.tv_report).setVisibility(View.VISIBLE);
 
                 }
-            }, 1000);
+            }, 1000);*/
         } else {
             showPopWin();
             ((TextView) popWin.getContentView().findViewById(R.id.tv_content)).setText(R.string.ton_alarm);
-            ((TextView) popWin.getContentView().findViewById(R.id.tv_next)).setText("测量下一项");
+//            ((TextView) popWin.getContentView().findViewById(R.id.tv_next)).setText("测量下一项");
             popWin.getContentView().findViewById(R.id.tv_report).setVisibility(View.VISIBLE);
         }
         SerialPortCmd.face4();

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="640px"
+    android:layout_height="364px">
+
+
+    <LinearLayout
+        android:layout_width="590px"
+        android:layout_height="314px"
+        android:layout_margin="25px"
+        android:background="@drawable/bg_corner_white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="75px"
+            android:text="发现新版本"
+            android:textSize="30px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginTop="26px"
+            android:text="亲，检测到有新版本，点击版本升级，体验最新功能~"
+            android:textSize="18px" />
+
+        <ImageView
+            android:id="@+id/iv_upgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:src="@drawable/button_upgrade_selector" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/button_delete_selector" />
+
+</RelativeLayout>

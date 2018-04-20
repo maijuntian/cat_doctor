@@ -2,6 +2,7 @@ package com.healthmall.sail.cat_doctor.delegate;
 
 import android.graphics.Color;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -88,6 +89,14 @@ public class BloodHeartDelegate extends AppDelegate {
     HeartRateView hrvHr;
     public int currStep = -1;
 
+    Handler showPopHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
+    };
+
     @Override
     public int getRootLayoutId() {
         return R.layout.fragment_examine_blood_heart1;
@@ -111,11 +120,12 @@ public class BloodHeartDelegate extends AppDelegate {
 
         if (step3PopWin != null)
             step3PopWin.dismiss();
+        showPopHandler.removeMessages(0);
     }
 
     public void showStep1() {
 
-        currStep =1;
+        currStep = 1;
         rlStep1.setVisibility(View.VISIBLE);
         rlStep23.setVisibility(View.GONE);
         ivStep.setImageResource(R.mipmap.progress_1);
@@ -127,7 +137,7 @@ public class BloodHeartDelegate extends AppDelegate {
     }
 
     public void showStep2() {
-        currStep =2;
+        currStep = 2;
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_2);
@@ -180,7 +190,7 @@ public class BloodHeartDelegate extends AppDelegate {
     }
 
     public void showStep3Real(boolean isDelayShow) {
-        currStep =3;
+        currStep = 3;
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_3);
@@ -202,12 +212,7 @@ public class BloodHeartDelegate extends AppDelegate {
         }
 
         if (isDelayShow) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
-                }
-            }, 1000);
+            showPopHandler.sendEmptyMessageDelayed(0, 500);
         } else {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
         }

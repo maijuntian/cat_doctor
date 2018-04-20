@@ -47,6 +47,7 @@ public class FaceTonScaningImageView extends ImageView {
 
     public void startScaning() {
         isStop = false;
+        removeCallbacks(scanRunnable);
         postDelayed(scanRunnable, 50);
     }
 

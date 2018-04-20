@@ -9,6 +9,7 @@ import com.healthmall.sail.cat_doctor.bean.CDRespone;
 import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
 import com.healthmall.sail.cat_doctor.bean.Symptom;
+import com.healthmall.sail.cat_doctor.bean.Version;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,10 @@ import rx.Observable;
  * Created by mai on 2017/11/20.
  */
 public interface CatDoctorService {
+
+
+    @POST("doctorMall/report/sanCode")
+    Observable<CDRespone<Object>> scanCode(@Body RequestBody json);
 
     @POST("doctorMall/report/body")
     Observable<CDRespone<BodyRespone>> bodyReport(@Body RequestBody json);
@@ -64,6 +69,12 @@ public interface CatDoctorService {
 
     @POST("doctorMall/report/quit")
     Observable<CDRespone<Object>> quit(@Query("accessToken") String accessToken, @Body RequestBody json);
+
+    @POST("app/getNewVersion")
+    Observable<CDRespone<Version>> getNewVersion(@Body RequestBody json);
+
+    @POST("upush/upgrade")
+    Observable<CDRespone<Object>> upgrade(@Body RequestBody json);
 
     @POST("doctorMall/report/getSymptom")
     @FormUrlEncoded

@@ -13,6 +13,7 @@
         <TextView
             style="@style/text_black"
             android:text="面诊/舌诊"
+            android:textStyle="bold"
             android:textSize="36px" />
 
         <TextView
@@ -145,12 +146,11 @@
 
         <TextView
             android:id="@+id/tv_take_pic"
-            style="@style/button_tip"
+            style="@style/text_white"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="846px"
-            android:background="@drawable/blue_button_bg"
+            android:background="@drawable/button_take_pic_selector"
             android:gravity="center"
-            android:text="拍摄"
             android:textSize="32px" />
 
     </RelativeLayout>

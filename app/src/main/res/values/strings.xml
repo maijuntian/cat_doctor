@@ -34,7 +34,7 @@
     <string name="examine_now_tip">点击【立即检测】按钮进行详细检测~</string>
     <string name="company_owner">广州大象健康科技有限公司版权所有</string>
     <string name="hot_line">咨询热线：020-54568888</string>
-    <string name="hardware_check_tip">温馨提示：\n若扫描出错，请拨打咨询热线，联系啊我。</string>
+    <string name="hardware_check_tip">温馨提示：若扫描出错，请拨打咨询热线，联系我们！</string>
     <string name="question_result_alarm">体质与亚健康密切相关，可依据不同体质类型制定相应的调体措施，改善体质偏颇状态，防治亚健康</string>
     <string name="check_now"><u>立即检测></u></string>
     <string name="face_tip">请您按照示意图的标准来拍摄您的面诊照片\n这样能够确保分析的准确性呦~</string>
@@ -70,5 +70,8 @@
     <string name="report_question_un_tip">体质与亚健康密切相关，可根据不同的体质类型制定相应的调整措施，\n改善体质状态，防止亚健康。</string>
     <string name="face_title">请目视镜头，将完整的面部放于扫描区</string>
     <string name="ton_title">请目视镜头，将舌头按照示例图放于扫描区</string>
+
+    <string name="version_alarm">1.修复版本升级bug\n2.修复校准模块\n3.修复异常闪退问题</string>
+    <string name="version_time">2018-04-12</string>
 
 </resources>

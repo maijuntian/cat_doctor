@@ -21,7 +21,6 @@ import android_serialport_api.SerialPort;
  */
 public class SerialPortEngine {
 
-
     private List<Integer> heightTemps = new ArrayList<>(); //用于判断数据是否稳定
     private List<Integer> weightTemps = new ArrayList<>(); //用于判断数据是否稳定
     private List<Integer> bloodoTemps = new ArrayList<>(); //用于判断数据是否稳定
@@ -45,6 +44,9 @@ public class SerialPortEngine {
 
     private StringBuilder sbMsg = new StringBuilder();
 
+    /**
+     * 读取硬件上报数据线程
+     */
     private class ReadThread extends Thread {
 
         @Override
@@ -93,11 +95,11 @@ public class SerialPortEngine {
                                     MyApplication.get().serialPortCallBack(finalResult);
                                     SerialPortCmd.stopTemp();
                                 }
-                            } else if(finalResult.startsWith(SerialPortCmd.OK_BODYFAT)){ //人体成分
+                            } else if (finalResult.startsWith(SerialPortCmd.OK_BODYFAT)) { //人体成分
 
                                 BodyReport bodyReport = new BodyReport("", "");
                                 SerialPortCmd.parseBodyFat(finalResult, bodyReport);
-                                if(Float.parseFloat(bodyReport.getBm_bf_bf()) > 0f){
+                                if (Float.parseFloat(bodyReport.getBm_bf_bf()) > 0f) {
                                     MyApplication.get().serialPortCallBack(finalResult);
                                 }
 
@@ -115,7 +117,7 @@ public class SerialPortEngine {
                                 } else if (Integer.parseInt(datas[0]) > 0) {
                                     MyApplication.get().serialPortIng(finalResult);
                                 }
-                            }  else {
+                            } else {
                                 MyApplication.get().serialPortCallBack(finalResult);
                             }
                         }
@@ -145,7 +147,6 @@ public class SerialPortEngine {
     }
 
     public void sendMsg(String msg) {
-
         if (mOutputStream == null)
             return;
         try {
@@ -160,7 +161,6 @@ public class SerialPortEngine {
         int dataInt = Integer.parseInt(data);
         if (dataInt == 0)
             return -1;
-
         return getReal2(dataInt, dataTemp);
     }
 
@@ -188,12 +188,13 @@ public class SerialPortEngine {
 
     public int getReal(int data, List<Integer> cacheTemps, int subError) {
         cacheTemps.add(data);
-        if (cacheTemps.size() < 3) {
+        if (cacheTemps.size() < 5) {
             return -1;
         }
 
-        MLog.log("比较三个值-->" + cacheTemps.get(0) + "  " + cacheTemps.get(1) + "  " + cacheTemps.get(2));
-        if (Math.abs(cacheTemps.get(0) - cacheTemps.get(1)) <= subError && Math.abs(cacheTemps.get(1) - cacheTemps.get(2)) <= subError) {
+        MLog.log("比较三个值-->" + cacheTemps.get(0) + "  " + cacheTemps.get(1) + "  " + cacheTemps.get(2)+ "  " + cacheTemps.get(3) + "  " + cacheTemps.get(4));
+        if (Math.abs(cacheTemps.get(0) - cacheTemps.get(1)) <= subError && Math.abs(cacheTemps.get(1) - cacheTemps.get(2)) <= subError
+                && Math.abs(cacheTemps.get(2) - cacheTemps.get(3)) <= subError && Math.abs(cacheTemps.get(3) - cacheTemps.get(4)) <= subError) {
             return (cacheTemps.get(0) + cacheTemps.get(1) + cacheTemps.get(2)) / 3;
         } else {
             cacheTemps.remove(0);

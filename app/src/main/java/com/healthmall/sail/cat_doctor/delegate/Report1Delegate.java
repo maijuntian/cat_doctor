@@ -1,5 +1,6 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
+import android.support.v4.content.ContextCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
@@ -22,7 +23,9 @@ import com.healthmall.sail.cat_doctor.bean.BodyRespone;
 import com.healthmall.sail.cat_doctor.bean.FaceTonReport;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
 import com.healthmall.sail.cat_doctor.bean.Symptom;
+import com.healthmall.sail.cat_doctor.bean.User;
 import com.healthmall.sail.cat_doctor.bean.UserReport;
+import com.healthmall.sail.cat_doctor.utils.Configs;
 import com.healthmall.sail.cat_doctor.utils.FloatUtils;
 import com.healthmall.sail.cat_doctor.utils.MGlide;
 import com.healthmall.sail.cat_doctor.widget.BloodoHorizontalProgressView;
@@ -39,6 +42,9 @@ import butterknife.Bind;
 import me.panpf.swsv.SpiderWebScoreView;
 
 
+/**
+ * 加上是否需要体温的判断
+ */
 public class Report1Delegate extends BaseDelegate {
 
     @Bind(R.id.rb_result)
@@ -96,6 +102,8 @@ public class Report1Delegate extends BaseDelegate {
         super.initWidget();
 
         rbResult.setChecked(true);
+        if(!Configs.useTemp)
+            rbTemp.setVisibility(View.GONE);
         lvReport.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override
@@ -103,28 +111,51 @@ public class Report1Delegate extends BaseDelegate {
                 MLog.log("scrollState:" + scrollState);
                 if (scrollState == 0) {
                     int firstVisibleItem = lvReport.getFirstVisiblePosition();
-                    switch (firstVisibleItem) {
-                        case 0:
-                            rbResult.setChecked(true);
-                            break;
-                        case 1:
-                            rbBody.setChecked(true);
-                            break;
-                        case 2:
-                            rbTemp.setChecked(true);
-                            break;
-                        case 3:
-                            rbBo.setChecked(true);
-                            break;
-                        case 4:
-                            rbBp.setChecked(true);
-                            break;
-                        case 5:
-                            rbFaceTon.setChecked(true);
-                            break;
-                        case 6:
-                            rbQuestion.setChecked(true);
-                            break;
+                    if(!Configs.useTemp){
+                        switch (firstVisibleItem) {
+                            case 0:
+                                rbResult.setChecked(true);
+                                break;
+                            case 1:
+                                rbBody.setChecked(true);
+                                break;
+                            case 2:
+                                rbBo.setChecked(true);
+                                break;
+                            case 3:
+                                rbBp.setChecked(true);
+                                break;
+                            case 4:
+                                rbFaceTon.setChecked(true);
+                                break;
+                            case 5:
+                                rbQuestion.setChecked(true);
+                                break;
+                        }
+                    } else {
+                        switch (firstVisibleItem) {
+                            case 0:
+                                rbResult.setChecked(true);
+                                break;
+                            case 1:
+                                rbBody.setChecked(true);
+                                break;
+                            case 2:
+                                rbTemp.setChecked(true);
+                                break;
+                            case 3:
+                                rbBo.setChecked(true);
+                                break;
+                            case 4:
+                                rbBp.setChecked(true);
+                                break;
+                            case 5:
+                                rbFaceTon.setChecked(true);
+                                break;
+                            case 6:
+                                rbQuestion.setChecked(true);
+                                break;
+                        }
                     }
                 }
             }
@@ -145,11 +176,49 @@ public class Report1Delegate extends BaseDelegate {
 
             @Override
             public int getCount() {
+                if(!Configs.useTemp)
+                    return 6;
                 return 7;
             }
 
             @Override
             protected int bindLayoutId(int position) {
+                if(!Configs.useTemp){
+                    switch (position) {
+                        case 0:
+                            return R.layout.item_report_result;
+                        case 1:
+                            if (report.getBodyReport().isFinish()) {
+                                return R.layout.item_report_body;
+                            } else {
+                                return R.layout.item_report_body_un;
+                            }
+                        case 2:
+                            if (report.getBloodOxygenReport().isFinish()) {
+                                return R.layout.item_report_bloodo;
+                            } else {
+                                return R.layout.item_report_bloodo_un;
+                            }
+                        case 3:
+                            if (report.getBloodPressureReport().isFinish()) {
+                                return R.layout.item_report_bp_hr;
+                            } else {
+                                return R.layout.item_report_bp_hr_un;
+                            }
+                        case 4:
+                            if (report.getFaceTonReport().isFinish()) {
+                                return R.layout.item_report_face_ton;
+                            } else {
+                                return R.layout.item_report_face_ton_un;
+                            }
+                        case 5:
+                            if (report.getQuestionReport().isFinish()) {
+                                return R.layout.item_report_question;
+                            } else {
+                                return R.layout.item_report_question_un;
+                            }
+                    }
+                }
                 switch (position) {
                     case 0:
                         return R.layout.item_report_result;
@@ -195,37 +264,70 @@ public class Report1Delegate extends BaseDelegate {
 
             @Override
             protected void initView(Object data, BaseViewHolder viewHolder) {
-                switch (viewHolder.getPosition()) {
-                    case 0:
-                        initResult(viewHolder);
-                        break;
-                    case 1:
-                        initBody(viewHolder);
-                        break;
-                    case 2:
-                        initTemp(viewHolder);
-                        break;
-                    case 3:
-                        initBloodo(viewHolder);
-                        break;
-                    case 4:
-                        initBloodPressure(viewHolder);
-                        break;
-                    case 5:
-                        initFaceTon(viewHolder);
-                        break;
-                    case 6:
-                        initQuestion(viewHolder);
-                        break;
+                if(!Configs.useTemp){
+                    switch (viewHolder.getPosition()) {
+                        case 0:
+                            initResult(viewHolder);
+                            break;
+                        case 1:
+                            initBody(viewHolder);
+                            break;
+                        case 2:
+                            initBloodo(viewHolder);
+                            break;
+                        case 3:
+                            initBloodPressure(viewHolder);
+                            break;
+                        case 4:
+                            initFaceTon(viewHolder);
+                            break;
+                        case 5:
+                            initQuestion(viewHolder);
+                            break;
+                    }
+                } else {
+                    switch (viewHolder.getPosition()) {
+                        case 0:
+                            initResult(viewHolder);
+                            break;
+                        case 1:
+                            initBody(viewHolder);
+                            break;
+                        case 2:
+                            initTemp(viewHolder);
+                            break;
+                        case 3:
+                            initBloodo(viewHolder);
+                            break;
+                        case 4:
+                            initBloodPressure(viewHolder);
+                            break;
+                        case 5:
+                            initFaceTon(viewHolder);
+                            break;
+                        case 6:
+                            initQuestion(viewHolder);
+                            break;
+                    }
                 }
             }
 
             private void initResult(BaseViewHolder viewHolder) {
 
-                GridView gvType = viewHolder.findViewById(R.id.gv_type);
+//                GridView gvType = viewHolder.findViewById(R.id.gv_type);
                 ListView lvExpalin = viewHolder.findViewById(R.id.lv_explain);
+                TextView tvType1 = viewHolder.findViewById(R.id.tv_type1);
+                TextView tvType2 = viewHolder.findViewById(R.id.tv_type2);
 
-                gvType.setAdapter(new BaseListViewAdapter<Symptom>(symptoms) {
+                tvType1.setText(symptoms.get(0).getName());
+                if (symptoms.size() > 1) {
+                    tvType2.setText(symptoms.get(1).getName());
+                    tvType2.setVisibility(View.VISIBLE);
+                } else {
+                    tvType2.setVisibility(View.GONE);
+                }
+
+               /* gvType.setAdapter(new BaseListViewAdapter<Symptom>(symptoms) {
                     @Override
                     protected int bindLayoutId(int position) {
                         return R.layout.item_item_result_text;
@@ -235,7 +337,7 @@ public class Report1Delegate extends BaseDelegate {
                     protected void initView(Symptom data, BaseViewHolder viewHolder) {
                         viewHolder.setText(R.id.tv_type, data.getName());
                     }
-                });
+                });*/
                 lvExpalin.setAdapter(new BaseListViewAdapter<Symptom>(symptoms) {
                     @Override
                     protected int bindLayoutId(int position) {
@@ -280,6 +382,8 @@ public class Report1Delegate extends BaseDelegate {
                 BodyReport bodyReport = report.getBodyReport();
                 BodyRespone bodyRespone = bodyReport.getBodyRespone();
 
+                User currUser = MyApplication.get().getCurrUser();
+
                 if (report.getBodyReport().isFinish()) {
 
                     viewHolder.setText(R.id.tv_body_age, bodyReport.getBm_bf_ba())
@@ -295,6 +399,12 @@ public class Report1Delegate extends BaseDelegate {
                             .setText(R.id.tv_tm, bodyReport.getBm_bf_tm())
                             .setText(R.id.tv_muscel_rate, bodyReport.getMuscleRate() + "")
                             .setText(R.id.tv_bfr, bodyReport.getBm_bf_bfr())
+                            .setBackgroundDrawable(R.id.rl_body_bg1, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_body_1 : R.mipmap.report_body_1_f))
+                            .setBackgroundDrawable(R.id.rl_body_bg2, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_body_2 : R.mipmap.report_body_2_f))
+                            .setBackgroundDrawable(R.id.rl_body_bg3, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_body_3 : R.mipmap.report_body_3_f))
+                            .setBackgroundDrawable(R.id.rl_body_bg4, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_body_4 : R.mipmap.report_body_4_f))
+                            .setBackgroundDrawable(R.id.rl_body_bg5, ContextCompat.getDrawable(mContext, bodyRespone.getReportTypeImg()))
+
                             //肥胖水肿度
                             .setText(R.id.tv_vfl, bodyReport.getBm_bf_vfl())
                             .setText(R.id.tv_doo, bodyReport.getBm_bf_doo())
@@ -426,24 +536,29 @@ public class Report1Delegate extends BaseDelegate {
                     float[] values = new float[]{tmm, rhmm, rlmm, llmm, lhmm};
                     spiderWebMucel.setScores(FloatUtils.getMax(values), values);
 
-                    RelativeLayout rlBody5 = viewHolder.findViewById(R.id.rl_body5);
-                    rlBody5.setBackgroundResource(bodyRespone.getReportTypeImg());
                 } else {
-                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_body);
+                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_body)
+                            .setBackgroundDrawable(R.id.ll_body_bg_un, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_body_bg_un : R.mipmap.report_body_bg_un_f));
                 }
             }
 
             private void initTemp(BaseViewHolder viewHolder) {
+
+                User currUser = MyApplication.get().getCurrUser();
                 if (report.getTemperatureReport().isFinish()) {
-                    viewHolder.setText(R.id.tv_temp, report.getTemperatureReport().getBm_bdtemp() + "°C");
+                    viewHolder.setBackgroundDrawable(R.id.rl_temp_bg, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_temp_bg : R.mipmap.report_temp_bg_f))
+                            .setText(R.id.tv_temp, report.getTemperatureReport().getBm_bdtemp() + "°C");
                 } else {
-                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_temp);
+                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_temp)
+                            .setBackgroundDrawable(R.id.ll_temp_bg_un, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_temp_bg_un : R.mipmap.report_temp_bg_un_f));
                 }
             }
 
             private void initBloodo(BaseViewHolder viewHolder) {
-
+                User currUser = MyApplication.get().getCurrUser();
                 if (report.getBloodOxygenReport().isFinish()) {
+                    viewHolder.setBackgroundDrawable(R.id.ll_bloodo_bg, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_bloodo_bg : R.mipmap.report_bloodo_bg_f));
+
                     int bo = Integer.parseInt(report.getBloodOxygenReport().getBm_blox_spO2());
                     int pr = Integer.parseInt(report.getBloodOxygenReport().getBm_blox_pr());
 
@@ -461,14 +576,17 @@ public class Report1Delegate extends BaseDelegate {
                     hpPluse.setRang(60, 100);
                     hpPluse.setProgress(pr);
                 } else {
-                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_bloodo);
+                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_bloodo)
+                            .setBackgroundDrawable(R.id.ll_bloodo_bg_un, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_bo_bg_un : R.mipmap.report_bo_bg_un_f));
                 }
             }
 
             private void initBloodPressure(BaseViewHolder viewHolder) {
                 BloodPressureReport bloodPressureReport = report.getBloodPressureReport();
+                User currUser = MyApplication.get().getCurrUser();
 
                 if (bloodPressureReport.isFinish()) {
+                    viewHolder.setBackgroundDrawable(R.id.ll_bp_hr_bg, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_bp_hr_bg : R.mipmap.report_bp_hr_bg_f));
 
                     viewHolder.setImageDrawable(R.id.iv_shuzhangya, mContext.getResources().getDrawable(bloodPressureReport.getDpBg()))
                             .setImageDrawable(R.id.iv_shousuoya, mContext.getResources().getDrawable(bloodPressureReport.getSpBg()))
@@ -495,7 +613,9 @@ public class Report1Delegate extends BaseDelegate {
                     viewHolder.setText(R.id.tv_bp_alarm, bloodPressureReport.getBpAlarm(mContext))
                             .setText(R.id.tv_hr_alarm, bloodPressureReport.getHrAlarm(mContext));
                 } else {
-                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_bp_hr);
+                    viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_bp_hr)
+                            .setBackgroundDrawable(R.id.ll_bp_hr_bg_un, ContextCompat.getDrawable(mContext, currUser.getMemberSex() == 1 ? R.mipmap.report_bp_bg_un : R.mipmap.report_bp_bg_un_f));
+
                 }
 
             }
@@ -514,7 +634,8 @@ public class Report1Delegate extends BaseDelegate {
 
             private void initQuestion(BaseViewHolder viewHolder) {
                 QuestionReport questionReport = report.getQuestionReport();
-                viewHolder.setText(R.id.tv_result, questionReport.getQuestionResultNameReal());
+                viewHolder.setText(R.id.tv_result, questionReport.getQuestionResultNameReal())
+                        .setBackgroundDrawable(R.id.rl_result_bg, ContextCompat.getDrawable(mContext, questionReport.getQuestionResultBg()));
             }
         };
 

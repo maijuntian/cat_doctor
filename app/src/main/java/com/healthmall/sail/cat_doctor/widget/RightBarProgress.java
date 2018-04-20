@@ -32,7 +32,7 @@ public class RightBarProgress extends View {
     float progress = 27;
 
     float max = 80;
-    float min = 5;
+    float min = 2;
 
     int greenColor;
     int blueColor;

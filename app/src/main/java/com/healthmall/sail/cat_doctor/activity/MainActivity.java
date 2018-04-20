@@ -1,13 +1,8 @@
 package com.healthmall.sail.cat_doctor.activity;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
@@ -21,11 +16,16 @@ import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import rx.functions.Action0;
+import rx.functions.Action1;
 
 /**
  * Created by mai on 2017/11/10.
  */
 public class MainActivity extends BaseActivity<MainDelegate> {
+
+
+    boolean isShowDialog = false;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +33,17 @@ public class MainActivity extends BaseActivity<MainDelegate> {
 
         if (!getIntent().getBooleanExtra("noVoice", false)) {
             VoiceMamanger.speak("欢迎来到猫博士体测机");
+
+            DialogUtils.showVoiceDialog(this, new Action1<Boolean>() {
+                @Override
+                public void call(Boolean voice) {
+                    MyApplication.get().getCurrUser().setVoice(voice);
+                    if (voice && !MyApplication.get().getCurrUser().isUsed()) {
+                        DialogUtils.showVoiceTipDialog(MainActivity.this);
+                    }
+                }
+            });
         }
-
-        SerialPortCmd.asr();
-
-
     }
 
     @OnClick(R.id.iv_body)
@@ -86,13 +92,24 @@ public class MainActivity extends BaseActivity<MainDelegate> {
 
     @OnClick(R.id.iv_logout)
     public void iv_logoutClick() {
-        DialogUtils.showLogoutDialog(this, new Action0() {
-            @Override
-            public void call() {
-                MyApplication.get().logout();
-                finish();
-            }
-        });
+        isShowDialog = true;
+        if (dialog == null) {
+            dialog = DialogUtils.showExitDialog(this, new Action0() {
+                @Override
+                public void call() {
+                    MyApplication.get().logout();
+                    finish();
+                }
+            }, new Action0() {
+                @Override
+                public void call() {
+                    isShowDialog = false;
+                }
+            });
+        } else {
+            dialog.show();
+        }
+
     }
 
     @OnCheckedChanged(R.id.cb_voice)
@@ -106,7 +123,6 @@ public class MainActivity extends BaseActivity<MainDelegate> {
 
     public void startExamineActivity(Bundle bundle) {
 
-        bundle.putBoolean("isVoice", viewDelegate.cbVoice.isChecked());
         startActivity(ExamineActivity.class, bundle, true);
 
        /* Intent intent = new Intent(this, ExamineActivity.class);
@@ -142,6 +158,16 @@ public class MainActivity extends BaseActivity<MainDelegate> {
             case "AT+ASRZYTXBS": //中医体质辨识
                 iv_questionClick();
                 break;
+            case "AT+ASRQX":// 取消
+                if (isShowDialog) {
+                    dialog.dismiss();
+                }
+                break;
+            case "AT+ASRJS": //结束
+                if (isShowDialog) {
+                    MyApplication.get().logout();
+                    finish();
+                }
         }
     }
 }

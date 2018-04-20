@@ -36,14 +36,22 @@ public class ManagerHardwareCheckFragment extends BaseFragment<ManagerHardwareCh
         super.serialPortCallBack(msg);
 
         if (msg.startsWith(SerialPortCmd.OK_BCALIBRATION)) {
-            viewDelegate.showBloodOResult(true);
-            viewDelegate.showBodyResult(true);
-            viewDelegate.showBPHRResult(true);
+            viewDelegate.showBloodOResult(true,true);
+            viewDelegate.showHeightResult(true,true);
+            viewDelegate.showWeightResult(true,true);
+            viewDelegate.showBPHRResult(true,true);
+            SerialPortCmd.stopCalibration();
 
         } else if (msg.startsWith(SerialPortCmd.OK_HADTEST)) {
-            viewDelegate.showBloodOResult(true);
-            viewDelegate.showBodyResult(true);
-            viewDelegate.showBPHRResult(true);
+            viewDelegate.showBloodOResult(true, true);
+            viewDelegate.showWeightResult(true, true);
+            viewDelegate.showHeightResult(true, true);
+            viewDelegate.showBPHRResult(true, true);
+            SerialPortCmd.stopHadTest();
+        } else if(msg.startsWith(SerialPortCmd.ERR_CAL_HEIGHT)){
+            viewDelegate.showHeightResult(false, false);
+        } else if(msg.startsWith(SerialPortCmd.ERR_WEIGHT)){
+            viewDelegate.showWeightResult(false, false);
         }
     }
 }

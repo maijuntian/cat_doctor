@@ -7,8 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="6">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/iv_body"
@@ -19,12 +18,15 @@
             android:gravity="center" />
 
         <ImageView
+            android:id="@+id/iv_divider"
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@mipmap/main_line" />
 
 
         <ImageView
+            android:visibility="visible"
             android:id="@+id/iv_temp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -118,8 +120,10 @@
             android:id="@+id/iv_head_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5px"
-            android:src="@mipmap/info_head_bg" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/info_head_bg"
+            android:padding="5px" />
 
         <ImageView
             android:id="@+id/iv_vip"

@@ -55,7 +55,7 @@ public class ManagerLoginDelegate extends AppDelegate {
     }
 
 
-    public void showLoginView() {
+    /*public void showLoginView() {
         ivLogin.setImageResource(R.mipmap.login_login);
         rlAccount.setVisibility(View.VISIBLE);
         flOldPwd.setVisibility(View.GONE);
@@ -76,11 +76,10 @@ public class ManagerLoginDelegate extends AppDelegate {
         tvUpdatePwd.setText("去登录");
         tvError.setVisibility(View.INVISIBLE);
         tvCountDown.setVisibility(View.INVISIBLE);
-    }
+    }*/
 
     public void showError(String text){
         tvError.setVisibility(View.VISIBLE);
-
         tvError.setText(text);
     }
 }

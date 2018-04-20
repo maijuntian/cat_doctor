@@ -24,6 +24,8 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
 
     Subscription sbTimer;
 
+    boolean isPause= false;
+
     private final long delay = 60000;
 
     @OnClick(R.id.iv_video)
@@ -41,6 +43,7 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        startActivity(VideoActivity.class, false);
 
     }
 
@@ -49,10 +52,12 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
 
         SerialPortCmd.scanSucc();
 
-        if (MyApplication.get().getCurrUser().isAuthentication() || !TextUtils.isEmpty(MyApplication.get().getCurrUser().getBirthday())) {
-            startActivity(MainActivity.class, false);
-        } else {
-            startActivity(InfoActivity.class, false);
+        if(!isPause) {
+            if (MyApplication.get().getCurrUser().isAuthentication() || !TextUtils.isEmpty(MyApplication.get().getCurrUser().getBirthday())) {
+                startActivity(MainActivity.class, false);
+            } else {
+                startActivity(InfoActivity.class, false);
+            }
         }
     }
 
@@ -67,6 +72,7 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
                 startActivity(VideoActivity.class, false);
             }
         }, new MyThrowable());
+        isPause = false;
     }
 
     @Override
@@ -75,6 +81,7 @@ public class IndexActivity extends BaseActivity<IndexDelegate> {
 
         if (sbTimer != null)
             sbTimer.unsubscribe();
+        isPause = true;
     }
 }
 

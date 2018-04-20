@@ -50,7 +50,7 @@ public class WaveHelper {
         handler.removeMessages(0);
         handler.sendEmptyMessageDelayed(0, 1000);
     }
-
+ 
     public void setData(float data) {
         if (data > 1f)
             data = 1.0f;

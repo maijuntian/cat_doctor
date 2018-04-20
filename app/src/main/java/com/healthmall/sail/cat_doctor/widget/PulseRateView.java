@@ -193,6 +193,10 @@ public class PulseRateView extends View {
     }
 
 
+    /**
+     * 绘制坐标轴
+     * @param canvas
+     */
     private void drawChart(Canvas canvas) {
 
         int paddingX = 66;
@@ -262,6 +266,10 @@ public class PulseRateView extends View {
         canvas.drawRect(greenLeft, greenTop, greenRight, greenBottom, greenBgPaint);
     }
 
+    /**
+     * 绘制曲线
+     * @param canvas
+     */
     private void drawLine(Canvas canvas) {
         for (int i = 0, size = mData.size() - 1; i < size; i++) {
             PointF startPoint1 = transforPoint(i, mData.get(i));
@@ -279,6 +287,12 @@ public class PulseRateView extends View {
         }
     }
 
+    /**
+     * 数值转换为坐标
+     * @param i
+     * @param value
+     * @return
+     */
     private PointF transforPoint(int i, Integer value) {
         float x = xLeft + perWidth * i;
 
@@ -287,6 +301,12 @@ public class PulseRateView extends View {
         return new PointF(x, y);
     }
 
+    /**
+     * 坐标点连线
+     * @param canvas
+     * @param startPoint
+     * @param endPoint
+     */
     private void drawPoint(Canvas canvas, PointF startPoint, PointF endPoint) {
 
         Path path = new Path();
@@ -301,6 +321,12 @@ public class PulseRateView extends View {
     }
 
 
+    /**
+     * 绘制阴影
+     * @param canvas
+     * @param startPoint
+     * @param endPoint
+     */
     private void drawBg(Canvas canvas, PointF startPoint, PointF endPoint) {
 
         Path path = new Path();

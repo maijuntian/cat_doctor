@@ -11,14 +11,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_question_label"
             style="@style/text_black"
-            android:text="体成分"
+            android:text="中医体质辨识"
+            android:textStyle="bold"
             android:textSize="36px" />
 
         <TextView
             style="@style/text_mgray"
             android:layout_marginTop="7px"
-            android:text="Height/Weight/Component"
+            android:text="Identification of TCM Constitution"
             android:textSize="18px" />
 
         <LinearLayout
@@ -189,14 +191,15 @@
         android:visibility="gone">
 
         <ImageView
+            android:id="@+id/iv_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/question_icon" />
+            android:src="@mipmap/question_icon_pinghe" />
 
         <TextView
             android:id="@+id/tv_habits"
             style="@style/text_blue"
-            android:text="阳虚质"
+            android:text="平和质"
             android:textSize="36px"
             android:textStyle="bold" />
 

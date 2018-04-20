@@ -1,6 +1,7 @@
 package com.healthmall.sail.cat_doctor;
 
 import android.app.Activity;
+import android.test.mock.MockContext;
 import android.text.TextUtils;
 
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
@@ -8,9 +9,11 @@ import com.healthmall.sail.cat_doctor.base.BaseSoftActivity;
 import com.healthmall.sail.cat_doctor.bean.User;
 import com.healthmall.sail.cat_doctor.bean.UserReport;
 import com.healthmall.sail.cat_doctor.http.CatDoctorApi;
+import com.healthmall.sail.cat_doctor.reader.ReaderUtils;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortEngine;
 import com.healthmall.sail.cat_doctor.utils.Keys;
+import com.healthmall.sail.cat_doctor.utils.VersionUtils;
 import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.healthmall.sail.cat_doctor.websocket.CatWebSocketClient;
 import com.mai.xmai_fast_lib.base.BaseApplication;
@@ -51,13 +54,51 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         instance = this;
 
+        SharedPreferencesHelper.getInstance(getApplicationContext()).putStringValue(Keys.KEY_DEVICE_ID, "BC002004");
+
         initWebSocket();
 
         SerialPortCmd.reset();
 
         VoiceMamanger.init(this);
+
+        new ReaderUtils().openDevice(getApplicationContext());
+
+        upgrade();
+
     }
 
+    private void upgrade() {
+
+        float version = SharedPreferencesHelper.getInstance(getApplicationContext()).getFloatValue(Keys.KEY_LAST_VERSION);
+
+        final float currVersion = Float.parseFloat(VersionUtils.getVersionName(getApplicationContext()));
+
+        if (version == 0f) {
+            SharedPreferencesHelper.getInstance(getApplicationContext()).putFloatValue(Keys.KEY_LAST_VERSION, currVersion);
+            return;
+        } else {
+            MLog.log("currVersion==" +currVersion + "   version==" + version);
+            if (currVersion > version) {
+                CatDoctorApi.getInstance().upgrade(new MParams()
+                        .add("deviceIdentity", SharedPreferencesHelper.getInstance(getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID))
+                        .add("version", currVersion)
+                        .add("deviceType", 7)
+                        .add("manufacturerId", 7), getApplicationContext())
+                        .subscribe(new Action1<Object>() {
+                            @Override
+                            public void call(Object o) {
+                                SharedPreferencesHelper.getInstance(getApplicationContext()).putFloatValue(Keys.KEY_LAST_VERSION, currVersion);
+                            }
+                        }, new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+                                throwable.printStackTrace();
+                            }
+                        });
+            }
+        }
+    }
 
     private void initWebSocket() {
         String deviceId = SharedPreferencesHelper.getInstance(getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID);

@@ -8,4 +8,6 @@ public class Keys {
     public static final String KEY_MANAGER_PWD = "KEY_MANAGER_PWD";
 
     public static final String KEY_DEVICE_ID = "KEY_DEVICE_ID";
+
+    public static final String KEY_LAST_VERSION = "KEY_LAST_VERSION";
 }

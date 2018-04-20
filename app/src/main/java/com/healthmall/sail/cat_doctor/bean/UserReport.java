@@ -1,10 +1,12 @@
 package com.healthmall.sail.cat_doctor.bean;
 
 import com.healthmall.sail.cat_doctor.MyApplication;
+import com.healthmall.sail.cat_doctor.utils.Configs;
 import com.healthmall.sail.cat_doctor.utils.Keys;
 import com.mai.xmai_fast_lib.utils.SharedPreferencesHelper;
 
 /**
+ * //去掉体温的时候，直接让它完成
  * Created by mai on 2017/12/2.
  */
 public class UserReport {
@@ -21,6 +23,8 @@ public class UserReport {
 
         bodyReport = new BodyReport(deviceId, MyApplication.get().getCurrUser().getMallId());
         temperatureReport = new TemperatureReport(deviceId, MyApplication.get().getCurrUser().getMallId());
+        if (!Configs.useTemp) //去掉体温的时候，直接让它完成
+            temperatureReport.setFinish(true);
         bloodOxygenReport = new BloodOxygenReport(deviceId, MyApplication.get().getCurrUser().getMallId());
         bloodPressureReport = new BloodPressureReport(deviceId, MyApplication.get().getCurrUser().getMallId());
         faceTonReport = new FaceTonReport();
@@ -76,6 +80,10 @@ public class UserReport {
     }
 
     public boolean isFinishOne() {
+        if (!Configs.useTemp) {
+            return bodyReport.isFinish() || bloodOxygenReport.isFinish() || bloodPressureReport.isFinish() || faceTonReport.isFinish() || questionReport.isFinish();
+
+        }
         return bodyReport.isFinish() || temperatureReport.isFinish() || bloodOxygenReport.isFinish() || bloodPressureReport.isFinish() || faceTonReport.isFinish() || questionReport.isFinish();
     }
 

@@ -25,7 +25,7 @@ public class CommonUtils {
         iv.setLayoutParams(params);
     }
 
-    public static void moveHeightRuler(ImageView iv, float height) {//相对130移动多少像素
+    public static void moveHeightRuler(ImageView iv, float height) {//相对130cm移动多少像素
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) iv.getLayoutParams();
         MLog.log("marginTop--->" + params.topMargin);
         params.topMargin = (int) ((-273) + (height - 130) * 8.8f);

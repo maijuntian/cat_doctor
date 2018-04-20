@@ -16,6 +16,7 @@ import com.healthmall.sail.cat_doctor.R;
 
 
 /**
+ * 绘制血氧血液珠
  * Created by mai on 2017/12/25.
  */
 public class WaterView extends View {
@@ -174,10 +175,8 @@ public class WaterView extends View {
             canvas.drawArc(progressLeft, progressTop, progressRight, progressBottom, -45, 70 * (progress - 94) / 3f + 200, false, realProgressPaint);
 
         } else { // 97 --> 100
-
             drawLine(canvas, progressRectTop, progressRectRight, realProgressPaint);
             canvas.drawArc(progressLeft, progressTop, progressRight, progressBottom, -45, 270, false, realProgressPaint);
-
 
             float y = (100 - progress) / 3f * (progressRectLeft.y - progressRectTop.y) + progressRectTop.y;
             float x = (100 - progress) / 3f * (progressRectLeft.x - progressRectTop.x) + progressRectTop.x;

@@ -257,15 +257,15 @@ public class BodyRespone {
             case "苹果型":
                 if (user.getMemberSex() == 1)
                     return R.mipmap.report_body_5_apple;
-                return R.mipmap.report_body_5_apple;
+                return R.mipmap.report_body_5_apple_f;
             case "梨型":
                 if (user.getMemberSex() == 1)
                     return R.mipmap.report_body_5_bear;
-                return R.mipmap.report_body_5_bear;
+                return R.mipmap.report_body_5_bear_f;
             default:
                 if (user.getMemberSex() == 1)
                     return R.mipmap.report_body_5;
-                return R.mipmap.report_body_5;
+                return R.mipmap.report_body_5_f;
         }
     }
 
@@ -307,6 +307,9 @@ public class BodyRespone {
         Float rate2 = allFatRateRange.get(2).getRange().get(0) * 100;
         rates.add(rate1);
         rates.add(rate2);
+        /*List<Float> rates = new ArrayList<>();
+        rates.add(30f);
+        rates.add(60f);*/
         return rates;
     }
 
@@ -316,6 +319,9 @@ public class BodyRespone {
         Float rate2 = allMuscleRateRange.get(2).getRange().get(0) * 100;
         rates.add(rate1);
         rates.add(rate2);
+        /*List<Float> rates = new ArrayList<>();
+        rates.add(25f);
+        rates.add(45f);*/
         return rates;
     }
 

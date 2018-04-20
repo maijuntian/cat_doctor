@@ -193,4 +193,10 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
         }
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        SerialPortCmd.stpFillin();
+    }
 }

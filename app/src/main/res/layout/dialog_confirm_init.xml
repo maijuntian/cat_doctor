@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="640px"
+    android:layout_height="364px">
+
+
+    <LinearLayout
+        android:layout_width="590px"
+        android:layout_height="314px"
+        android:layout_margin="25px"
+        android:background="@drawable/bg_corner_white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_black"
+            android:layout_marginTop="75px"
+            android:text="初始化密码"
+            android:textSize="30px" />
+
+        <TextView
+            style="@style/text_mgray"
+            android:layout_marginTop="26px"
+            android:text="亲，确定要初始化密码？"
+            android:textSize="18px" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="180px"
+            android:layout_height="60px"
+            android:layout_marginTop="50px"
+            android:background="@drawable/bg_blue_green"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="18px" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/button_delete_selector" />
+
+</RelativeLayout>

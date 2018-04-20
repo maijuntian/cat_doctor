@@ -23,6 +23,7 @@ import com.healthmall.sail.cat_doctor.fragment.FaceTonFragment;
 import com.healthmall.sail.cat_doctor.fragment.QuestionFragment;
 import com.healthmall.sail.cat_doctor.fragment.TemperatureFragment;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
+import com.healthmall.sail.cat_doctor.utils.Configs;
 import com.healthmall.sail.cat_doctor.utils.MGlide;
 
 import butterknife.Bind;
@@ -86,6 +87,10 @@ public class ExamineDelegate extends BaseDelegate {
             ivVip.setVisibility(View.VISIBLE);
         } else {
             ivVip.setVisibility(View.GONE);
+        }
+
+        if(!Configs.useTemp){
+            rbTemp.setVisibility(View.GONE);
         }
     }
 

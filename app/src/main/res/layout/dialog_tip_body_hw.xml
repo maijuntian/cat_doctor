@@ -43,26 +43,20 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="45px"
-            android:background="@drawable/blue_button_bg"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="测量体脂"
+            android:background="@drawable/button_body_click_selector"
+            android:gravity="center_horizontal"
+            android:paddingTop="10px"
             android:textSize="24px" />
 
         <TextView
             android:id="@+id/tv_reexamine"
             style="@style/text_blue"
             android:layout_centerVertical="true"
-            android:layout_marginRight="45px"
+            android:layout_marginRight="35px"
             android:layout_toLeftOf="@id/tv_examine_fat"
-            android:background="@drawable/button_blue_trans_corner"
-            android:paddingBottom="12px"
-            android:paddingLeft="38px"
-            android:paddingRight="38px"
-            android:paddingTop="12px"
-            android:text="重新测量"
+            android:background="@drawable/button_reexamine_selector"
+            android:gravity="center_horizontal"
+            android:paddingTop="20px"
             android:textSize="24px" />
 
 

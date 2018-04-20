@@ -25,6 +25,9 @@ public class User {
     private boolean talent;
     private boolean isUsed;
 
+
+    private boolean isVoice;
+
     public String getAccessToken() {
         return accessToken;
     }
@@ -121,5 +124,13 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public boolean isVoice() {
+        return isVoice;
+    }
+
+    public void setVoice(boolean voice) {
+        isVoice = voice;
     }
 }

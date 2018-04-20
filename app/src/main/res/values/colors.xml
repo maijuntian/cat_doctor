@@ -68,4 +68,7 @@
     <color name="nomal">#00b99e</color>
     <color name="low">#007bff</color>
     <color name="high">#ff4102</color>
+
+
+    <color name="checking">#4cbbef</color>
 </resources>

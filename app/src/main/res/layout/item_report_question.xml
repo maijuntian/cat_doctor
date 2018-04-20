@@ -14,17 +14,11 @@
         android:textStyle="bold" />
 
     <RelativeLayout
+        android:id="@+id/rl_result_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-30px"
-        android:background="@mipmap/report_question_bg">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="350px"
-            android:layout_marginTop="32px"
-            android:src="@mipmap/report_question_icon" />
+        android:background="@mipmap/report_question_bg_yangxu">
 
         <LinearLayout
             android:layout_width="wrap_content"

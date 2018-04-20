@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_black"
+        android:layout_marginTop="80px"
+        android:text="版本说明"
+        android:textSize="30px"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/text_mgray"
+        android:layout_height="270px"
+        android:layout_marginTop="20px"
+        android:lineSpacingExtra="10px"
+        android:text="@string/version_alarm"
+        android:textSize="18px" />
+
+    <TextView
+        style="@style/text_black"
+        android:text="版本信息"
+        android:textSize="30px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_version"
+        style="@style/text_mgray"
+        android:layout_marginTop="20px"
+        android:text="当前版本:"
+        android:textSize="18px" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/text_mgray"
+        android:layout_marginTop="5px"
+        android:text="更新时间:"
+        android:textSize="18px" />
+
+    <TextView
+        style="@style/text_black"
+        android:layout_marginTop="200px"
+        android:text="版本升级"
+        android:textSize="30px"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/tv_last_version"
+        style="@style/text_mgray"
+        android:layout_marginTop="20px"
+        android:text="当前版本为最新版本"
+        android:textSize="18px" />
+
+    <ImageView
+        android:id="@+id/iv_online_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:src="@mipmap/online_update"
+        android:visibility="gone" />
+
 
 </LinearLayout>

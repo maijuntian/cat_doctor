@@ -1,6 +1,7 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -52,6 +53,14 @@ public class TemperatureDelegate extends AppDelegate {
     TipPopWin step2PopWin, step3PopWin;
     public ProgressView pvProgress;
     public int currStep = -1;
+
+    Handler showPopHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
+    };
 
     @Override
     public int getRootLayoutId() {
@@ -150,13 +159,14 @@ public class TemperatureDelegate extends AppDelegate {
             step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
         }
         if(isDelayShow){
-            new Handler().postDelayed(new Runnable() {
+            showPopHandler.sendEmptyMessageDelayed(0, 500);
+            /*new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
 
                     step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
                 }
-            }, 1000);
+            }, 1000);*/
 
         } else {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);

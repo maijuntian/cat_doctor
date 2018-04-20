@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.healthmall.sail.cat_doctor.R;
@@ -25,16 +26,29 @@ public class ManagerHardwareCheckDelegate extends AppDelegate {
     RadioGroup rgSet;
     @Bind(R.id.iv_tip)
     ImageView ivTip;
-    @Bind(R.id.iv_power)
-    ImageView ivPower;
-    @Bind(R.id.tv_body)
-    TextView tvBody;
-    @Bind(R.id.tv_blood_o)
-    TextView tvBloodO;
-    @Bind(R.id.tv_bp_hr)
-    TextView tvBpHr;
+    @Bind(R.id.tv_height_tip)
+    TextView tvHeightTip;
+    @Bind(R.id.rl_height)
+    RelativeLayout rlHeight;
+    @Bind(R.id.tv_weight)
+    TextView tvWeight;
+    @Bind(R.id.tv_weight_tip)
+    TextView tvWeightTip;
+    @Bind(R.id.rl_weight)
+    RelativeLayout rlWeight;
+    @Bind(R.id.tv_bloodo_tip)
+    TextView tvBloodoTip;
+    @Bind(R.id.rl_bloodo)
+    RelativeLayout rlBloodo;
+    @Bind(R.id.tv_bp_hr_tip)
+    TextView tvBpHrTip;
+    @Bind(R.id.rl_bp_hr)
+    RelativeLayout rlBpHr;
     @Bind(R.id.ll_content)
     LinearLayout llContent;
+    @Bind(R.id.tv_title)
+    TextView tvTitle;
+
 
     @Override
     public int getRootLayoutId() {
@@ -65,16 +79,28 @@ public class ManagerHardwareCheckDelegate extends AppDelegate {
 
     }
 
-    public void showChecking(){
+    public void showChecking() {
+
+        tvTitle.setText("检测中，人不可站在机器上...");
         ivTip.setVisibility(View.GONE);
         llContent.setVisibility(View.VISIBLE);
 
-        tvBloodO.setText("正在扫描");
-        tvBody.setText("正在扫描");
-        tvBpHr.setText("正在扫描");
-        tvBloodO.setTextColor(ContextCompat.getColor(mContext, R.color.scaning));
-        tvBody.setTextColor(ContextCompat.getColor(mContext, R.color.scaning));
-        tvBpHr.setTextColor(ContextCompat.getColor(mContext, R.color.scaning));
+        rlBloodo.setVisibility(View.VISIBLE);
+        rlBpHr.setVisibility(View.VISIBLE);
+
+        rlBpHr.setBackgroundResource(R.mipmap.checking);
+        rlBloodo.setBackgroundResource(R.mipmap.checking);
+        rlHeight.setBackgroundResource(R.mipmap.checking);
+        rlWeight.setBackgroundResource(R.mipmap.checking);
+
+        tvBloodoTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvBpHrTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvHeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvWeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvBloodoTip.setText("正在检测...");
+        tvBpHrTip.setText("正在检测...");
+        tvHeightTip.setText("正在检测...");
+        tvWeightTip.setText("正在检测...");
     }
 
     public void showCalibration() {
@@ -83,47 +109,96 @@ public class ManagerHardwareCheckDelegate extends AppDelegate {
         llContent.setVisibility(View.GONE);
     }
 
-    public void showCalibartioning(){
+    public void showCalibartioning() {
+
+        tvTitle.setText("校准中，人不可站在机器上...");
         ivTip.setVisibility(View.GONE);
         llContent.setVisibility(View.VISIBLE);
 
-        tvBloodO.setText("正在扫描");
-        tvBody.setText("正在扫描");
-        tvBpHr.setText("正在扫描");
-        tvBloodO.setTextColor(ContextCompat.getColor(mContext, R.color.scaning));
-        tvBody.setTextColor(ContextCompat.getColor(mContext, R.color.scaning));
-        tvBpHr.setTextColor(ContextCompat.getColor(mContext, R.color.scaning));
+        rlBloodo.setVisibility(View.GONE);
+        rlBpHr.setVisibility(View.GONE);
 
+        rlHeight.setBackgroundResource(R.mipmap.checking);
+        rlWeight.setBackgroundResource(R.mipmap.checking);
+
+        tvHeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvWeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvHeightTip.setText("正在校准...");
+        tvWeightTip.setText("正在校准...");
     }
 
-    public void showBloodOResult(boolean result) {
+    public void showBloodOResult(boolean result, boolean isCheck) {
 
         if (result) {
-            tvBloodO.setText("扫描成功");
-            tvBloodO.setTextColor(ContextCompat.getColor(mContext, R.color.scan_succ));
+            rlBloodo.setBackgroundResource(R.mipmap.check_succ);
+            if(isCheck)
+                tvBloodoTip.setText("检测成功");
+            else
+                tvBloodoTip.setText("校准成功");
+            tvBloodoTip.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
         } else {
-            tvBloodO.setText("校准出错");
-            tvBloodO.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
+            rlBloodo.setBackgroundResource(R.mipmap.check_fail);
+            if(isCheck)
+                tvBloodoTip.setText("检测失败");
+            else
+                tvBloodoTip.setText("校准失败");
+            tvBloodoTip.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
         }
     }
 
-    public void showBodyResult(boolean result) {
+    public void showHeightResult(boolean result, boolean isCheck) {
+
+
         if (result) {
-            tvBody.setText("扫描成功");
-            tvBody.setTextColor(ContextCompat.getColor(mContext, R.color.scan_succ));
+            rlHeight.setBackgroundResource(R.mipmap.check_succ);
+            if(isCheck)
+                tvHeightTip.setText("检测成功");
+            else
+                tvHeightTip.setText("校准成功");
+            tvHeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
         } else {
-            tvBody.setText("校准出错");
-            tvBody.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
+            rlHeight.setBackgroundResource(R.mipmap.check_fail);
+            if(isCheck)
+                tvHeightTip.setText("检测失败");
+            else
+                tvHeightTip.setText("校准失败");
+            tvHeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
         }
     }
 
-    public void showBPHRResult(boolean result) {
+    public void showWeightResult(boolean result, boolean isCheck) {
         if (result) {
-            tvBpHr.setText("扫描成功");
-            tvBpHr.setTextColor(ContextCompat.getColor(mContext, R.color.scan_succ));
+            rlWeight.setBackgroundResource(R.mipmap.check_succ);
+            if(isCheck)
+                tvWeightTip.setText("检测成功");
+            else
+                tvWeightTip.setText("校准成功");
+            tvWeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
         } else {
-            tvBpHr.setText("校准出错");
-            tvBpHr.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
+            rlWeight.setBackgroundResource(R.mipmap.check_fail);
+            if(isCheck)
+                tvWeightTip.setText("检测失败");
+            else
+                tvWeightTip.setText("校准失败");
+            tvWeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
+        }
+    }
+
+    public void showBPHRResult(boolean result, boolean isCheck) {
+        if (result) {
+            rlBpHr.setBackgroundResource(R.mipmap.check_succ);
+            if(isCheck)
+                tvBpHrTip.setText("检测成功");
+            else
+                tvBpHrTip.setText("校准成功");
+            tvBpHrTip.setTextColor(ContextCompat.getColor(mContext, R.color.good_green));
+        } else {
+            rlBpHr.setBackgroundResource(R.mipmap.check_fail);
+            if(isCheck)
+                tvBpHrTip.setText("检测失败");
+            else
+                tvBpHrTip.setText("校准失败");
+            tvBpHrTip.setTextColor(ContextCompat.getColor(mContext, R.color.scan_fail));
         }
     }
 }

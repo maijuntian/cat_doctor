@@ -2,6 +2,7 @@ package com.healthmall.sail.cat_doctor.bean;
 
 import android.text.TextUtils;
 
+import com.healthmall.sail.cat_doctor.R;
 import com.mai.xmai_fast_lib.utils.MLog;
 
 import java.util.List;
@@ -41,6 +42,54 @@ public class QuestionReport {
 
     public String getQuestionResultNameReal() {
         return questionResultName.split(",")[0];
+    }
+
+    public int getQuestionResultIcon(){
+        switch (getQuestionResultNameReal()) {
+            case "平和质":
+                return R.mipmap.question_icon_pinghe;
+            case "气郁质":
+                return R.mipmap.question_icon_qiyu;
+            case "阳虚质":
+                return R.mipmap.question_icon_yangxu;
+            case "痰湿质":
+                return R.mipmap.question_icon_tanshi;
+            case "特禀质":
+                return R.mipmap.question_icon_telin;
+            case "阴虚质":
+                return R.mipmap.question_icon_yinxu;
+            case "湿热质":
+                return R.mipmap.question_icon_shire;
+            case "气虚质":
+                return R.mipmap.question_icon_qixu;
+            case "血瘀质":
+                return R.mipmap.question_icon_xueyu;
+        }
+        return 0;
+    }
+
+    public int getQuestionResultBg(){
+        switch (getQuestionResultNameReal()) {
+            case "平和质":
+                return R.mipmap.report_question_bg_pinghe;
+            case "气郁质":
+                return R.mipmap.report_question_bg_qiyu;
+            case "阳虚质":
+                return R.mipmap.report_question_bg_yangxu;
+            case "痰湿质":
+                return R.mipmap.report_question_bg_tanshi;
+            case "特禀质":
+                return R.mipmap.report_question_bg_telin;
+            case "阴虚质":
+                return R.mipmap.report_question_bg_yinxu;
+            case "湿热质":
+                return R.mipmap.report_question_bg_shire;
+            case "气虚质":
+                return R.mipmap.report_question_bg_qixu;
+            case "血瘀质":
+                return R.mipmap.report_question_bg_xueyu;
+        }
+        return 0;
     }
 
     public void setQuestionResultName(String questionResultName) {
@@ -105,7 +154,7 @@ public class QuestionReport {
         }
     }
 
-    public int[] getResultScore() {
+    /*public int[] getResultScore() {
 
         int[] score = new int[9];
 
@@ -125,7 +174,7 @@ public class QuestionReport {
                 case "痰湿质":
                     score[3] = resultDTO.getScore();
                     break;
-                case "特素质":
+                case "特禀质":
                     score[4] = resultDTO.getScore();
                     break;
                 case "血虚质":
@@ -144,7 +193,7 @@ public class QuestionReport {
         }
 
         return score;
-    }
+    }*/
 
     public boolean isFinish() {
         return !TextUtils.isEmpty(questionAnswerId);

@@ -41,6 +41,21 @@
             android:textColor="@drawable/question_answer_textcolor_selector"
             android:textSize="30px" />
 
+        <RadioButton
+            android:id="@+id/rb_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80px"
+            android:background="@drawable/manager_basic_tab_bg_selector"
+            android:button="@null"
+            android:drawableBottom="@drawable/manager_basic_tab_bar_selector"
+            android:drawablePadding="20px"
+            android:gravity="center"
+            android:paddingTop="20px"
+            android:text="修改密码"
+            android:textColor="@drawable/question_answer_textcolor_selector"
+            android:textSize="30px" />
+
     </RadioGroup>
 
     <LinearLayout
@@ -95,7 +110,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="310px"
         android:gravity="center_vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <SeekBar
             android:id="@+id/sb_voice"
@@ -104,9 +119,9 @@
             android:max="10"
             android:maxHeight="10px"
             android:progress="100"
-            android:thumbOffset="0px"
             android:progressDrawable="@drawable/voice_seekbar"
-            android:thumb="@mipmap/basic_voice_icon" />
+            android:thumb="@mipmap/basic_voice_icon"
+            android:thumbOffset="0px" />
 
         <TextView
             android:id="@+id/tv_voice"
@@ -118,5 +133,35 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_update_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="227px"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/old_pwd"
+            layout="@layout/view_password2" />
+
+        <include
+            android:id="@+id/new_pwd1"
+            layout="@layout/view_password2" />
+
+        <include
+            android:id="@+id/new_pwd2"
+            layout="@layout/view_password2" />
+
+        <ImageView
+            android:id="@+id/iv_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="180px"
+            android:src="@mipmap/pwd_commit_n" />
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -15,6 +15,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.healthmall.sail.cat_doctor.R;
@@ -26,13 +28,147 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
+import rx.Observable;
 import rx.functions.Action0;
 import rx.functions.Action1;
 import rx.functions.Action3;
 
 public class DialogUtils {
+
+    public static int tipIndex = 0;
+
+    public static void showConfirmInitDialog(Activity act, final Action0 callback) {
+        final Dialog dialog = new Dialog(act, R.style.LoadingDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.dialog_confirm_init);
+
+        (dialog.findViewById(R.id.tv_confirm)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                callback.call();
+            }
+        });
+
+        (dialog.findViewById(R.id.iv_close)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public static void showUpgradeFail(Activity act) {
+        final Dialog dialog = new Dialog(act, R.style.LoadingDialog);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.dialog_upgrade_fail);
+        dialog.show();
+
+        Observable.timer(3000, TimeUnit.MILLISECONDS).subscribe(new Action1<Long>() {
+            @Override
+            public void call(Long aLong) {
+                if(dialog != null && dialog.isShowing())
+                    dialog.dismiss();
+            }
+        });
+    }
+
+
+    public static void showNewVersionDialog(Activity act, final Action0 callback) {
+        final Dialog dialog = new Dialog(act, R.style.LoadingDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.dialog_new_version);
+
+        (dialog.findViewById(R.id.iv_upgrade)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                callback.call();
+            }
+        });
+
+        (dialog.findViewById(R.id.iv_close)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public static Dialog showUpgradeDialog(Activity act) {
+        final Dialog dialog = new Dialog(act, R.style.LoadingDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.dialog_upgrade);
+        dialog.show();
+
+        return dialog;
+    }
+
+
+    public static void showVoiceDialog(Activity act, final Action1<Boolean> callback) {
+        final Dialog dialog = new Dialog(act, R.style.LoadingDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.dialog_voice_sel);
+
+        ((RadioGroup) dialog.findViewById(R.id.rg_voice)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                dialog.dismiss();
+                if (checkedId == R.id.rb_voice) {
+                    callback.call(true);
+                } else {
+                    callback.call(false);
+                }
+            }
+        });
+
+        dialog.show();
+    }
+
+    public static void showVoiceTipDialog(Activity act) {
+        final Dialog dialog = new Dialog(act, R.style.LoadingDialog);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setContentView(R.layout.dialog_nav_tip);
+
+        dialog.getWindow().getAttributes().width = act.getWindowManager().getDefaultDisplay().getWidth();
+        dialog.getWindow().getAttributes().height = act.getWindowManager().getDefaultDisplay().getHeight();
+        tipIndex = 0;
+
+        final RelativeLayout ivNavTip = dialog.findViewById(R.id.rl_root);
+        final TextView tvoK = dialog.findViewById(R.id.tv_ok);
+        ivNavTip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (tipIndex) {
+                    case 0:
+                        ivNavTip.setBackgroundResource(R.mipmap.nav_tip2);
+                        tipIndex = 1;
+                        break;
+                    case 1:
+                        ivNavTip.setBackgroundResource(R.mipmap.nav_tip3);
+                        tipIndex = 2;
+                        tvoK.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        break;
+                }
+            }
+        });
+        tvoK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 
     public static void showLogoutDialog(Activity act, final Action0 logout) {
         final Dialog dialog = new Dialog(act, R.style.LoadingDialog);

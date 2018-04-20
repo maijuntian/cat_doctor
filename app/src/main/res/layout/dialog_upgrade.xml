@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="590px"
+    android:layout_height="314px"
+    android:background="@drawable/bg_corner_white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_black"
+        android:text="升级中..."
+        android:textSize="24px" />
+
+    <com.healthmall.sail.cat_doctor.widget.GreenHorizontalProgress
+        android:id="@+id/pb_progress"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="475px"
+        android:layout_height="20px"
+        android:layout_marginTop="20px"
+        android:progressDrawable="@drawable/green_progress" />
+
+</LinearLayout>

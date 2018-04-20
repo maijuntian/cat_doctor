@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,6 +14,7 @@
         android:textSize="60px" />
 
     <RelativeLayout
+        android:id="@+id/rl_body_bg1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/report_body_1"
@@ -118,6 +118,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_body_bg2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/report_body_2"
@@ -469,6 +470,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_body_bg3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/report_body_3"
@@ -756,6 +758,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_body_bg4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/report_body_4"
@@ -959,7 +962,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_body5"
+        android:id="@+id/rl_body_bg5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/report_body_5">

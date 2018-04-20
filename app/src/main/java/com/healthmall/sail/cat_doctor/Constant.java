@@ -20,4 +20,5 @@ public class Constant {
 
     public static final String SDCARD_CACHE_IMG_PATH = BASE_PATH
             + "upload/";
+    public static final String SDCARD_DOWNLOAD_PATH = BASE_PATH + "download/";
 }

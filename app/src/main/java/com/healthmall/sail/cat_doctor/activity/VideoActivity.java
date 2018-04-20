@@ -4,8 +4,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.widget.VideoView;
 
+import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
 import com.healthmall.sail.cat_doctor.delegate.VideoDelegate;
@@ -102,6 +104,17 @@ public class VideoActivity extends BaseActivity<VideoDelegate> {
         vvAdvert.destroyDrawingCache();
     }
 
+    @Override
+    public void loginSucc() {
+
+        SerialPortCmd.scanSucc();
+
+        if (MyApplication.get().getCurrUser().isAuthentication() || !TextUtils.isEmpty(MyApplication.get().getCurrUser().getBirthday())) {
+            startActivity(MainActivity.class, true);
+        } else {
+            startActivity(InfoActivity.class, true);
+        }
+    }
 
     @OnClick(R.id.rl_root)
     public void rl_rootClick() {

@@ -15,6 +15,7 @@ import com.healthmall.sail.cat_doctor.bean.Question;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
 import com.healthmall.sail.cat_doctor.bean.Symptom;
 import com.healthmall.sail.cat_doctor.bean.TemperatureReport;
+import com.healthmall.sail.cat_doctor.bean.Version;
 import com.healthmall.sail.cat_doctor.utils.BitmapUtils;
 import com.healthmall.sail.cat_doctor.utils.CommonUtils;
 import com.healthmall.sail.cat_doctor.utils.Keys;
@@ -61,7 +62,8 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
 
     @Override
     protected String getBaseUrl() {
-        return /*"http://apisail.healthmall.cn/api/"*/"http://dev-apisail.healthmall.cn/api/";
+        return "http://apisail.healthmall.cn/api/";
+        /* return "http://dev-apisail.healthmall.cn/api/";*/
     }
 
 
@@ -143,8 +145,16 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
         return checkError(showDialog(checkNetWork(observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()), context), context), context);
     }
 
+    protected <M> Observable<M> checkNoDialog2(Observable<CDRespone<M>> observable, Context context) {
+        return checkNetWork(checkResult2(observable), context);
+    }
 
     //请求接口
+
+    public Observable<Object> scanCode(MParams params, Context ctx) {
+        return checkNoDialog(mService.scanCode(params.getJsonRequestBody()), ctx);
+    }
+
 
     public Observable<CDRespone> bindDevice(String deviceId, Context ctx) {
         return checkNoResult(mService.bindDevice(new MParams().add("deviceId", deviceId).getJsonRequestBody()), ctx);
@@ -231,6 +241,14 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
     public Observable<Object> quit(MParams params, Context ctx) {
         MLog.log("" + (MyApplication.get().getCurrUser() == null));
         return checkNoDialog(mService.quit(MyApplication.get().getCurrUser().getAccessToken(), params.getJsonRequestBody()), ctx);
+    }
+
+    public Observable<Version> getNewVersion(MParams params, Context ctx) {
+        return checkNoDialog2(mService.getNewVersion(params.getJsonRequestBody()), ctx);
+    }
+
+    public Observable<Object> upgrade(MParams params, Context ctx) {
+        return checkNoDialog2(mService.upgrade(params.getJsonRequestBody()), ctx);
     }
 
     public Observable<List<Symptom>> getSymptom(Context ctx) {

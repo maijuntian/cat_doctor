@@ -44,6 +44,12 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
         if (hidden) {
             viewDelegate.hidePopWin();
+        } else if (currQuestionReport.isFinish()) {
+            if (currQuestionReport.getResultDTOs() == null || currQuestionReport.getResultDTOs().isEmpty()) {
+                getResult(currQuestionReport.getQuestionAnswerId());
+            } else {
+                viewDelegate.showReuslt(currQuestionReport, true);
+            }
         }
     }
 
@@ -75,6 +81,12 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
         }, new MyThrowable());
     }
 
+    /**
+     * 获取上一道题
+     *
+     * @param questionAnswerId
+     * @param subjectId
+     */
     private void getPreQuestion(String questionAnswerId, String subjectId) {
         CatDoctorApi.getInstance().preQuestion(new MParams()
                 .add("questionAnswerId", questionAnswerId)
@@ -87,6 +99,13 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
                 }, new MyThrowable());
     }
 
+    /**
+     * 获取下一道题
+     *
+     * @param subjectId
+     * @param questionAnswerId
+     * @param answerContent
+     */
     private void nextQuestion(String subjectId, String questionAnswerId, String answerContent) {
 
         CatDoctorApi.getInstance().questionAnswer(new MParams()
@@ -101,6 +120,9 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
         }, new MyThrowable());
     }
 
+    /**
+     * 获取第一道题
+     */
     private void getQuestion() {
         viewDelegate.showQuestion();
         CatDoctorApi.getInstance().questionAnswer(new MParams()
@@ -112,7 +134,11 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
         }, new MyThrowable());
     }
 
-
+    /**
+     * 获取问卷结果
+     *
+     * @param questionAnswerId
+     */
     private void getResult(final String questionAnswerId) {
         CatDoctorApi.getInstance().questionResult(new MParams().add("questionAnswerId", questionAnswerId), getActivity()).subscribe(new Action1<QuestionReport>() {
             @Override
@@ -201,7 +227,7 @@ public class QuestionFragment extends BaseFragment<QuestionDelegate> {
 
         switch (msg) { //语音
             case "AT+ASRCXBS": //重新辨识
-                if (viewDelegate.currStep == 2 ) {
+                if (viewDelegate.currStep == 2) {
                     reExamine();
                 }
                 return;

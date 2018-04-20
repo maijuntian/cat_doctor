@@ -18,6 +18,7 @@ import com.healthmall.sail.cat_doctor.utils.FloatUtils;
 import java.util.List;
 
 /**
+ *  底部平行，头部圆弧的进度条绘制
  * Created by mai on 2018/1/12.
  */
 public class LeftBarProgress extends View {
@@ -107,6 +108,9 @@ public class LeftBarProgress extends View {
 
         drawBg(canvas);
 
+        /**
+         * 动效绘制进度条
+         */
         progressIndex += progressPlus;
 
         if (progressIndex > progress)
@@ -119,6 +123,10 @@ public class LeftBarProgress extends View {
 
     }
 
+    /**
+     * 绘制背景颜色和背景文字
+     * @param canvas
+     */
     private void drawBg(Canvas canvas) {
         canvas.drawLine(getWidth() - 1, 0, getWidth() - 1, getHeight(), linePaint);
 
@@ -136,6 +144,12 @@ public class LeftBarProgress extends View {
     }
 
 
+    /**
+     * 根据进度条的数值，使用不同颜色渐变绘制进度条，
+     * @param canvas
+     * @param progress
+     * @param isFinish
+     */
     private void drawProgress(Canvas canvas, float progress, boolean isFinish) {
         float progressY;
 

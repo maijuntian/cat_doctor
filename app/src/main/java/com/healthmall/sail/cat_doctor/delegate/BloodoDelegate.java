@@ -1,6 +1,7 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -75,6 +76,14 @@ public class BloodoDelegate extends AppDelegate {
     RelativeLayout rlResult2;
     public int currStep = -1;
 
+    Handler showPopHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
+    };
+
     @Override
     public int getRootLayoutId() {
         return R.layout.fragment_examine_bloodo1;
@@ -86,6 +95,8 @@ public class BloodoDelegate extends AppDelegate {
 
         if (step3PopWin != null)
             step3PopWin.dismiss();
+
+        showPopHandler.removeMessages(0);
     }
 
 
@@ -181,12 +192,7 @@ public class BloodoDelegate extends AppDelegate {
         }
 
         if (isDelayShow) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
-                }
-            }, 1000);
+            showPopHandler.sendEmptyMessageDelayed(0, 500);
         } else {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
         }

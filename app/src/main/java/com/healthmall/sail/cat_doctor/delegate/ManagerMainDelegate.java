@@ -3,6 +3,7 @@ package com.healthmall.sail.cat_doctor.delegate;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -38,12 +39,26 @@ public class ManagerMainDelegate extends AppDelegate {
     ManagerProductInfoFragment productInfoFragment;
     ManagerSysSetFragment sysSetFragment;
     public ManagerHardwareCheckFragment hardwareCheckFragment;
-    ManagerOnlineUpdatedFragment onlineUpdatedFragment;
+    public ManagerOnlineUpdatedFragment onlineUpdatedFragment;
     ManagerAboutFragment aboutFragment;
 
     Fragment currFragment;
     @Bind(R.id.rb_basic)
     RadioButton rbBasic;
+    @Bind(R.id.rb_product_info)
+    RadioButton rbProductInfo;
+    @Bind(R.id.rb_sys_set)
+    RadioButton rbSysSet;
+    @Bind(R.id.rb_hardware_check)
+    RadioButton rbHardwareCheck;
+    @Bind(R.id.rb_online_update)
+    RadioButton rbOnlineUpdate;
+    @Bind(R.id.rb_about)
+    RadioButton rbAbout;
+    @Bind(R.id.iv_new_version)
+    public ImageView ivNewVersion;
+    @Bind(R.id.iv_power_off)
+    ImageView ivPowerOff;
 
     @Override
     public int getRootLayoutId() {
@@ -222,6 +237,7 @@ public class ManagerMainDelegate extends AppDelegate {
 
     private void showOnlineUpdatedFragment() {
 
+        ivNewVersion.setVisibility(View.GONE);
         if (currFragment != null && currFragment == onlineUpdatedFragment)
             return;
 

@@ -1,5 +1,6 @@
 package com.healthmall.sail.cat_doctor.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.CompoundButton;
@@ -27,6 +28,9 @@ public class ExamineActivity extends BaseActivity<ExamineDelegate> {
 
     public static final String EXAMINE_MENU = "EXAMINE_MENU";
 
+    boolean isShowDialog = false;
+    Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +39,7 @@ public class ExamineActivity extends BaseActivity<ExamineDelegate> {
 
         viewDelegate.notifyMenu();
 
-        viewDelegate.cbVoice.setChecked(getIntent().getBooleanExtra("isVoice", false));
+        viewDelegate.cbVoice.setChecked(MyApplication.get().getCurrUser().isVoice());
     }
 
     public void iv_reportClick() {
@@ -65,6 +69,16 @@ public class ExamineActivity extends BaseActivity<ExamineDelegate> {
             case "AT+ASRZYTXBS": //中医体质辨识
                 viewDelegate.checkMenu(SHOW_QUETION_EXAMINE);
                 break;
+            case "AT+ASRQX":// 取消
+                if (isShowDialog) {
+                    dialog.dismiss();
+                }
+                break;
+            case "AT+ASRJS": //结束
+                if (isShowDialog) {
+                    MyApplication.get().logout();
+                    finish();
+                }
             default:
                 viewDelegate.serialPortCallBack(msg);
                 break;
@@ -83,13 +97,23 @@ public class ExamineActivity extends BaseActivity<ExamineDelegate> {
 
     @OnClick(R.id.iv_logout)
     public void iv_logoutClick() {
-        DialogUtils.showLogoutDialog(this, new Action0() {
-            @Override
-            public void call() {
-                MyApplication.get().logout();
-                finish();
-            }
-        });
+        isShowDialog = true;
+        if (dialog == null) {
+            dialog = DialogUtils.showExitDialog(this, new Action0() {
+                @Override
+                public void call() {
+                    MyApplication.get().logout();
+                    finish();
+                }
+            }, new Action0() {
+                @Override
+                public void call() {
+                    isShowDialog = false;
+                }
+            });
+        } else {
+            dialog.show();
+        }
     }
 
     public void showNextExamine() {

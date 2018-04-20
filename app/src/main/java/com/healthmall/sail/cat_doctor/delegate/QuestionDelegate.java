@@ -1,6 +1,7 @@
 package com.healthmall.sail.cat_doctor.delegate;
 
 import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -76,8 +77,21 @@ public class QuestionDelegate extends AppDelegate {
     NoPaddingTextView tvProgressIndex;
     @Bind(R.id.tv_description)
     TextView tvDescription;
+    @Bind(R.id.iv_icon)
+    ImageView ivIcon;
+    @Bind(R.id.tv_question_label)
+    TextView tvQuestionLabel;
 
     public int currStep = -1;
+
+    Handler showPopHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (step3PopWin != null)
+                step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
+        }
+    };
 
     @Override
     public int getRootLayoutId() {
@@ -86,14 +100,19 @@ public class QuestionDelegate extends AppDelegate {
 
     public void hidePopWin() {
 
-        if (step3PopWin != null)
+        if (step3PopWin != null) {
+            showPopHandler.removeMessages(0);
             step3PopWin.dismiss();
+        }
     }
 
 
     public void showQuestion() {
+
+        llProgress.setVisibility(View.VISIBLE);
         llResult.setVisibility(View.GONE);
         ivLeft.setVisibility(View.GONE);
+        tvQuestionLabel.setText("中医体质辨识");
         if (step3PopWin != null)
             step3PopWin.dismiss();
     }
@@ -170,7 +189,9 @@ public class QuestionDelegate extends AppDelegate {
         llResult.setVisibility(View.VISIBLE);
         ivLeft.setVisibility(View.GONE);
 
+        llProgress.setVisibility(View.GONE);
         llIndex.setVisibility(View.GONE);
+        tvQuestionLabel.setText("中医体质辨识结果");
 
         if (step3PopWin == null) {
             step3PopWin = new TipPopWin(mContext, R.layout.dialog_tip_result);
@@ -178,16 +199,17 @@ public class QuestionDelegate extends AppDelegate {
             step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
             step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
 
-            ((TextView)step3PopWin.getContentView().findViewById(R.id.tv_reexamine)).setText("重新辨识");
+            step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setBackgroundResource(R.drawable.button_rerecognize_selector);
         }
 
-        if(isDelayShow){
-            new Handler().postDelayed(new Runnable() {
+        if (isDelayShow) {
+            showPopHandler.sendEmptyMessageDelayed(0, 500);
+            /*new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
                 }
-            }, 1000);
+            }, 1000);*/
         } else {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
         }
@@ -199,6 +221,7 @@ public class QuestionDelegate extends AppDelegate {
         }
 
         tvHabits.setText(currQuestionReport.getQuestionResultNameReal());
+        ivIcon.setImageResource(currQuestionReport.getQuestionResultIcon());
         tvDescription.setText(currQuestionReport.getDescription());
 
         SerialPortCmd.face4();

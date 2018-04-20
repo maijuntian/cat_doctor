@@ -74,6 +74,13 @@ public class BodyDelegate extends AppDelegate {
 
     public int currStep = -1;
 
+    Handler showPopHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            showstep6PopWin();
+        }
+    };
 
     @Override
     public int getRootLayoutId() {
@@ -96,6 +103,8 @@ public class BodyDelegate extends AppDelegate {
 
         if (viewHolderFat.ivScaning != null)
             viewHolderFat.ivScaning.stopScaning();
+
+        showPopHandler.removeMessages(0);
     }
 
     public void showStep1() {
@@ -317,6 +326,7 @@ public class BodyDelegate extends AppDelegate {
             float weight = Float.parseFloat(bodyReport.getBm_weight());
             float height = Float.parseFloat(bodyReport.getBm_height());
             float bmi = weight / ((height / 100f) * (height / 100f));
+            bodyReport.setBm_bf_bmi(FloatUtils.round(bmi) + "");
 
             CommonUtils.moveWeightRuler(ivWeight, weight);
             CommonUtils.moveHeightRuler(ivHeight, height);
@@ -324,7 +334,7 @@ public class BodyDelegate extends AppDelegate {
 
             tvWeight.setText(weight + "");
             tvHeight.setText(height + "");
-            tvBmi.setText(FloatUtils.round(bmi) + "");
+            tvBmi.setText(bodyReport.getBm_bf_bmi());
         }
 
         public void setBg() {
@@ -525,12 +535,13 @@ public class BodyDelegate extends AppDelegate {
                 }
             });
             if (isDelayShow) {
-                new Handler().postDelayed(new Runnable() {
+                showPopHandler.sendEmptyMessageDelayed(0, 500);
+               /* new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         showstep6PopWin();
                     }
-                }, 1000);
+                }, 1000);*/
             } else {
                 showstep6PopWin();
             }

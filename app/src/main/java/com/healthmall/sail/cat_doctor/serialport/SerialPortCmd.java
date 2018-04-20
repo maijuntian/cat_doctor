@@ -36,6 +36,9 @@ public class SerialPortCmd {
 
     public static final String OK_BCALIBRATION = "OK+CAL";
     public static final String OK_HADTEST = "OK+HADTEST";
+    public static final String ERR_CAL_HEIGHT = "ERR+CAL+HEIGHT";
+    public static final String ERR_CAL_WEIGHT = "ERR+CAL+WEIGHT";
+    public static final String ERR_CAL_BODY = "ERR+CAL+BODYFAT";
 
     public static final String ERR_BBLOODPRS = "ERR+BLOODPRS";
 
@@ -107,6 +110,11 @@ public class SerialPortCmd {
 
     public static void stopBloodOPRS() {
         SerialPortEngine.getInstance().sendMsg(AT_PRE + "STPBLOODPRS");
+    }
+
+    public static void fsjh(String height){
+
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FSJH=" + height);
     }
 
     public static void hadTest() {
@@ -205,7 +213,7 @@ public class SerialPortCmd {
         bodyReport.setBm_bf_bonysalts(divideTenFloat(mapTemp.get("BONYSALTS")));
         bodyReport.setBm_bf_protein(divideTenFloat(mapTemp.get("PROTEIN")));
         bodyReport.setBm_bf_sm(divideTenFloat(mapTemp.get("SM")));
-        bodyReport.setBm_bf_bmi(divideTenFloat(mapTemp.get("BMI")));
+//        bodyReport.setBm_bf_bmi(divideTenFloat(mapTemp.get("BMI")));
         bodyReport.setBm_bf_bm(mapTemp.get("BM"));
         bodyReport.setBm_bf_bfr(divideTenFloat(mapTemp.get("BFR")));
         bodyReport.setBm_bf_bmr(divideTenFloat(mapTemp.get("BMR")));
@@ -243,8 +251,8 @@ public class SerialPortCmd {
             bodyReport.setBm_bf_wwc(bodyReport.getBm_bf_hip());
         }
 
-        float wthr = Float.parseFloat(bodyReport.getBm_bf_wwc()) / Float.parseFloat(bodyReport.getBm_bf_hip());
-        bodyReport.setBm_bf_wthr(((Math.round(wthr * 10)) / 10f) + "");
+//        float wthr = Float.parseFloat(bodyReport.getBm_bf_wwc()) / Float.parseFloat(bodyReport.getBm_bf_hip());
+        bodyReport.setBm_bf_wthr(divideTenFloat(mapTemp.get("RAC")) + "");
     }
 
     public static void parseBloodOX(String msg, BloodOxygenReport bloodOxygenReport) {
@@ -305,7 +313,7 @@ public class SerialPortCmd {
 
     private static String dividePmTenFloat(String data) {
         int dataInt = Integer.parseInt(data);
-        if (dataInt > 32768) {
+        if (dataInt >= 32768) {
             dataInt = 32768 - dataInt;
         }
         return (dataInt / 10f) + "";

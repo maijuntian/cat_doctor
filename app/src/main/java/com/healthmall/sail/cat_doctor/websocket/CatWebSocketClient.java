@@ -27,12 +27,13 @@ import rx.functions.Action1;
 
 
 /**
+ * 与服务器通过WebSokect建立长连接
  * Created by mai on 2017/11/17.
  */
 public class CatWebSocketClient extends WebSocketClient {
 
-        public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
-//    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
+//  public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
+    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
 
     static CatWebSocketClient instance;
 
@@ -70,7 +71,6 @@ public class CatWebSocketClient extends WebSocketClient {
 
     @Override
     public void send(String text) throws NotYetConnectedException {
-
         MLog.log("发送信息--->" + text);
         super.send(text);
     }
@@ -151,6 +151,9 @@ public class CatWebSocketClient extends WebSocketClient {
         reConnect();
     }
 
+    /**
+     * 开启定期检测线程
+     */
     public static void reConnect() {
 
         if (sbReconnect != null) {

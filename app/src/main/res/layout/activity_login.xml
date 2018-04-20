@@ -105,7 +105,7 @@
         android:layout_below="@id/iv_login"
         android:layout_marginTop="20px"
         android:paddingRight="20px"
-        android:text="修改密码"
+        android:text="初始化密码"
         android:textColor="@color/nav_gray"
         android:textSize="20px" />
 

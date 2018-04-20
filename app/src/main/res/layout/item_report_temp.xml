@@ -14,6 +14,7 @@
         android:textStyle="bold" />
 
     <RelativeLayout
+        android:id="@+id/rl_temp_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/report_temp_bg">
