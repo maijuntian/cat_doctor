@@ -102,7 +102,7 @@ public class Report1Delegate extends BaseDelegate {
         super.initWidget();
 
         rbResult.setChecked(true);
-        if(!Configs.useTemp)
+        if (!Configs.useTemp)
             rbTemp.setVisibility(View.GONE);
         lvReport.setOnScrollListener(new AbsListView.OnScrollListener() {
 
@@ -111,7 +111,7 @@ public class Report1Delegate extends BaseDelegate {
                 MLog.log("scrollState:" + scrollState);
                 if (scrollState == 0) {
                     int firstVisibleItem = lvReport.getFirstVisiblePosition();
-                    if(!Configs.useTemp){
+                    if (!Configs.useTemp) {
                         switch (firstVisibleItem) {
                             case 0:
                                 rbResult.setChecked(true);
@@ -123,13 +123,13 @@ public class Report1Delegate extends BaseDelegate {
                                 rbBo.setChecked(true);
                                 break;
                             case 3:
-                                rbBp.setChecked(true);
-                                break;
-                            case 4:
                                 rbFaceTon.setChecked(true);
                                 break;
-                            case 5:
+                            case 4:
                                 rbQuestion.setChecked(true);
+                                break;
+                            case 5:
+                                rbBp.setChecked(true);
                                 break;
                         }
                     } else {
@@ -147,13 +147,13 @@ public class Report1Delegate extends BaseDelegate {
                                 rbBo.setChecked(true);
                                 break;
                             case 4:
-                                rbBp.setChecked(true);
-                                break;
-                            case 5:
                                 rbFaceTon.setChecked(true);
                                 break;
-                            case 6:
+                            case 5:
                                 rbQuestion.setChecked(true);
+                                break;
+                            case 6:
+                                rbBp.setChecked(true);
                                 break;
                         }
                     }
@@ -176,14 +176,14 @@ public class Report1Delegate extends BaseDelegate {
 
             @Override
             public int getCount() {
-                if(!Configs.useTemp)
+                if (!Configs.useTemp)
                     return 6;
                 return 7;
             }
 
             @Override
             protected int bindLayoutId(int position) {
-                if(!Configs.useTemp){
+                if (!Configs.useTemp) {
                     switch (position) {
                         case 0:
                             return R.layout.item_report_result;
@@ -200,23 +200,24 @@ public class Report1Delegate extends BaseDelegate {
                                 return R.layout.item_report_bloodo_un;
                             }
                         case 3:
-                            if (report.getBloodPressureReport().isFinish()) {
-                                return R.layout.item_report_bp_hr;
-                            } else {
-                                return R.layout.item_report_bp_hr_un;
-                            }
-                        case 4:
                             if (report.getFaceTonReport().isFinish()) {
                                 return R.layout.item_report_face_ton;
                             } else {
                                 return R.layout.item_report_face_ton_un;
                             }
-                        case 5:
+                        case 4:
                             if (report.getQuestionReport().isFinish()) {
                                 return R.layout.item_report_question;
                             } else {
                                 return R.layout.item_report_question_un;
                             }
+                        case 5:
+                            if (report.getBloodPressureReport().isFinish()) {
+                                return R.layout.item_report_bp_hr;
+                            } else {
+                                return R.layout.item_report_bp_hr_un;
+                            }
+
                     }
                 }
                 switch (position) {
@@ -241,22 +242,22 @@ public class Report1Delegate extends BaseDelegate {
                             return R.layout.item_report_bloodo_un;
                         }
                     case 4:
-                        if (report.getBloodPressureReport().isFinish()) {
-                            return R.layout.item_report_bp_hr;
-                        } else {
-                            return R.layout.item_report_bp_hr_un;
-                        }
-                    case 5:
                         if (report.getFaceTonReport().isFinish()) {
                             return R.layout.item_report_face_ton;
                         } else {
                             return R.layout.item_report_face_ton_un;
                         }
-                    case 6:
+                    case 5:
                         if (report.getQuestionReport().isFinish()) {
                             return R.layout.item_report_question;
                         } else {
                             return R.layout.item_report_question_un;
+                        }
+                    case 6:
+                        if (report.getBloodPressureReport().isFinish()) {
+                            return R.layout.item_report_bp_hr;
+                        } else {
+                            return R.layout.item_report_bp_hr_un;
                         }
                 }
                 return 0;
@@ -264,7 +265,7 @@ public class Report1Delegate extends BaseDelegate {
 
             @Override
             protected void initView(Object data, BaseViewHolder viewHolder) {
-                if(!Configs.useTemp){
+                if (!Configs.useTemp) {
                     switch (viewHolder.getPosition()) {
                         case 0:
                             initResult(viewHolder);
@@ -276,13 +277,13 @@ public class Report1Delegate extends BaseDelegate {
                             initBloodo(viewHolder);
                             break;
                         case 3:
-                            initBloodPressure(viewHolder);
-                            break;
-                        case 4:
                             initFaceTon(viewHolder);
                             break;
-                        case 5:
+                        case 4:
                             initQuestion(viewHolder);
+                            break;
+                        case 5:
+                            initBloodPressure(viewHolder);
                             break;
                     }
                 } else {
@@ -300,13 +301,13 @@ public class Report1Delegate extends BaseDelegate {
                             initBloodo(viewHolder);
                             break;
                         case 4:
-                            initBloodPressure(viewHolder);
-                            break;
-                        case 5:
                             initFaceTon(viewHolder);
                             break;
-                        case 6:
+                        case 5:
                             initQuestion(viewHolder);
+                            break;
+                        case 6:
+                            initBloodPressure(viewHolder);
                             break;
                     }
                 }
@@ -487,6 +488,7 @@ public class Report1Delegate extends BaseDelegate {
                     //肌肉评估
                     ImageView ivUpBal = viewHolder.findViewById(R.id.iv_up_bal);
                     ImageView ivUpBalUn = viewHolder.findViewById(R.id.iv_up_unbal);
+                    ImageView ivUpNomal = viewHolder.findViewById(R.id.iv_up_nomal);
                     ImageView ivUpStr = viewHolder.findViewById(R.id.iv_up_str);
                     ImageView ivUpStrUn = viewHolder.findViewById(R.id.iv_up_unstr);
                     if (bodyRespone.getUpperLimbBalance() != null && bodyRespone.getUpperLimbBalance().equals("均衡")) { //上肢均衡
@@ -500,13 +502,20 @@ public class Report1Delegate extends BaseDelegate {
                     if (bodyRespone.getUpperLimbDeveloped() != null && bodyRespone.getUpperLimbDeveloped().equals("发达")) { //上肢发达
                         ivUpStr.setVisibility(View.VISIBLE);
                         ivUpStrUn.setVisibility(View.GONE);
+                        ivUpNomal.setVisibility(View.GONE);
+                    } else if (bodyRespone.getUpperLimbDeveloped() != null && bodyRespone.getUpperLimbDeveloped().equals("正常")) {
+                        ivUpStr.setVisibility(View.GONE);
+                        ivUpStrUn.setVisibility(View.GONE);
+                        ivUpNomal.setVisibility(View.VISIBLE);
                     } else {
                         ivUpStr.setVisibility(View.GONE);
                         ivUpStrUn.setVisibility(View.VISIBLE);
+                        ivUpNomal.setVisibility(View.GONE);
                     }
 
                     ImageView ivDownBal = viewHolder.findViewById(R.id.iv_down_bal);
                     ImageView ivDownBalUn = viewHolder.findViewById(R.id.iv_down_unbal);
+                    ImageView ivDownNomal = viewHolder.findViewById(R.id.iv_down_nomal);
                     ImageView ivDownStr = viewHolder.findViewById(R.id.iv_down_str);
                     ImageView ivDownStrUn = viewHolder.findViewById(R.id.iv_down_unstr);
                     if (bodyRespone.getLowerLimbBalance() != null && bodyRespone.getLowerLimbBalance().equals("均衡")) { //下肢均衡
@@ -520,9 +529,15 @@ public class Report1Delegate extends BaseDelegate {
                     if (bodyRespone.getLowerLimbDeveloped() != null && bodyRespone.getLowerLimbDeveloped().equals("发达")) { //下肢发达
                         ivDownStr.setVisibility(View.VISIBLE);
                         ivDownStrUn.setVisibility(View.GONE);
+                        ivDownNomal.setVisibility(View.GONE);
+                    } else if (bodyRespone.getLowerLimbDeveloped() != null && bodyRespone.getLowerLimbDeveloped().equals("正常")) {
+                        ivDownStr.setVisibility(View.GONE);
+                        ivDownStrUn.setVisibility(View.GONE);
+                        ivDownNomal.setVisibility(View.VISIBLE);
                     } else {
                         ivDownStr.setVisibility(View.GONE);
                         ivDownStrUn.setVisibility(View.VISIBLE);
+                        ivDownNomal.setVisibility(View.GONE);
                     }
 
                     SpiderWebScoreView spiderWebMucel = viewHolder.findViewById(R.id.spiderWeb_mucel);

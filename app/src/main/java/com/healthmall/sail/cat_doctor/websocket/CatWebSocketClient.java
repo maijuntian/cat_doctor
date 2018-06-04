@@ -120,6 +120,8 @@ public class CatWebSocketClient extends WebSocketClient {
                     MyApplication.get().loginSucc(user);
                     break;
                 case "lock":
+                    User user1 = new Gson().fromJson(message, User.class);
+                    MyApplication.get().lock(user1);
                     break;
             }
         } catch (JSONException e) {

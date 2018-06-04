@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
+import com.healthmall.sail.cat_doctor.base.BaseExamineActivity;
 import com.healthmall.sail.cat_doctor.delegate.ExamineDelegate;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.utils.DialogUtils;
@@ -17,14 +18,14 @@ import butterknife.OnClick;
 import rx.functions.Action0;
 
 
-public class ExamineActivity extends BaseActivity<ExamineDelegate> {
+public class ExamineActivity extends BaseExamineActivity<ExamineDelegate> {
 
     public static final int SHOW_BODY_EXAMINE = 0;
     public static final int SHOW_TEMPERATURE = 1;
     public static final int SHOW_BLOODO_EXAMINE = 2;
-    public static final int SHOW_BLOOD_HEART_EXAMINE = 3;
-    public static final int SHOW_FACE_TON_EXAMINE = 4;
-    public static final int SHOW_QUETION_EXAMINE = 5;
+    public static final int SHOW_FACE_TON_EXAMINE = 3;
+    public static final int SHOW_QUETION_EXAMINE = 4;
+    public static final int SHOW_BLOOD_HEART_EXAMINE = 5;
 
     public static final String EXAMINE_MENU = "EXAMINE_MENU";
 
@@ -131,10 +132,11 @@ public class ExamineActivity extends BaseActivity<ExamineDelegate> {
 
     public void showReport() {
 
-        if (!MyApplication.get().getCurrUserReport().getBodyReport().isFinish() &&
+        if (/*!MyApplication.get().getCurrUserReport().getBodyReport().isFinish() &&
                 !MyApplication.get().getCurrUserReport().getBloodOxygenReport().isFinish() &&
-                !MyApplication.get().getCurrUserReport().getBloodPressureReport().isFinish() &&
+                !MyApplication.get().getCurrUserReport().getBloodPressureReport().isFinish() &&*/
                 !MyApplication.get().getCurrUserReport().getQuestionReport().isFinish()) {
+
             DialogUtils.showReportDialog(this, new Action0() {
                 @Override
                 public void call() {

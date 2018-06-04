@@ -1,19 +1,23 @@
 package com.healthmall.sail.cat_doctor.base;
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.IBinder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.healthmall.sail.cat_doctor.activity.IndexActivity;
 import com.mai.xmai_fast_lib.mvvm.presenter.ActivityPresenter;
 import com.mai.xmai_fast_lib.mvvm.view.IDelegate;
+import com.mai.xmai_fast_lib.utils.XAppManager;
 
 /**
  * Created by mai on 2017/11/30.
  */
 public class BaseSoftActivity<T extends IDelegate> extends ActivityPresenter<T>{
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {

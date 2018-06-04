@@ -98,31 +98,31 @@ public class UserReport {
                     return 1;
                 if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!bloodPressureReport.isFinish())
-                    return 3;
                 if (!faceTonReport.isFinish())
-                    return 4;
+                    return 3;
                 if (!questionReport.isFinish())
+                    return 4;
+                if (!bloodPressureReport.isFinish())
                     return 5;
                 break;
             case 1:
                 if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!bloodPressureReport.isFinish())
-                    return 3;
                 if (!faceTonReport.isFinish())
-                    return 4;
+                    return 3;
                 if (!questionReport.isFinish())
+                    return 4;
+                if (!bloodPressureReport.isFinish())
                     return 5;
                 if (!bodyReport.isFinish())
                     return 0;
                 break;
             case 2:
-                if (!bloodPressureReport.isFinish())
-                    return 3;
                 if (!faceTonReport.isFinish())
-                    return 4;
+                    return 3;
                 if (!questionReport.isFinish())
+                    return 4;
+                if (!bloodPressureReport.isFinish())
                     return 5;
                 if (!bodyReport.isFinish())
                     return 0;
@@ -130,9 +130,9 @@ public class UserReport {
                     return 1;
                 break;
             case 3:
-                if (!faceTonReport.isFinish())
-                    return 4;
                 if (!questionReport.isFinish())
+                    return 4;
+                if (!bloodPressureReport.isFinish())
                     return 5;
                 if (!bodyReport.isFinish())
                     return 0;
@@ -142,7 +142,7 @@ public class UserReport {
                     return 2;
                 break;
             case 4:
-                if (!questionReport.isFinish())
+                if (!bloodPressureReport.isFinish())
                     return 5;
                 if (!bodyReport.isFinish())
                     return 0;
@@ -150,7 +150,7 @@ public class UserReport {
                     return 1;
                 if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!bloodPressureReport.isFinish())
+                if (!faceTonReport.isFinish())
                     return 3;
                 break;
             case 5:
@@ -160,9 +160,9 @@ public class UserReport {
                     return 1;
                 if (!bloodOxygenReport.isFinish())
                     return 2;
-                if (!bloodPressureReport.isFinish())
-                    return 3;
                 if (!faceTonReport.isFinish())
+                    return 3;
+                if (!questionReport.isFinish())
                     return 4;
         }
         return 0;

@@ -63,7 +63,7 @@ public class CatDoctorApi extends BaseRetrofitService<CatDoctorService> {
     @Override
     protected String getBaseUrl() {
         return "http://apisail.healthmall.cn/api/";
-        /* return "http://dev-apisail.healthmall.cn/api/";*/
+//        return "http://dev-apisail.healthmall.cn/api/";
     }
 
 

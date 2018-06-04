@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.test.mock.MockContext;
 import android.text.TextUtils;
 
+import com.healthmall.sail.cat_doctor.activity.IndexActivity;
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
 import com.healthmall.sail.cat_doctor.base.BaseSoftActivity;
 import com.healthmall.sail.cat_doctor.bean.User;
@@ -78,7 +79,7 @@ public class MyApplication extends BaseApplication {
             SharedPreferencesHelper.getInstance(getApplicationContext()).putFloatValue(Keys.KEY_LAST_VERSION, currVersion);
             return;
         } else {
-            MLog.log("currVersion==" +currVersion + "   version==" + version);
+            MLog.log("currVersion==" + currVersion + "   version==" + version);
             if (currVersion > version) {
                 CatDoctorApi.getInstance().upgrade(new MParams()
                         .add("deviceIdentity", SharedPreferencesHelper.getInstance(getApplicationContext()).getStringValue(Keys.KEY_DEVICE_ID))
@@ -142,6 +143,20 @@ public class MyApplication extends BaseApplication {
                 ((BaseSoftActivity) act).loginSucc();
             }
         });
+    }
+
+    public void lock(User user) {
+
+        //退出用户，关锁
+
+        if (currUser == null || TextUtils.isEmpty(user.getMallId()))
+            return;
+
+        if (currUser.getMallId().equals(user.getMallId())) {
+            logout();
+            XAppManager.getInstance().finishALLActivityExcept(IndexActivity.class);
+        }
+
     }
 
     public void serialPortCallBack(final String msg) {

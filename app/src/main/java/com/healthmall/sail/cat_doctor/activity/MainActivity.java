@@ -7,6 +7,7 @@ import android.widget.CompoundButton;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
+import com.healthmall.sail.cat_doctor.base.BaseExamineActivity;
 import com.healthmall.sail.cat_doctor.delegate.MainDelegate;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.utils.DialogUtils;
@@ -21,7 +22,7 @@ import rx.functions.Action1;
 /**
  * Created by mai on 2017/11/10.
  */
-public class MainActivity extends BaseActivity<MainDelegate> {
+public class MainActivity extends BaseExamineActivity<MainDelegate> {
 
 
     boolean isShowDialog = false;

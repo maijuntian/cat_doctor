@@ -45,7 +45,7 @@
         style="@style/text_mgray"
         android:layout_marginLeft="1322px"
         android:layout_marginTop="166px"
-        android:text="肌肉率"
+        android:text="骨骼肌率"
         android:textSize="24px" />
 
 
@@ -122,7 +122,7 @@
 
         <TextView
             style="@style/text_black"
-            android:text="肌肉重(kg)"
+            android:text="骨盐量(kg)"
             android:textSize="15px" />
 
 

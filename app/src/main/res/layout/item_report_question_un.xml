@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_xblack"
+        android:layout_marginBottom="40px"
+        android:layout_marginTop="49px"
+        android:text="中医体质辨识"
+        android:textSize="60px"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-30px"
+        android:background="@mipmap/report_question_bg_un"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <TextView
-            style="@style/text_xblack"
-            android:layout_marginBottom="40px"
-            android:layout_marginTop="49px"
-            android:text="中医体质辨识"
-            android:textSize="60px"
+            style="@style/text_white"
+            android:layout_marginTop="336px"
+            android:gravity="center_horizontal"
+            android:text="@string/report_question_un_tip"
+            android:textSize="36px"
             android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/iv_examine_question"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-30px"
-            android:background="@mipmap/report_question_bg_un"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="visible">
-
-            <TextView
-                style="@style/text_white"
-                android:layout_marginTop="336px"
-                android:gravity="center_horizontal"
-                android:text="@string/report_question_un_tip"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/iv_examine_question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="91px"
-                android:src="@mipmap/report_exmaine" />
-
-        </LinearLayout>
+            android:layout_marginTop="91px"
+            android:src="@mipmap/report_exmaine" />
 
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

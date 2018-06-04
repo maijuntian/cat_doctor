@@ -8,6 +8,7 @@ import android.view.View;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.base.BaseActivity;
+import com.healthmall.sail.cat_doctor.base.BaseExamineActivity;
 import com.healthmall.sail.cat_doctor.bean.QuestionReport;
 import com.healthmall.sail.cat_doctor.bean.Symptom;
 import com.healthmall.sail.cat_doctor.delegate.Report1Delegate;
@@ -24,7 +25,7 @@ import rx.functions.Action0;
 import rx.functions.Action1;
 
 
-public class Report1Activity extends BaseActivity<Report1Delegate> {
+public class Report1Activity extends BaseExamineActivity<Report1Delegate> {
 
     boolean isShowDialog = false;
 
@@ -128,13 +129,13 @@ public class Report1Activity extends BaseActivity<Report1Delegate> {
                 case R.id.rb_bo:
                     viewDelegate.lvReport.setSelection(2);
                     break;
-                case R.id.rb_bp:
+                case R.id.rb_face_ton:
                     viewDelegate.lvReport.setSelection(3);
                     break;
-                case R.id.rb_face_ton:
+                case R.id.rb_question:
                     viewDelegate.lvReport.setSelection(4);
                     break;
-                case R.id.rb_question:
+                case R.id.rb_bp:
                     viewDelegate.lvReport.setSelection(5);
                     break;
             }
@@ -152,13 +153,13 @@ public class Report1Activity extends BaseActivity<Report1Delegate> {
                 case R.id.rb_bo:
                     viewDelegate.lvReport.setSelection(3);
                     break;
-                case R.id.rb_bp:
+                case R.id.rb_face_ton:
                     viewDelegate.lvReport.setSelection(4);
                     break;
-                case R.id.rb_face_ton:
+                case R.id.rb_question:
                     viewDelegate.lvReport.setSelection(5);
                     break;
-                case R.id.rb_question:
+                case R.id.rb_bp:
                     viewDelegate.lvReport.setSelection(6);
                     break;
             }

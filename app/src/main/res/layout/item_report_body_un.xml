@@ -1,49 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/text_xblack"
+        android:layout_marginBottom="40px"
+        android:layout_marginTop="49px"
+        android:text="人体成分"
+        android:textSize="60px"
+        android:textStyle="bold" />
 
     <LinearLayout
+        android:id="@+id/ll_body_bg_un"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-30px"
+        android:background="@mipmap/report_body_bg_un"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <TextView
-            style="@style/text_xblack"
-            android:layout_marginBottom="40px"
-            android:layout_marginTop="49px"
-            android:text="人体成分"
-            android:textStyle="bold"
-            android:textSize="60px" />
-
-        <LinearLayout
-            android:id="@+id/ll_body_bg_un"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-30px"
-            android:background="@mipmap/report_body_bg_un"
+            style="@style/text_white"
+            android:layout_marginTop="336px"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:visibility="visible">
+            android:text="@string/report_body_un_tip"
+            android:textSize="36px"
+            android:textStyle="bold" />
 
-            <TextView
-                style="@style/text_white"
-                android:layout_marginTop="336px"
-                android:gravity="center_horizontal"
-                android:text="@string/report_body_un_tip"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/iv_examine_body"
-                android:layout_marginTop="91px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/report_exmaine" />
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_examine_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="91px"
+            android:src="@mipmap/report_exmaine" />
 
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

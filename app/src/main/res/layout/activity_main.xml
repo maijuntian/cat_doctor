@@ -19,20 +19,20 @@
 
         <ImageView
             android:id="@+id/iv_divider"
-            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/main_line" />
+            android:src="@mipmap/main_line"
+            android:visibility="visible" />
 
 
         <ImageView
-            android:visibility="visible"
             android:id="@+id/iv_temp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/main_menu11_selector"
-            android:gravity="center" />
+            android:gravity="center"
+            android:visibility="visible" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -52,13 +52,6 @@
             android:layout_height="match_parent"
             android:src="@mipmap/main_line" />
 
-        <ImageView
-            android:id="@+id/iv_bp_hp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/main_menu3_selector"
-            android:gravity="center" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -84,6 +77,19 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/main_menu5_selector"
+            android:gravity="center" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/main_line" />
+
+        <ImageView
+            android:id="@+id/iv_bp_hp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/main_menu3_selector"
             android:gravity="center" />
     </LinearLayout>
 

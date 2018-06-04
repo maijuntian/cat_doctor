@@ -218,22 +218,6 @@
 
 
                     <RadioButton
-                        android:id="@+id/rb_bp"
-                        android:layout_width="150px"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10px"
-                        android:layout_marginTop="20px"
-                        android:background="@drawable/report_index_bg_selector"
-                        android:button="@drawable/nav_trans"
-                        android:drawableLeft="@drawable/report_index_icon_selector"
-                        android:drawablePadding="6px"
-                        android:paddingLeft="37px"
-                        android:text="血压"
-                        android:textColor="@drawable/text_white_gray_selector"
-                        android:textSize="18px" />
-
-
-                    <RadioButton
                         android:id="@+id/rb_face_ton"
                         android:layout_width="150px"
                         android:layout_height="wrap_content"
@@ -263,6 +247,20 @@
                         android:textColor="@drawable/text_white_gray_selector"
                         android:textSize="18px" />
 
+                    <RadioButton
+                        android:id="@+id/rb_bp"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="20px"
+                        android:background="@drawable/report_index_bg_selector"
+                        android:button="@drawable/nav_trans"
+                        android:drawableLeft="@drawable/report_index_icon_selector"
+                        android:drawablePadding="6px"
+                        android:paddingLeft="37px"
+                        android:text="血压"
+                        android:textColor="@drawable/text_white_gray_selector"
+                        android:textSize="18px" />
                 </RadioGroup>
 
             </RelativeLayout>

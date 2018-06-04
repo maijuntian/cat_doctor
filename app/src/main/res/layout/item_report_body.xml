@@ -1,1075 +1,1099 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TextView
-        style="@style/text_xblack"
-        android:layout_marginBottom="40px"
-        android:layout_marginTop="49px"
-        android:text="人体成分"
-        android:textSize="60px" />
-
-    <RelativeLayout
-        android:id="@+id/rl_body_bg1"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/report_body_1"
-        android:visibility="visible">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="300px"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="468px"
-            android:layout_marginTop="151px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+        <TextView
+            style="@style/text_xblack"
+            android:layout_marginBottom="40px"
+            android:layout_marginTop="49px"
+            android:text="人体成分"
+            android:textSize="60px" />
 
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_body_age"
-                style="@style/text_black"
-                android:text="23"
-                android:textSize="60px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="身体年龄(y)"
-                android:textSize="20px" />
-
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_basic_meta"
-                style="@style/text_black"
-                android:layout_marginTop="61px"
-                android:text="1660.6"
-                android:textSize="60px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="基础代谢(Kcal)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="151px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingLeft="20px">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_score"
-                style="@style/text_white"
-                android:text="89"
-                android:textSize="160px" />
-
-            <TextView
-                style="@style/text_white"
-                android:text="综合评分"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="300px"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1150px"
-            android:layout_marginTop="151px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_height"
-                style="@style/text_black"
-                android:text="160"
-                android:textSize="60px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="身高(cm)"
-                android:textSize="20px" />
-
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_weight"
-                style="@style/text_black"
-                android:layout_marginTop="61px"
-                android:text="50"
-                android:textSize="60px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="体重(kg)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_body_bg2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/report_body_2"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="407px"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="体脂重(kg)"
-                    android:textSize="20px" />
-
-                <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
-                    android:id="@+id/hp_bf"
-                    android:layout_width="241px"
-                    android:layout_height="15px"
-                    android:layout_marginLeft="30px" />
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_bf"
-                    style="@style/text_black"
-                    android:layout_marginLeft="20px"
-                    android:text="46.5"
-                    android:textSize="36px"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="肌肉量(kg)"
-                    android:textSize="20px" />
-
-                <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
-                    android:id="@+id/hp_mw"
-                    android:layout_width="241px"
-                    android:layout_height="15px"
-                    android:layout_marginLeft="30px" />
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_mw"
-                    style="@style/text_black"
-                    android:layout_marginLeft="20px"
-                    android:text="46.5"
-                    android:textSize="36px"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="蛋白质(kg)"
-                    android:textSize="20px" />
-
-                <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
-                    android:id="@+id/hp_protein"
-                    android:layout_width="241px"
-                    android:layout_height="15px"
-                    android:layout_marginLeft="30px" />
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_protein"
-                    style="@style/text_black"
-                    android:layout_marginLeft="20px"
-                    android:text="46.5"
-                    android:textSize="36px"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="身体水分(kg)"
-                    android:textSize="20px" />
-
-                <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
-                    android:id="@+id/hp_tm"
-                    android:layout_width="241px"
-                    android:layout_height="15px"
-                    android:layout_marginLeft="10px" />
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_tm"
-                    style="@style/text_black"
-                    android:layout_marginLeft="20px"
-                    android:text="46.5"
-                    android:textSize="36px"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rl_body_bg1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="921px"
-            android:orientation="vertical">
+            android:background="@mipmap/report_body_1"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="300px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="468px"
+                android:layout_marginTop="151px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_body_age"
+                    style="@style/text_black"
+                    android:text="23"
+                    android:textSize="60px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="身体年龄(y)"
+                    android:textSize="20px" />
+
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_basic_meta"
+                    style="@style/text_black"
+                    android:layout_marginTop="61px"
+                    android:text="1660.6"
+                    android:textSize="60px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="基础代谢(Kcal)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="151px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingLeft="20px">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_score"
+                    style="@style/text_white"
+                    android:text="89"
+                    android:textSize="160px" />
+
+                <TextView
+                    style="@style/text_white"
+                    android:text="综合评分"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="300px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1150px"
+                android:layout_marginTop="151px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_height"
+                    style="@style/text_black"
+                    android:text="160"
+                    android:textSize="60px"
+                    android:textStyle="bold" />
 
                 <TextView
                     style="@style/text_mgray"
-                    android:text="肌肉率(%)" />
+                    android:text="身高(cm)"
+                    android:textSize="20px" />
+
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_weight"
+                    style="@style/text_black"
+                    android:layout_marginTop="61px"
+                    android:text="50"
+                    android:textSize="60px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="体重(kg)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_body_bg2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/report_body_2"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="407px"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10px"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="体脂重(kg)"
+                        android:textSize="20px" />
 
-                        <TextView
-                            style="@style/text_mgray"
-                            android:text="0"
-                            android:textSize="10px" />
+                    <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
+                        android:id="@+id/hp_bf"
+                        android:layout_width="241px"
+                        android:layout_height="15px"
+                        android:layout_marginLeft="30px" />
 
-                        <TextView
-                            android:id="@+id/tv_muscel_rate_nl"
-                            style="@style/text_mgray"
-                            android:layout_marginLeft="130px"
-                            android:text="10.5"
-                            android:textSize="10px" />
-
-                        <TextView
-                            android:id="@+id/tv_muscel_rate_nh"
-                            style="@style/text_mgray"
-                            android:layout_marginLeft="270px"
-                            android:text="24.0"
-                            android:textSize="10px" />
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="420px"
-                        android:layout_height="15px">
-
-                        <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
-                            android:id="@+id/hp_muscel_rate"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="3">
-
-                            <TextView
-                                style="@style/text_white"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="偏低"
-                                android:textSize="12px" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="11px"
-                                android:layout_marginTop="2px"
-                                android:background="@color/white" />
-
-
-                            <TextView
-                                style="@style/text_white"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="正常"
-                                android:textSize="12px" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="11px"
-                                android:layout_marginTop="2px"
-                                android:background="@color/white" />
-
-
-                            <TextView
-                                style="@style/text_white"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="偏高"
-                                android:textSize="12px" />
-
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_bf"
+                        style="@style/text_black"
+                        android:layout_marginLeft="20px"
+                        android:text="46.5"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
-
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_muscel_rate"
-                    style="@style/text_black"
-                    android:layout_marginLeft="20px"
-                    android:text="46.5"
-                    android:textSize="36px"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="体脂率(%)" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10px"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="肌肉量(kg)"
+                        android:textSize="20px" />
+
+                    <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
+                        android:id="@+id/hp_mw"
+                        android:layout_width="241px"
+                        android:layout_height="15px"
+                        android:layout_marginLeft="30px" />
+
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_mw"
+                        style="@style/text_black"
+                        android:layout_marginLeft="20px"
+                        android:text="46.5"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="蛋白质(kg)"
+                        android:textSize="20px" />
+
+                    <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
+                        android:id="@+id/hp_protein"
+                        android:layout_width="241px"
+                        android:layout_height="15px"
+                        android:layout_marginLeft="30px" />
+
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_protein"
+                        style="@style/text_black"
+                        android:layout_marginLeft="20px"
+                        android:text="46.5"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="身体水分(kg)"
+                        android:textSize="20px" />
+
+                    <com.healthmall.sail.cat_doctor.widget.BlueHorizontalProgress
+                        android:id="@+id/hp_tm"
+                        android:layout_width="241px"
+                        android:layout_height="15px"
+                        android:layout_marginLeft="10px" />
+
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_tm"
+                        style="@style/text_black"
+                        android:layout_marginLeft="20px"
+                        android:text="46.5"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="921px"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="肌肉率(%)" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/text_mgray"
+                                android:text="0"
+                                android:textSize="10px" />
+
+                            <TextView
+                                android:id="@+id/tv_muscel_rate_nl"
+                                style="@style/text_mgray"
+                                android:layout_marginLeft="130px"
+                                android:text="10.5"
+                                android:textSize="10px" />
+
+                            <TextView
+                                android:id="@+id/tv_muscel_rate_nh"
+                                style="@style/text_mgray"
+                                android:layout_marginLeft="270px"
+                                android:text="24.0"
+                                android:textSize="10px" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="420px"
+                            android:layout_height="15px">
+
+                            <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
+                                android:id="@+id/hp_muscel_rate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <TextView
+                                    style="@style/text_white"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:text="偏低"
+                                    android:textSize="12px" />
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="11px"
+                                    android:layout_marginTop="2px"
+                                    android:background="@color/white" />
+
+
+                                <TextView
+                                    style="@style/text_white"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:text="正常"
+                                    android:textSize="12px" />
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="11px"
+                                    android:layout_marginTop="2px"
+                                    android:background="@color/white" />
+
+
+                                <TextView
+                                    style="@style/text_white"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:text="偏高"
+                                    android:textSize="12px" />
+
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_muscel_rate"
+                        style="@style/text_black"
+                        android:layout_marginLeft="20px"
+                        android:text="46.5"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="体脂率(%)" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10px"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/text_mgray"
+                                android:text="0"
+                                android:textSize="10px" />
+
+                            <TextView
+                                android:id="@+id/tv_bfr_nl"
+                                style="@style/text_mgray"
+                                android:layout_marginLeft="130px"
+                                android:text="10.5"
+                                android:textSize="10px" />
+
+                            <TextView
+                                android:id="@+id/tv_bfr_nh"
+                                style="@style/text_mgray"
+                                android:layout_marginLeft="270px"
+                                android:text="24.0"
+                                android:textSize="10px" />
+                        </RelativeLayout>
+
+
+                        <RelativeLayout
+                            android:layout_width="420px"
+                            android:layout_height="15px">
+
+                            <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
+                                android:id="@+id/hp_bfr"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:weightSum="3">
+
+                                <TextView
+                                    style="@style/text_white"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:text="偏瘦"
+                                    android:textSize="12px" />
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="11px"
+                                    android:layout_marginTop="2px"
+                                    android:background="@color/white" />
+
+
+                                <TextView
+                                    style="@style/text_white"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:text="正常"
+                                    android:textSize="12px" />
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="11px"
+                                    android:layout_marginTop="2px"
+                                    android:background="@color/white" />
+
+
+                                <TextView
+                                    style="@style/text_white"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:text="偏胖"
+                                    android:textSize="12px" />
+
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_bfr"
+                        style="@style/text_black"
+                        android:layout_marginLeft="20px"
+                        android:text="46.5"
+                        android:textSize="36px"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_body_bg3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/report_body_3"
+            android:visibility="visible">
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="408px"
+                android:layout_marginTop="105px"
+                android:text="内脏脂肪等级"
+                android:textSize="18px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="619px"
+                android:layout_marginTop="105px"
+                android:text="肥胖度"
+                android:textSize="18px" />
+
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="802px"
+                android:layout_marginTop="105px"
+                android:text="水肿度"
+                android:textSize="18px" />
+
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_vfl"
+                style="@style/text_black"
+                android:layout_marginLeft="385px"
+                android:layout_marginTop="135px"
+                android:drawablePadding="10px"
+                android:drawableTop="@mipmap/report_body_fat1"
+                android:gravity="center_horizontal"
+                android:text="4"
+                android:textSize="60px" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_doo"
+                style="@style/text_black"
+                android:layout_marginLeft="570px"
+                android:layout_marginTop="135px"
+                android:drawablePadding="10px"
+                android:drawableTop="@mipmap/report_body_fat2"
+                android:gravity="center_horizontal"
+                android:text="4"
+                android:textSize="60px" />
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_ed"
+                style="@style/text_black"
+                android:layout_marginLeft="753px"
+                android:layout_marginTop="135px"
+                android:drawablePadding="10px"
+                android:drawableTop="@mipmap/report_body_fat3"
+                android:gravity="center_horizontal"
+                android:text="4"
+                android:textSize="60px" />
+
+            <com.healthmall.sail.cat_doctor.widget.BlueCircleProgressView
+                android:id="@+id/cp_vfl"
+                android:layout_width="155px"
+                android:layout_height="155px"
+                android:layout_marginLeft="385px"
+                android:layout_marginTop="135px" />
+
+            <com.healthmall.sail.cat_doctor.widget.BlueCircleProgressView
+                android:id="@+id/cp_doo"
+                android:layout_width="155px"
+                android:layout_height="155px"
+                android:layout_marginLeft="570px"
+                android:layout_marginTop="135px" />
+
+            <com.healthmall.sail.cat_doctor.widget.BlueCircleProgressView
+                android:id="@+id/cp_ed"
+                android:layout_width="155px"
+                android:layout_height="155px"
+                android:layout_marginLeft="753px"
+                android:layout_marginTop="135px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="965px"
+                android:layout_marginTop="130px"
+                android:text="BMI(kg/m2)"
+                android:textSize="20px" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="965px"
+                android:layout_marginTop="160px">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="0"
+                    android:textSize="10px" />
+
+                <TextView
+                    android:id="@+id/tv_bmi_nl"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="130px"
+                    android:text="10.5"
+                    android:textSize="10px" />
+
+                <TextView
+                    android:id="@+id/tv_bmi_nh"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="270px"
+                    android:text="24.0"
+                    android:textSize="10px" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_bmi"
+                android:layout_width="420px"
+                android:layout_height="15px"
+                android:layout_marginLeft="965px"
+                android:layout_marginTop="175px">
+
+                <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
+                    android:id="@+id/hp_bmi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/text_white"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="偏瘦"
+                        android:textSize="12px" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="11px"
+                        android:layout_marginTop="2px"
+                        android:background="@color/white" />
+
+
+                    <TextView
+                        style="@style/text_white"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="正常"
+                        android:textSize="12px" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="11px"
+                        android:layout_marginTop="2px"
+                        android:background="@color/white" />
+
+
+                    <TextView
+                        style="@style/text_white"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="偏胖"
+                        android:textSize="12px" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_bmi"
+                style="@style/text_black"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="150px"
+                android:layout_toRightOf="@id/rl_bmi"
+                android:text="58"
+                android:textSize="60px" />
+
+            <TextView
+                style="@style/text_mgray"
+                android:layout_marginLeft="965px"
+                android:layout_marginTop="235px"
+                android:text="含水比率(%)"
+                android:textSize="20px" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="965px"
+                android:layout_marginTop="265px">
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="0"
+                    android:textSize="10px" />
+
+                <TextView
+                    android:id="@+id/tv_wr_nl"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="130px"
+                    android:text="10.5"
+                    android:textSize="10px" />
+
+                <TextView
+                    android:id="@+id/tv_wr_nh"
+                    style="@style/text_mgray"
+                    android:layout_marginLeft="270px"
+                    android:text="24.0"
+                    android:textSize="10px" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_water_rate"
+                android:layout_width="420px"
+                android:layout_height="15px"
+                android:layout_marginLeft="965px"
+                android:layout_marginTop="280px">
+
+                <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
+                    android:id="@+id/hp_wr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        style="@style/text_white"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="偏胖"
+                        android:textSize="12px" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="11px"
+                        android:layout_marginTop="2px"
+                        android:background="@color/white" />
+
+
+                    <TextView
+                        style="@style/text_white"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="正常"
+                        android:textSize="12px" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="11px"
+                        android:layout_marginTop="2px"
+                        android:background="@color/white" />
+
+
+                    <TextView
+                        style="@style/text_white"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="偏瘦"
+                        android:textSize="12px" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                android:id="@+id/tv_bmr"
+                style="@style/text_black"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="250px"
+                android:layout_toRightOf="@id/rl_water_rate"
+                android:text="42"
+                android:textSize="60px" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_body_bg4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/report_body_4"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="467px"
+                android:layout_marginTop="103px"
+                android:src="@mipmap/report_body_muscle_result" />
+
+            <ImageView
+                android:id="@+id/iv_up_bal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="633px"
+                android:layout_marginTop="185px"
+                android:src="@mipmap/report_body_green" />
+
+            <ImageView
+                android:id="@+id/iv_down_bal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="760px"
+                android:layout_marginTop="185px"
+                android:src="@mipmap/report_body_green" />
+
+
+            <ImageView
+                android:id="@+id/iv_up_unbal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="625px"
+                android:layout_marginTop="225px"
+                android:src="@mipmap/report_body_red" />
+
+            <ImageView
+                android:id="@+id/iv_down_unbal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="752px"
+                android:layout_marginTop="225px"
+                android:src="@mipmap/report_body_red" />
+
+
+            <ImageView
+                android:id="@+id/iv_up_unstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="617px"
+                android:layout_marginTop="264px"
+                android:src="@mipmap/report_body_red" />
+
+            <ImageView
+                android:id="@+id/iv_down_unstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="744px"
+                android:layout_marginTop="264px"
+                android:src="@mipmap/report_body_red" />
+
+
+            <ImageView
+                android:id="@+id/iv_up_nomal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="609px"
+                android:layout_marginTop="302px"
+                android:src="@mipmap/report_body_green" />
+
+            <ImageView
+                android:id="@+id/iv_down_nomal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="736px"
+                android:layout_marginTop="302px"
+                android:src="@mipmap/report_body_green" />
+
+
+            <ImageView
+                android:id="@+id/iv_up_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="602px"
+                android:layout_marginTop="340px"
+                android:src="@mipmap/report_body_green" />
+
+            <ImageView
+                android:id="@+id/iv_down_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="728px"
+                android:layout_marginTop="340px"
+                android:src="@mipmap/report_body_green" />
+
+
+            <me.panpf.swsv.SpiderWebScoreView
+                android:id="@+id/spiderWeb_mucel"
+                android:layout_width="226px"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="1167px"
+                android:layout_marginTop="133px"
+                app:lineColor="#80a7a7a7"
+                app:scoreColor="#800079ff"
+                app:scoreStrokeColor="#0079ff" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1242px"
+                android:layout_marginTop="53px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_tmm"
+                    style="@style/text_black"
+                    android:text="45.8"
+                    android:textSize="36px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="躯干(kg)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1091px"
+                android:layout_marginTop="180px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_lhmm"
+                    style="@style/text_black"
+                    android:text="45.8"
+                    android:textSize="36px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="左臂(kg)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1402px"
+                android:layout_marginTop="180px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_rhmm"
+                    style="@style/text_black"
+                    android:text="45.8"
+                    android:textSize="36px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="右臂(kg)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1131px"
+                android:layout_marginTop="305px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_llmm"
+                    style="@style/text_black"
+                    android:text="45.8"
+                    android:textSize="36px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="左腿(kg)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1359px"
+                android:layout_marginTop="305px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_rlmm"
+                    style="@style/text_black"
+                    android:text="45.8"
+                    android:textSize="36px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mgray"
+                    android:text="右腿(kg)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_body_bg5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/report_body_5">
+
+            <LinearLayout
+                android:layout_width="230px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="488px"
+                android:layout_marginTop="150px"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                    android:id="@+id/tv_wthr"
+                    style="@style/text_black"
+                    android:text="48.8"
+                    android:textSize="60px"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/text_mmblack"
+                    android:text="腰臀比"
+                    android:textSize="20px" />
+
+                <TextView
+                    android:id="@+id/tv_body_type"
+                    style="@style/text_mmblack"
+                    android:layout_marginTop="31px"
+                    android:text="(苹果型身材)"
+                    android:textSize="20px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="960px"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_sw"
+                        style="@style/text_black"
+                        android:text="48"
+                        android:textSize="60px"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            style="@style/text_mgray"
-                            android:text="0"
-                            android:textSize="10px" />
-
-                        <TextView
-                            android:id="@+id/tv_bfr_nl"
-                            style="@style/text_mgray"
-                            android:layout_marginLeft="130px"
-                            android:text="10.5"
-                            android:textSize="10px" />
-
-                        <TextView
-                            android:id="@+id/tv_bfr_nh"
-                            style="@style/text_mgray"
-                            android:layout_marginLeft="270px"
-                            android:text="24.0"
-                            android:textSize="10px" />
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="420px"
-                        android:layout_height="15px">
-
-                        <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
-                            android:id="@+id/hp_bfr"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:weightSum="3">
-
-                            <TextView
-                                style="@style/text_white"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="偏瘦"
-                                android:textSize="12px" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="11px"
-                                android:layout_marginTop="2px"
-                                android:background="@color/white" />
-
-
-                            <TextView
-                                style="@style/text_white"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="正常"
-                                android:textSize="12px" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="11px"
-                                android:layout_marginTop="2px"
-                                android:background="@color/white" />
-
-
-                            <TextView
-                                style="@style/text_white"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal"
-                                android:text="偏胖"
-                                android:textSize="12px" />
-
-
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="标准体重(kg)"
+                        android:textSize="20px" />
 
                 </LinearLayout>
 
 
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_bfr"
-                    style="@style/text_black"
-                    android:layout_marginLeft="20px"
-                    android:text="46.5"
-                    android:textSize="36px"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="33px"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_sdm"
+                        style="@style/text_black"
+                        android:text="48"
+                        android:textSize="60px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="标准肌肉(kg)"
+                        android:textSize="20px" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="33px"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
+                        android:id="@+id/tv_fc"
+                        style="@style/text_black"
+                        android:text="48"
+                        android:textSize="60px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/text_mgray"
+                        android:text="脂肪控制(kg)"
+                        android:textSize="20px" />
+
+                </LinearLayout>
             </LinearLayout>
 
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_body_bg3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/report_body_3"
-        android:visibility="visible">
-
-        <TextView
-            style="@style/text_mgray"
-            android:layout_marginLeft="408px"
-            android:layout_marginTop="105px"
-            android:text="内脏脂肪等级"
-            android:textSize="18px" />
-
-        <TextView
-            style="@style/text_mgray"
-            android:layout_marginLeft="619px"
-            android:layout_marginTop="105px"
-            android:text="肥胖度"
-            android:textSize="18px" />
-
-
-        <TextView
-            style="@style/text_mgray"
-            android:layout_marginLeft="802px"
-            android:layout_marginTop="105px"
-            android:text="水肿度"
-            android:textSize="18px" />
-
-
-        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-            android:id="@+id/tv_vfl"
-            style="@style/text_black"
-            android:layout_marginLeft="385px"
-            android:layout_marginTop="135px"
-            android:drawablePadding="10px"
-            android:drawableTop="@mipmap/report_body_fat1"
-            android:gravity="center_horizontal"
-            android:text="4"
-            android:textSize="60px" />
-
-        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-            android:id="@+id/tv_doo"
-            style="@style/text_black"
-            android:layout_marginLeft="570px"
-            android:layout_marginTop="135px"
-            android:drawablePadding="10px"
-            android:drawableTop="@mipmap/report_body_fat2"
-            android:gravity="center_horizontal"
-            android:text="4"
-            android:textSize="60px" />
-
-        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-            android:id="@+id/tv_ed"
-            style="@style/text_black"
-            android:layout_marginLeft="753px"
-            android:layout_marginTop="135px"
-            android:drawablePadding="10px"
-            android:drawableTop="@mipmap/report_body_fat3"
-            android:gravity="center_horizontal"
-            android:text="4"
-            android:textSize="60px" />
-
-        <com.healthmall.sail.cat_doctor.widget.BlueCircleProgressView
-            android:id="@+id/cp_vfl"
-            android:layout_width="155px"
-            android:layout_height="155px"
-            android:layout_marginLeft="385px"
-            android:layout_marginTop="135px" />
-
-        <com.healthmall.sail.cat_doctor.widget.BlueCircleProgressView
-            android:id="@+id/cp_doo"
-            android:layout_width="155px"
-            android:layout_height="155px"
-            android:layout_marginLeft="570px"
-            android:layout_marginTop="135px" />
-
-        <com.healthmall.sail.cat_doctor.widget.BlueCircleProgressView
-            android:id="@+id/cp_ed"
-            android:layout_width="155px"
-            android:layout_height="155px"
-            android:layout_marginLeft="753px"
-            android:layout_marginTop="135px" />
-
-        <TextView
-            style="@style/text_mgray"
-            android:layout_marginLeft="965px"
-            android:layout_marginTop="130px"
-            android:text="BMI(kg/m2)"
-            android:textSize="20px" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="965px"
-            android:layout_marginTop="160px">
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="0"
-                android:textSize="10px" />
-
-            <TextView
-                android:id="@+id/tv_bmi_nl"
-                style="@style/text_mgray"
-                android:layout_marginLeft="130px"
-                android:text="10.5"
-                android:textSize="10px" />
-
-            <TextView
-                android:id="@+id/tv_bmi_nh"
-                style="@style/text_mgray"
-                android:layout_marginLeft="270px"
-                android:text="24.0"
-                android:textSize="10px" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/rl_bmi"
-            android:layout_width="420px"
-            android:layout_height="15px"
-            android:layout_marginLeft="965px"
-            android:layout_marginTop="175px">
-
-            <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
-                android:id="@+id/hp_bmi"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="偏瘦"
-                    android:textSize="12px" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="11px"
-                    android:layout_marginTop="2px"
-                    android:background="@color/white" />
-
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="正常"
-                    android:textSize="12px" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="11px"
-                    android:layout_marginTop="2px"
-                    android:background="@color/white" />
-
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="偏胖"
-                    android:textSize="12px" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-            android:id="@+id/tv_bmi"
-            style="@style/text_black"
-            android:layout_marginLeft="20px"
-            android:layout_marginTop="150px"
-            android:layout_toRightOf="@id/rl_bmi"
-            android:text="58"
-            android:textSize="60px" />
-
-        <TextView
-            style="@style/text_mgray"
-            android:layout_marginLeft="965px"
-            android:layout_marginTop="235px"
-            android:text="含水比率(%)"
-            android:textSize="20px" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="965px"
-            android:layout_marginTop="265px">
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="0"
-                android:textSize="10px" />
-
-            <TextView
-                android:id="@+id/tv_wr_nl"
-                style="@style/text_mgray"
-                android:layout_marginLeft="130px"
-                android:text="10.5"
-                android:textSize="10px" />
-
-            <TextView
-                android:id="@+id/tv_wr_nh"
-                style="@style/text_mgray"
-                android:layout_marginLeft="270px"
-                android:text="24.0"
-                android:textSize="10px" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/rl_water_rate"
-            android:layout_width="420px"
-            android:layout_height="15px"
-            android:layout_marginLeft="965px"
-            android:layout_marginTop="280px">
-
-            <com.healthmall.sail.cat_doctor.widget.HorizontalProgress
-                android:id="@+id/hp_wr"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="偏胖"
-                    android:textSize="12px" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="11px"
-                    android:layout_marginTop="2px"
-                    android:background="@color/white" />
-
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="正常"
-                    android:textSize="12px" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="11px"
-                    android:layout_marginTop="2px"
-                    android:background="@color/white" />
-
-
-                <TextView
-                    style="@style/text_white"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="偏瘦"
-                    android:textSize="12px" />
-
-            </LinearLayout>
 
         </RelativeLayout>
 
 
-        <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-            android:id="@+id/tv_bmr"
-            style="@style/text_black"
-            android:layout_marginLeft="20px"
-            android:layout_marginTop="250px"
-            android:layout_toRightOf="@id/rl_water_rate"
-            android:text="42"
-            android:textSize="60px" />
+    </LinearLayout>
 
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/rl_body_bg4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/report_body_4"
-        android:visibility="visible">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="467px"
-            android:layout_marginTop="103px"
-            android:src="@mipmap/report_body_muscle_result" />
-
-        <ImageView
-            android:id="@+id/iv_up_bal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="633px"
-            android:layout_marginTop="185px"
-            android:src="@mipmap/report_body_green" />
-
-        <ImageView
-            android:id="@+id/iv_down_bal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="760px"
-            android:layout_marginTop="185px"
-            android:src="@mipmap/report_body_green" />
-
-
-        <ImageView
-            android:id="@+id/iv_up_unbal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="623px"
-            android:layout_marginTop="225px"
-            android:src="@mipmap/report_body_red" />
-
-        <ImageView
-            android:id="@+id/iv_down_unbal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="750px"
-            android:layout_marginTop="225px"
-            android:src="@mipmap/report_body_red" />
-
-        <ImageView
-            android:id="@+id/iv_up_str"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="613px"
-            android:layout_marginTop="264px"
-            android:src="@mipmap/report_body_green" />
-
-        <ImageView
-            android:id="@+id/iv_down_str"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="740px"
-            android:layout_marginTop="264px"
-            android:src="@mipmap/report_body_green" />
-
-
-        <ImageView
-            android:id="@+id/iv_up_unstr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="603px"
-            android:layout_marginTop="302px"
-            android:src="@mipmap/report_body_red" />
-
-        <ImageView
-            android:id="@+id/iv_down_unstr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="730px"
-            android:layout_marginTop="302px"
-            android:src="@mipmap/report_body_red" />
-
-        <me.panpf.swsv.SpiderWebScoreView
-            android:id="@+id/spiderWeb_mucel"
-            android:layout_width="226px"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="1167px"
-            android:layout_marginTop="133px"
-            app:lineColor="#80a7a7a7"
-            app:scoreColor="#800079ff"
-            app:scoreStrokeColor="#0079ff" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1242px"
-            android:layout_marginTop="53px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_tmm"
-                style="@style/text_black"
-                android:text="45.8"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="躯干(kg)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1091px"
-            android:layout_marginTop="180px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_lhmm"
-                style="@style/text_black"
-                android:text="45.8"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="左臂(kg)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1402px"
-            android:layout_marginTop="180px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_rhmm"
-                style="@style/text_black"
-                android:text="45.8"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="右臂(kg)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1131px"
-            android:layout_marginTop="305px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_llmm"
-                style="@style/text_black"
-                android:text="45.8"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="左腿(kg)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="1359px"
-            android:layout_marginTop="305px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_rlmm"
-                style="@style/text_black"
-                android:text="45.8"
-                android:textSize="36px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mgray"
-                android:text="右腿(kg)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_body_bg5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/report_body_5">
-
-        <LinearLayout
-            android:layout_width="230px"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="488px"
-            android:layout_marginTop="150px"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                android:id="@+id/tv_wthr"
-                style="@style/text_black"
-                android:text="48.8"
-                android:textSize="60px"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/text_mmblack"
-                android:text="腰臀比"
-                android:textSize="20px" />
-
-            <TextView
-                android:id="@+id/tv_body_type"
-                style="@style/text_mmblack"
-                android:layout_marginTop="31px"
-                android:text="(苹果型身材)"
-                android:textSize="20px" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="960px"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_sw"
-                    style="@style/text_black"
-                    android:text="48"
-                    android:textSize="60px"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="标准体重(kg)"
-                    android:textSize="20px" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="33px"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_sdm"
-                    style="@style/text_black"
-                    android:text="48"
-                    android:textSize="60px"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="标准肌肉(kg)"
-                    android:textSize="20px" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="33px"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView
-                    android:id="@+id/tv_fc"
-                    style="@style/text_black"
-                    android:text="48"
-                    android:textSize="60px"
-                    android:textStyle="bold" />
-
-                <TextView
-                    style="@style/text_mgray"
-                    android:text="脂肪控制(kg)"
-                    android:textSize="20px" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-
-</LinearLayout>
+</ScrollView>

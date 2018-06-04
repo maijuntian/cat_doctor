@@ -71,12 +71,6 @@
                 android:button="@drawable/examine_menu2_unfinish_selector" />
 
             <RadioButton
-                android:id="@+id/rb_blood_heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/examine_menu3_unfinish_selector" />
-
-            <RadioButton
                 android:id="@+id/rb_face_ton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,6 +81,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/examine_menu5_unfinish_selector" />
+
+            <RadioButton
+                android:id="@+id/rb_blood_heart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/examine_menu3_unfinish_selector" />
 
         </RadioGroup>
 

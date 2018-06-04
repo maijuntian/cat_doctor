@@ -107,9 +107,9 @@ public class SerialPortEngine {
                                 String[] datas = SerialPortCmd.parseBloodOX2(finalResult);
                                 MLog.log("血氧值：" + datas.toString());
                                 int realSpo2 = getRealNo0(datas[0], bloodoTemps);
-                                int realPr = getRealNo0(datas[1], prTemps);
+                                int realPr = Integer.parseInt(datas[1]);
 
-                                if (realSpo2 != -1 && realPr != -1) {
+                                if (realSpo2 != -1 && realPr > 0) {
                                     MyApplication.get().serialPortCallBack(finalResult);
                                     bloodoTemps.clear();
                                     prTemps.clear();
@@ -176,14 +176,14 @@ public class SerialPortEngine {
         int heightInt = Integer.parseInt(data);
         if (heightInt < 100)
             return -1;
-        return getReal(heightInt, heightTemps, 1);
+        return getReal(heightInt, heightTemps, 2);
     }
 
     public int getRealWeight(String data) {
         int weightInt = Integer.parseInt(data);
         if (weightInt < 100)
             return -1;
-        return getReal(weightInt, weightTemps, 1);
+        return getReal(weightInt, weightTemps, 2);
     }
 
     public int getReal(int data, List<Integer> cacheTemps, int subError) {

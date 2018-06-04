@@ -77,7 +77,7 @@
         style="@style/text_sgray"
         android:layout_marginLeft="1409px"
         android:layout_marginTop="229px"
-        android:text="瘦"
+        android:text="高"
         android:textSize="20px" />
 
 
@@ -85,7 +85,7 @@
         style="@style/text_sgray"
         android:layout_marginLeft="1409px"
         android:layout_marginTop="352px"
-        android:text="偏瘦"
+        android:text="偏高"
         android:textSize="20px" />
 
     <TextView
@@ -99,14 +99,14 @@
         style="@style/text_sgray"
         android:layout_marginLeft="1409px"
         android:layout_marginTop="608px"
-        android:text="偏胖"
+        android:text="偏低"
         android:textSize="20px" />
 
     <TextView
         style="@style/text_sgray"
         android:layout_marginLeft="1409px"
         android:layout_marginTop="744px"
-        android:text="胖"
+        android:text="低"
         android:textSize="20px" />
 
     <com.healthmall.sail.cat_doctor.widget.NoPaddingTextView

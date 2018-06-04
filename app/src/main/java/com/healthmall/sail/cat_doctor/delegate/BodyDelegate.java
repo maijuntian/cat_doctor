@@ -471,7 +471,7 @@ public class BodyDelegate extends AppDelegate {
                     BodyRespone bodyRespone = bodyReport.getBodyRespone();
 
                     viewHolder.setText(R.id.tv_bf, bodyReport.getBm_bf_bf())
-                            .setText(R.id.tv_mw, bodyReport.getBm_bf_mw())
+                            .setText(R.id.tv_mw, bodyReport.getBm_bf_bonysalts())
                             .setImageDrawable(R.id.iv_bg, ContextCompat.getDrawable(mContext, MyApplication.get().getCurrUser().getMemberSex() == 1 ? R.mipmap.bofy_info2_man : R.mipmap.bofy_info2_woman))
                             .setText(R.id.tv_protein, bodyReport.getBm_bf_protein())
                             .setText(R.id.tv_tm, bodyReport.getBm_bf_tm());
