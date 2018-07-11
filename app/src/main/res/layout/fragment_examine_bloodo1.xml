@@ -12,8 +12,8 @@
         <TextView
             style="@style/text_black"
             android:text="血氧"
-            android:textStyle="bold"
-            android:textSize="36px" />
+            android:textSize="36px"
+            android:textStyle="bold" />
 
         <TextView
             style="@style/text_mgray"
@@ -73,25 +73,12 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="200px"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/bloodo_tip1" />
+        <ImageView
+            android:id="@+id/iv_bloodo_tip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="161px"
-                android:src="@mipmap/bloodo_tip2" />
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_start"
@@ -113,7 +100,7 @@
         android:id="@+id/rl_step23"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/ll_bloodo_tip"

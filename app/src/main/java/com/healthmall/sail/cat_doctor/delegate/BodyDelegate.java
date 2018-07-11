@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BodyReport;
@@ -43,6 +44,8 @@ public class BodyDelegate extends AppDelegate {
 
     @Bind(R.id.iv_step)
     ImageView ivStep;
+    @Bind(R.id.iv_hw_tip)
+    ImageView ivHWTip;
     @Bind(R.id.tv_step1)
     TextView tvStep1;
     @Bind(R.id.tv_step2)
@@ -87,6 +90,12 @@ public class BodyDelegate extends AppDelegate {
         return R.layout.fragment_examine_body1;
     }
 
+    @Override
+    public void initWidget() {
+        super.initWidget();
+
+        Glide.with(mContext).load(R.mipmap.height_tip).into(ivHWTip);
+    }
 
     public void hidePopWin() {
         if (step2PopWin != null)
@@ -368,6 +377,8 @@ public class BodyDelegate extends AppDelegate {
         public RelativeLayout rlStepFat;
         @Bind(R.id.iv_bg)
         public ImageView ivBg;
+        @Bind(R.id.iv_fat_tip)
+        public ImageView ivFatTip;
 
         public void setBg() {
             if (MyApplication.get().getCurrUser().getMemberSex() == 1) {
@@ -375,6 +386,8 @@ public class BodyDelegate extends AppDelegate {
             } else {
                 ivBg.setImageResource(R.mipmap.body_woman1);
             }
+
+            Glide.with(mContext).load(R.mipmap.body_fat_tip).into(ivFatTip);
         }
 
         public void showResult(boolean isDelayShow) {

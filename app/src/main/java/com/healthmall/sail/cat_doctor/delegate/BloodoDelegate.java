@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BloodOxygenReport;
@@ -83,10 +84,19 @@ public class BloodoDelegate extends AppDelegate {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
         }
     };
+    @Bind(R.id.iv_bloodo_tip)
+    ImageView ivBloodoTip;
 
     @Override
     public int getRootLayoutId() {
         return R.layout.fragment_examine_bloodo1;
+    }
+
+    @Override
+    public void initWidget() {
+        super.initWidget();
+
+        Glide.with(mContext).load(R.mipmap.bloodo_tip).into(ivBloodoTip);
     }
 
     public void hidePopWin() {

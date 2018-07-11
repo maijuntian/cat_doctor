@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
@@ -96,6 +97,8 @@ public class BloodHeartDelegate extends AppDelegate {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
         }
     };
+    @Bind(R.id.iv_bp_hr_tip)
+    ImageView ivBpHrTip;
 
     @Override
     public int getRootLayoutId() {
@@ -111,6 +114,8 @@ public class BloodHeartDelegate extends AppDelegate {
 
         waveHelper1 = new WaveHelper(wave1);
         waveHelper2 = new WaveHelper(wave2);
+
+        Glide.with(mContext).load(R.mipmap.bp_tip).into(ivBpHrTip);
     }
 
     public void hidePopWin() {

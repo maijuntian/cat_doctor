@@ -55,8 +55,6 @@ public class MyApplication extends BaseApplication {
         super.onCreate();
         instance = this;
 
-        SharedPreferencesHelper.getInstance(getApplicationContext()).putStringValue(Keys.KEY_DEVICE_ID, "BC002004");
-
         initWebSocket();
 
         SerialPortCmd.reset();

@@ -116,7 +116,6 @@ public class CatWebSocketClient extends WebSocketClient {
             switch (jsonObject.getString("message")) {
                 case "unlock":
                     User user = new Gson().fromJson(message, User.class);
-
                     MyApplication.get().loginSucc(user);
                     break;
                 case "lock":

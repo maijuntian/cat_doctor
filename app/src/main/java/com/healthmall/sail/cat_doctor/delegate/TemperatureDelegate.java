@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.TemperatureReport;
@@ -61,6 +62,8 @@ public class TemperatureDelegate extends AppDelegate {
             step3PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
         }
     };
+    @Bind(R.id.iv_temp_tip)
+    ImageView ivTempTip;
 
     @Override
     public int getRootLayoutId() {
@@ -77,6 +80,8 @@ public class TemperatureDelegate extends AppDelegate {
                 TemperatureReport.setTextTag(mContext, temp, tvTempAreaNomal, tvTempAreaHigh1, tvTempAreaHigh2, tvTempAreaHigh3);
             }
         });
+
+        Glide.with(mContext).load(R.mipmap.temp_tip).into(ivTempTip);
     }
 
     public void hidePopWin() {
@@ -158,7 +163,7 @@ public class TemperatureDelegate extends AppDelegate {
             step3PopWin.getContentView().findViewById(R.id.tv_reexamine).setOnClickListener(mOnClickListener);
             step3PopWin.getContentView().findViewById(R.id.tv_report).setOnClickListener(mOnClickListener);
         }
-        if(isDelayShow){
+        if (isDelayShow) {
             showPopHandler.sendEmptyMessageDelayed(0, 500);
             /*new Handler().postDelayed(new Runnable() {
                 @Override
