@@ -64,7 +64,6 @@ public class MyApplication extends BaseApplication {
         new ReaderUtils().openDevice(getApplicationContext());
 
         upgrade();
-
     }
 
     private void upgrade() {
@@ -143,7 +142,7 @@ public class MyApplication extends BaseApplication {
         });
     }
 
-    public void lock(User user) {
+    public void  lock(User user) {
 
         //退出用户，关锁
 
@@ -157,6 +156,15 @@ public class MyApplication extends BaseApplication {
 
     }
 
+    public void serialPortSmallCallBack(final String msg) {
+        XAppManager.getInstance().doInAllActivity(new XAppManager.DoAllActivityListener() {
+            @Override
+            public void doAll(Activity act) {
+                ((BaseSoftActivity) act).serialPortSmallCallBack(msg);
+            }
+        });
+    }
+
     public void serialPortCallBack(final String msg) {
         XAppManager.getInstance().doInAllActivity(new XAppManager.DoAllActivityListener() {
             @Override
@@ -164,6 +172,7 @@ public class MyApplication extends BaseApplication {
                 ((BaseSoftActivity) act).serialPortCallBack(msg);
             }
         });
+
     }
 
     public void serialPortIng(final String msg) {
@@ -194,6 +203,7 @@ public class MyApplication extends BaseApplication {
         });
 
         currUser = null;
+
         currUserReport = null;
 
         SerialPortCmd.stopAsr();

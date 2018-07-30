@@ -96,7 +96,6 @@ public class BloodoDelegate extends AppDelegate {
     public void initWidget() {
         super.initWidget();
 
-        Glide.with(mContext).load(R.mipmap.bloodo_tip).into(ivBloodoTip);
     }
 
     public void hidePopWin() {
@@ -119,6 +118,7 @@ public class BloodoDelegate extends AppDelegate {
         tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
         tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
 
+        Glide.with(mContext).load(R.mipmap.bloodo_tip).into(ivBloodoTip);
         hidePopWin();
 
     }

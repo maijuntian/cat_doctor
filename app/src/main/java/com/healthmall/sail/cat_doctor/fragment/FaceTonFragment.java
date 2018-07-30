@@ -114,10 +114,8 @@ public class FaceTonFragment extends BaseFragment<FaceTonDelegate> {
                         });
                     }
                 });
-
             }
         });
-
     }
 
     //    @OnClick(R.id.iv_next)

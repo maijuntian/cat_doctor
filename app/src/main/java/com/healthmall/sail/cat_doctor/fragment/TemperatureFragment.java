@@ -112,6 +112,7 @@ public class TemperatureFragment extends BaseFragment<TemperatureDelegate> {
         }
 
         if (msg.startsWith(SerialPortCmd.OK_BODYTEMP)) { //体温
+            finishSpeek();
             stopErrorDelay();
             SerialPortCmd.parseTemp(msg, currTemperatureReport);
             currTemperatureReport.setFinish(true);

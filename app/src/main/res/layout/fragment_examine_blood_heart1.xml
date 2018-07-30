@@ -80,20 +80,21 @@
             android:layout_height="match_parent" />
 
         <TextView
+            style="@style/text_mgray"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32px"
+            android:text="@string/examine_body_tip1" />
+
+        <TextView
             android:id="@+id/tv_start"
             style="@style/text_white"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="150px"
+            android:layout_marginBottom="42px"
             android:background="@drawable/button_start_selector"
             android:text="" />
 
-        <TextView
-            style="@style/text_mgray"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="90px"
-            android:text="@string/examine_body_tip1" />
     </RelativeLayout>
 
     <RelativeLayout

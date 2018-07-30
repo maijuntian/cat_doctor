@@ -91,6 +91,7 @@ public class FaceTonDelegate extends AppDelegate {
     TextView tvTitle;
     @Bind(R.id.iv_step)
     ImageView ivStep;
+
     public int currStep = -1;
 
     Handler showPopHandler = new Handler() {
@@ -156,7 +157,7 @@ public class FaceTonDelegate extends AppDelegate {
 
         BodyReport bodyReport = MyApplication.get().getCurrUserReport().getBodyReport();
         if(!TextUtils.isEmpty(bodyReport.getBm_height()) && bodyReport.getBm_height().length() >= 3){
-            SerialPortCmd.fsjh(bodyReport.getBm_height().substring(0, 3));
+            SerialPortCmd.fsjhFaceTon(bodyReport.getBm_height().substring(0, 3));
         }
 
         currStep = 1;

@@ -88,6 +88,11 @@ public class ExamineActivity extends BaseExamineActivity<ExamineDelegate> {
     }
 
     @Override
+    public void serialPortSmallCallBack(String msg) {
+        viewDelegate.serialPortSmallCallBack(msg);
+    }
+
+    @Override
     public void serialPortIng(String msg) {
         viewDelegate.serialPortIng(msg);
     }

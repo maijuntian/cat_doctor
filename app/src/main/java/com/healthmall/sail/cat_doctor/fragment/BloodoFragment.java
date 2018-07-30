@@ -139,6 +139,7 @@ public class BloodoFragment extends BaseFragment<BloodoDelegate> {
         }
 
         if (msg.startsWith(SerialPortCmd.OK_BLOODOX)) {
+            finishSpeek();
             stopErrorDelay();
             SerialPortCmd.parseBloodOX(msg, currBloodOxygenReport);
             currBloodOxygenReport.setFinish(true);

@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
 import com.healthmall.sail.cat_doctor.bean.BloodPressureReport;
+import com.healthmall.sail.cat_doctor.bean.BodyReport;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.healthmall.sail.cat_doctor.utils.WaveHelper;
@@ -115,7 +117,6 @@ public class BloodHeartDelegate extends AppDelegate {
         waveHelper1 = new WaveHelper(wave1);
         waveHelper2 = new WaveHelper(wave2);
 
-        Glide.with(mContext).load(R.mipmap.bp_tip).into(ivBpHrTip);
     }
 
     public void hidePopWin() {
@@ -138,11 +139,18 @@ public class BloodHeartDelegate extends AppDelegate {
         tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
         tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
 
+        Glide.with(mContext).load(R.mipmap.bp_tip).into(ivBpHrTip);
         hidePopWin();
     }
 
     public void showStep2() {
         currStep = 2;
+
+        BodyReport bodyReport = MyApplication.get().getCurrUserReport().getBodyReport();
+        if (!TextUtils.isEmpty(bodyReport.getBm_height()) && bodyReport.getBm_height().length() >= 3) {
+            SerialPortCmd.fsjhBloodPress(bodyReport.getBm_height().substring(0, 3));
+        }
+
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_2);

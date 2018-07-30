@@ -32,8 +32,10 @@ import rx.functions.Action1;
  */
 public class CatWebSocketClient extends WebSocketClient {
 
-//  public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
-    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
+    //  public static final String uri = "ws://dev-accwssail.healthmall.cn/server/bodyAnaylzer/data";
+//    public static final String uri = "ws://accwssail.healthmall.cn/server/bodyAnaylzer/data";
+
+    public static final String uri = "ws://dooraccwssail.healthmall.cn:58091/server/bodyAnaylzer/data";
 
     static CatWebSocketClient instance;
 
@@ -117,6 +119,7 @@ public class CatWebSocketClient extends WebSocketClient {
                 case "unlock":
                     User user = new Gson().fromJson(message, User.class);
                     MyApplication.get().loginSucc(user);
+                    instance.send(CmdUtils.getUnLockOk());
                     break;
                 case "lock":
                     User user1 = new Gson().fromJson(message, User.class);

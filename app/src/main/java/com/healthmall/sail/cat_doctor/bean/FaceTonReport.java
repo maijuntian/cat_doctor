@@ -9,6 +9,24 @@ public class FaceTonReport {
     boolean isFinishFace;
     boolean isFinishTon;
 
+    String faceUrl;
+    String tonUrl;
+
+    public String getFaceUrl() {
+        return faceUrl;
+    }
+
+    public void setFaceUrl(String faceUrl) {
+        this.faceUrl = faceUrl;
+    }
+
+    public String getTonUrl() {
+        return tonUrl;
+    }
+
+    public void setTonUrl(String tonUrl) {
+        this.tonUrl = tonUrl;
+    }
 
     public boolean isFinish() {
         return isFinishFace && isFinishTon;

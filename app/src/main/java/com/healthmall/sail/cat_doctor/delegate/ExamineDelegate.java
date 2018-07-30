@@ -20,6 +20,7 @@ import com.healthmall.sail.cat_doctor.fragment.BloodHeartFragment;
 import com.healthmall.sail.cat_doctor.fragment.BloodoFragment;
 import com.healthmall.sail.cat_doctor.fragment.BodyFragment;
 import com.healthmall.sail.cat_doctor.fragment.FaceTonFragment;
+import com.healthmall.sail.cat_doctor.fragment.FaceTonFragment2;
 import com.healthmall.sail.cat_doctor.fragment.QuestionFragment;
 import com.healthmall.sail.cat_doctor.fragment.TemperatureFragment;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
@@ -35,7 +36,7 @@ public class ExamineDelegate extends BaseDelegate {
     TemperatureFragment temperatureFragment;
     BloodoFragment bloodoFragment;
     BloodHeartFragment bloodHeartFragment;
-    FaceTonFragment faceTonFragment;
+    FaceTonFragment2 faceTonFragment;
     QuestionFragment questionFragment;
 
     BaseFragment currFragment;
@@ -89,7 +90,7 @@ public class ExamineDelegate extends BaseDelegate {
             ivVip.setVisibility(View.GONE);
         }
 
-        if(!Configs.useTemp){
+        if (!Configs.useTemp) {
             rbTemp.setVisibility(View.GONE);
         }
     }
@@ -326,7 +327,7 @@ public class ExamineDelegate extends BaseDelegate {
             transaction.hide(bloodHeartFragment);
 
         if (faceTonFragment == null) {
-            faceTonFragment = new FaceTonFragment();
+            faceTonFragment = new FaceTonFragment2();
             transaction.add(R.id.fl_content, faceTonFragment);
         } else {
             transaction.show(faceTonFragment);
@@ -377,25 +378,11 @@ public class ExamineDelegate extends BaseDelegate {
     public void serialPortCallBack(String msg) {
 
         currFragment.serialPortCallBack(msg);
-/*
-        if (bodyFragment != null) {
-            bodyFragment.serialPortCallBack(msg);
-        }
-        if (temperatureFragment != null) {
-            temperatureFragment.serialPortCallBack(msg);
-        }
-        if (bloodoFragment != null) {
-            bloodoFragment.serialPortCallBack(msg);
-        }
-        if (bloodHeartFragment != null) {
-            bloodHeartFragment.serialPortCallBack(msg);
-        }
-        if (faceTonFragment != null) {
-            faceTonFragment.serialPortCallBack(msg);
-        }
-        if (questionFragment != null) {
-            questionFragment.serialPortCallBack(msg);
-        }*/
+    }
+
+    public void serialPortSmallCallBack(String msg) {
+
+        currFragment.serialPortSmallCallBack(msg);
     }
 
     public void serialPortIng(String msg) {

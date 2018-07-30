@@ -640,8 +640,8 @@ public class Report1Delegate extends BaseDelegate {
                 if (faceTonReport.isFinish()) {
                     ImageView ivFace = viewHolder.findViewById(R.id.iv_face);
                     ImageView ivTon = viewHolder.findViewById(R.id.iv_ton);
-                    MGlide.loadFace2(mContext, ivFace);
-                    MGlide.loadTon2(mContext, ivTon);
+                    MGlide.load(mContext, faceTonReport.getFaceUrl(), ivFace);
+                    MGlide.load(mContext, faceTonReport.getFaceUrl(), ivTon);
                 } else {
                     viewHolder.setOnClickListener(mOnClickListener, R.id.iv_examine_face_ton);
                 }

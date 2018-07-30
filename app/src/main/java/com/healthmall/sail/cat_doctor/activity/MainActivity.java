@@ -39,6 +39,7 @@ public class MainActivity extends BaseExamineActivity<MainDelegate> {
                 @Override
                 public void call(Boolean voice) {
                     MyApplication.get().getCurrUser().setVoice(voice);
+                    viewDelegate.cbVoice.setChecked(voice);
                     if (voice && !MyApplication.get().getCurrUser().isUsed()) {
                         DialogUtils.showVoiceTipDialog(MainActivity.this);
                     }

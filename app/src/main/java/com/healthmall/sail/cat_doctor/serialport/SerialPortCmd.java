@@ -112,9 +112,16 @@ public class SerialPortCmd {
         SerialPortEngine.getInstance().sendMsg(AT_PRE + "STPBLOODPRS");
     }
 
-    public static void fsjh(String height){
+    public static void fsjhFaceTon(String height) {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FSJH+TYPE=0+HH=" + height);
+    }
 
-        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FSJH=" + height);
+    public static void fsjhTemp(String height) {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FSJH+TYPE=1+HH=" + height);
+    }
+
+    public static void fsjhBloodPress(String height) {
+        SerialPortEngine.getInstance().sendMsg(AT_PRE + "FSJH+TYPE=2+HH=" + height);
     }
 
     public static void hadTest() {
@@ -252,7 +259,7 @@ public class SerialPortCmd {
         }
 
 //        float wthr = Float.parseFloat(bodyReport.getBm_bf_wwc()) / Float.parseFloat(bodyReport.getBm_bf_hip());
-        bodyReport.setBm_bf_wthr(divideTenFloat(mapTemp.get("RAC")) + "");
+        bodyReport.setBm_bf_wthr(divideHunFloat(mapTemp.get("RAC")) + "");
     }
 
     public static void parseBloodOX(String msg, BloodOxygenReport bloodOxygenReport) {
@@ -309,6 +316,10 @@ public class SerialPortCmd {
 
     private static String divideTenFloat(String data) {
         return (Integer.parseInt(data) / 10f) + "";
+    }
+
+    private static String divideHunFloat(String data) {
+        return (Integer.parseInt(data) / 100f) + "";
     }
 
     private static String dividePmTenFloat(String data) {

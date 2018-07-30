@@ -76,6 +76,9 @@ public class BaseSoftActivity<T extends IDelegate> extends ActivityPresenter<T>{
 
     }
 
+    public void serialPortSmallCallBack(String msg) {  //小屏串口通信的回调
+    }
+
     public void serialPortCallBack(String msg) {  //串口通信的回调
     }
 

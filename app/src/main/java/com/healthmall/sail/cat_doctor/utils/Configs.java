@@ -5,5 +5,5 @@ package com.healthmall.sail.cat_doctor.utils;
  */
 public class Configs {
     public static boolean isTaiYangShen = false;
-    public static boolean useTemp = false;
+    public static boolean useTemp = true;
 }

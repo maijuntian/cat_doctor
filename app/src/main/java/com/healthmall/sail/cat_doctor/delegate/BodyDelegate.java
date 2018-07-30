@@ -94,7 +94,6 @@ public class BodyDelegate extends AppDelegate {
     public void initWidget() {
         super.initWidget();
 
-        Glide.with(mContext).load(R.mipmap.height_tip).into(ivHWTip);
     }
 
     public void hidePopWin() {
@@ -134,6 +133,7 @@ public class BodyDelegate extends AppDelegate {
         tvStep4.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
         tvStep5.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
         tvStep6.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
+        Glide.with(mContext).load(R.mipmap.height_tip).into(ivHWTip);
         hidePopWin();
 
     }

@@ -184,6 +184,7 @@ public class Report1Activity extends BaseExamineActivity<Report1Delegate> {
             case "AT+ASRQX":// 取消
                 if (isShowDialog) {
                     dialog.dismiss();
+                    isShowDialog = false;
                 }
                 break;
             case "AT+ASRJS": //结束

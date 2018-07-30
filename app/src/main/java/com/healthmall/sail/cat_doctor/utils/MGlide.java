@@ -32,6 +32,12 @@ public class MGlide {
 
     }
 
+    public static void load(Context ctx, String url, ImageView imageView) {
+        initImageView(imageView);
+        Glide.with(ctx).load(url).into(imageView);
+
+    }
+
     public static void loadCircle(Context ctx, Bitmap bitmap, ImageView imageView) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);

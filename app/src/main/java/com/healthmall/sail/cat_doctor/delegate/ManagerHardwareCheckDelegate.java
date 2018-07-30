@@ -116,15 +116,17 @@ public class ManagerHardwareCheckDelegate extends AppDelegate {
         llContent.setVisibility(View.VISIBLE);
 
         rlBloodo.setVisibility(View.GONE);
-        rlBpHr.setVisibility(View.GONE);
 
         rlHeight.setBackgroundResource(R.mipmap.checking);
         rlWeight.setBackgroundResource(R.mipmap.checking);
+        rlBpHr.setBackgroundResource(R.mipmap.checking);
 
         tvHeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
         tvWeightTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
+        tvBpHrTip.setTextColor(ContextCompat.getColor(mContext, R.color.checking));
         tvHeightTip.setText("正在校准...");
         tvWeightTip.setText("正在校准...");
+        tvBpHrTip.setText("正在校准...");
     }
 
     public void showBloodOResult(boolean result, boolean isCheck) {

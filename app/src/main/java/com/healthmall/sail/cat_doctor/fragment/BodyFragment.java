@@ -16,6 +16,7 @@ import com.healthmall.sail.cat_doctor.delegate.BodyDelegate;
 import com.healthmall.sail.cat_doctor.http.CatDoctorApi;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.utils.DialogUtils;
+import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
 import com.mai.xmai_fast_lib.utils.MLog;
 
 import java.util.concurrent.TimeUnit;
@@ -162,6 +163,7 @@ public class BodyFragment extends BaseFragment<BodyDelegate> {
     public void showStep3() {
 
         if (currBodyReport.isFinishWeight() && currBodyReport.isFinishHeight()) {
+            finishSpeek();
             stopErrorDelay();
             viewDelegate.showStep3(currBodyReport);
         }
@@ -219,6 +221,7 @@ public class BodyFragment extends BaseFragment<BodyDelegate> {
             showStep3();
         } else if (msg.startsWith(SerialPortCmd.OK_BODYFAT)) { //体脂
 
+            finishSpeek();
             stopErrorDelay();
             SerialPortCmd.parseBodyFat(msg, currBodyReport);
             SerialPortCmd.stopFat();

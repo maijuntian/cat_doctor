@@ -72,7 +72,6 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-
         <ImageView
             android:id="@+id/iv_temp_tip"
             android:layout_width="match_parent"
@@ -80,17 +79,17 @@
 
         <TextView
             android:id="@+id/tv_start"
-            style="@style/button_tip"
+            style="@style/text_white"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="150px"
-            android:text="开始测量" />
+            android:layout_marginBottom="42px"
+            android:background="@drawable/button_start_selector" />
 
         <TextView
             style="@style/text_mgray"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="90px"
+            android:layout_marginBottom="32px"
             android:text="@string/examine_body_tip1" />
     </RelativeLayout>
 
@@ -98,7 +97,7 @@
         android:id="@+id/rl_step23"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <RelativeLayout
             android:layout_width="1217px"

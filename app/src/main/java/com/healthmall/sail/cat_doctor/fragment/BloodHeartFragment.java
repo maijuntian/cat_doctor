@@ -122,6 +122,7 @@ public class BloodHeartFragment extends BaseFragment<BloodHeartDelegate> {
 
         if (msg.startsWith(SerialPortCmd.OK_BLOODPRS)) {
 
+            finishSpeek();
             stopErrorDelay();
 
             SerialPortCmd.parseBloodOPRS(msg, currBloodPressureReport);

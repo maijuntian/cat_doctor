@@ -3,6 +3,7 @@ package com.healthmall.sail.cat_doctor.delegate;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.healthmall.sail.cat_doctor.MyApplication;
 import com.healthmall.sail.cat_doctor.R;
+import com.healthmall.sail.cat_doctor.bean.BodyReport;
 import com.healthmall.sail.cat_doctor.bean.TemperatureReport;
 import com.healthmall.sail.cat_doctor.serialport.SerialPortCmd;
 import com.healthmall.sail.cat_doctor.utils.VoiceMamanger;
@@ -81,7 +83,6 @@ public class TemperatureDelegate extends AppDelegate {
             }
         });
 
-        Glide.with(mContext).load(R.mipmap.temp_tip).into(ivTempTip);
     }
 
     public void hidePopWin() {
@@ -102,12 +103,20 @@ public class TemperatureDelegate extends AppDelegate {
         tvStep2.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
         tvStep3.setTextColor(ContextCompat.getColor(mContext, R.color.step_unfinish));
 
+        Glide.with(mContext).load(R.mipmap.temp_tip).into(ivTempTip);
         hidePopWin();
 
     }
 
     public void showStep2() {
+
         currStep = 2;
+
+        BodyReport bodyReport = MyApplication.get().getCurrUserReport().getBodyReport();
+        if (!TextUtils.isEmpty(bodyReport.getBm_height()) && bodyReport.getBm_height().length() >= 3) {
+            SerialPortCmd.fsjhTemp(bodyReport.getBm_height().substring(0, 3));
+        }
+
         rlStep1.setVisibility(View.GONE);
         rlStep23.setVisibility(View.VISIBLE);
         ivStep.setImageResource(R.mipmap.progress_2);
@@ -126,7 +135,7 @@ public class TemperatureDelegate extends AppDelegate {
         if (step2PopWin == null) {
             step2PopWin = new TipPopWin(mContext, R.layout.dialog_tip_no_button);
             pvProgress = step2PopWin.getContentView().findViewById(R.id.pv_progress);
-            ((TextView) step2PopWin.getContentView().findViewById(R.id.tv_content)).setText("您正在测量体温，请按下开关不放...");
+            ((TextView) step2PopWin.getContentView().findViewById(R.id.tv_content)).setText("您正在测量体温，请将额头靠近猫博士的鼻子...");
             pvProgress.setOnFinishListener(new ProgressView.OnFinishListener() {
                 @Override
                 public void onFinish() { //完成了
@@ -136,7 +145,7 @@ public class TemperatureDelegate extends AppDelegate {
         }
         step2PopWin.showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
 
-        VoiceMamanger.speak("您正在测量体温，请按下开关不放");
+        VoiceMamanger.speak("您正在测量体温，请将额头靠近猫博士的鼻子");
         pvProgress.start();
     }
 

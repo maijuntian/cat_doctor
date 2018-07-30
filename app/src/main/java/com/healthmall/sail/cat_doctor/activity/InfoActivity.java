@@ -35,7 +35,7 @@ public class InfoActivity extends BaseSoftActivity<InfoDelegate> {
                         MyApplication.get().getCurrUser().setBirthday(year + "-" + month + "-" + day);
                         MyApplication.get().getCurrUser().setMemberSex(sex);
 
-                        startActivity(MainActivity.class, true);
+                        startActivity(TipActivity.class, true);
                     }
                 }, new MyThrowable());
     }
